@@ -16,15 +16,15 @@ npm run dev
 - [ ] install dependencies
     - [ ] React Router
     - [ ] Prettier, ESLint (lint on save) incl. a11y rules (eslint-plugin-jsx-a11y)
-- [ ] create file structure (components, pages, data, utils, styles)
-- [ ] link styles to html
+- [x] create file structure (components, pages, data, utils, styles)
+- [x] link styles to html
 - [ ] data mock setup
     - [ ] create recipes.json and menus.json
     - [ ] implement utilities to read/write JSON (simulate with state or localStorage)
     - [ ] add unit tests?
 - [ ] set up routes (/, /add, /menu)
 - [ ] create navbar
-- [ ] create page components for browse recipes, add recipe, create menu
+- [x] create page components for browse recipes, add recipe, create menu
 - [ ] make sure linting works as expected
 
 ### MVP
