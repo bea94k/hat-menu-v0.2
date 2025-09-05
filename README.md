@@ -2,14 +2,20 @@
 
 Coding supported by AI.
 
+## To run the frontend
+```
+cd hat-menu
+npm install
+npm run dev
+```
 
 ## Plan
 
 ### Current phase: basic setup
-- [ ] create basic React app (Vite)
+- [x] create basic React app (Vite)
 - [ ] install dependencies
     - [ ] React Router
-    - [ ] Prettier, ESLint (lint on save)
+    - [ ] Prettier, ESLint (lint on save) incl. a11y rules (eslint-plugin-jsx-a11y)
 - [ ] create file structure (components, pages, data, utils, styles)
 - [ ] link styles to html
 - [ ] data mock setup
@@ -19,6 +25,7 @@ Coding supported by AI.
 - [ ] set up routes (/, /add, /menu)
 - [ ] create navbar
 - [ ] create page components for browse recipes, add recipe, create menu
+- [ ] make sure linting works as expected
 
 ### MVP
 - [ ] Browse recipe names
