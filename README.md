@@ -41,6 +41,9 @@ Coding supported by AI.
 - [ ] Enhance browsing
     - [ ] filter by category or tag
     - [ ] search by name or ingredient
+- [ ] Enhance menu creation
+    - [ ] possibility to change one recipe in the list of 7
+    - [ ] avoid recipes used in the past 2 menus
 - [ ] Enhance grocery list
     - [ ] sort ingredients in categories
     - [ ] easy copy or export
