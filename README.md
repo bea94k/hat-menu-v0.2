@@ -23,7 +23,7 @@ npm run dev
     - [ ] implement utilities to read/write JSON (simulate with state or localStorage)
     - [ ] add unit tests?
 - [x] set up routes (/, /add, /menu)
-- [ ] create navbar
+- [x] create navbar
 - [x] create page components for browse recipes, add recipe, create menu
 - [ ] make sure linting works as expected
 
