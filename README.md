@@ -24,10 +24,10 @@ npm run json-db
     - [x] Prettier, ESLint (lint on save) incl. a11y rules (eslint-plugin-jsx-a11y)(NOPE, the a11y rules don't seem to work for TS and new ESLint)
 - [x] create file structure (components, pages, data, utils, styles)
 - [x] link styles to html
-- [ ] data mock setup
+- [x] data mock setup
     - [x] create recipes.json and menus.json
     - [x] implement utilities to read/write JSON (simulate with state or localStorage)
-    - [ ] fetch/post with SWR or React Query
+    - [x] fetch/post with SWR or React Query
 - [x] set up routes (/, /add, /menu)
 - [x] create navbar
 - [x] create page components for browse recipes, add recipe, create menu
