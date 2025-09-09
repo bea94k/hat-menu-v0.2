@@ -1,0 +1,66 @@
+{
+    "recipes": [
+        { "id": 1, "name": "Spaghetti Bolognese" },
+        { "id": 2, "name": "Chicken Caesar Salad" },
+        { "id": 3, "name": "Vegetable Stir Fry" },
+        { "id": 4, "name": "Beef Tacos" },
+        { "id": 5, "name": "Grilled Salmon" },
+        { "id": 6, "name": "Tomato Soup" },
+        { "id": 7, "name": "Egg Fried Rice" },
+        { "id": 8, "name": "Pancakes" },
+        { "id": 9, "name": "Lentil Curry" },
+        { "id": 10, "name": "Turkey Sandwich" },
+        { "id": 11, "name": "Mushroom Risotto" },
+        { "id": 12, "name": "Fish Pie" },
+        { "id": 13, "name": "Greek Salad" },
+        { "id": 14, "name": "Chicken Fajitas" },
+        { "id": 15, "name": "Vegetable Lasagna" },
+        { "id": 16, "name": "Pulled Pork" },
+        { "id": 17, "name": "Quinoa Bowl" },
+        { "id": 18, "name": "Roast Chicken" },
+        { "id": 19, "name": "Chili Con Carne" },
+        { "id": 20, "name": "Tuna Pasta Bake" },
+        { "id": 21, "name": "Stuffed Bell Peppers" },
+        { "id": 22, "name": "Shrimp Scampi" },
+        { "id": 23, "name": "Broccoli Cheddar Soup" },
+        { "id": 24, "name": "BBQ Chicken Pizza" },
+        { "id": 25, "name": "Falafel Wrap" },
+        { "id": 26, "name": "Teriyaki Chicken" },
+        { "id": 27, "name": "Spinach Omelette" },
+        { "id": 28, "name": "Sweet Potato Fries" },
+        { "id": 29, "name": "Avocado Toast" },
+        { "id": 30, "name": "Crispy Fish Tacos" },
+        { "id": 31, "name": "Chicken Alfredo" },
+        { "id": 32, "name": "Veggie Quesadilla" },
+        { "id": 33, "name": "Baked Ziti" },
+        { "id": 34, "name": "Coconut Rice" },
+        { "id": 35, "name": "Beef Stroganoff" },
+        { "id": 36, "name": "Caprese Salad" },
+        { "id": 37, "name": "Lemon Garlic Chicken" },
+        { "id": 38, "name": "Pumpkin Soup" },
+        { "id": 39, "name": "Eggplant Parmesan" },
+        { "id": 40, "name": "Ham and Cheese Melt" }
+    ],
+    "menus": [
+        {
+            "id": 1,
+            "recipes": [1, 5, 12, 18, 22, 27, 33]
+        },
+        {
+            "id": 2,
+            "recipes": [2, 6, 13, 19, 23, 28, 34]
+        },
+        {
+            "id": 3,
+            "recipes": [3, 7, 14, 20, 24, 29, 35]
+        },
+        {
+            "id": 4,
+            "recipes": [4, 8, 15, 21, 25, 30, 36]
+        },
+        {
+            "id": 5,
+            "recipes": [9, 10, 11, 16, 17, 26, 31]
+        }
+    ]
+}

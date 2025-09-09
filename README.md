@@ -2,6 +2,18 @@
 
 Coding supported by AI.
 
+## To run the frontend
+```
+cd hat-menu
+npm install
+npm run dev
+```
+
+## To run local mock DB from JSON file
+```
+cd hat-menu
+npm run json-db
+```
 
 ## Plan
 
@@ -26,6 +38,9 @@ Coding supported by AI.
 - [ ] Enhance browsing
     - [ ] filter by category or tag
     - [ ] search by name or ingredient
+- [ ] Enhance menu creation
+    - [ ] possibility to change one recipe in the list of 7
+    - [ ] avoid recipes used in the past 2 menus
 - [ ] Enhance grocery list
     - [ ] sort ingredients in categories
     - [ ] easy copy or export
