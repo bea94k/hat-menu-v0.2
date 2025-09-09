@@ -1,6 +1,4 @@
-import React from 'react';
-
-const AddRecipePage: React.FC = () => {
+const AddRecipePage = () => {
     return (
         <main id="maincontent">
             <h1>add a recipe here</h1>

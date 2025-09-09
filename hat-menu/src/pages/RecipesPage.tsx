@@ -1,7 +1,7 @@
-import React from 'react';
+import RecipeCard from '../components/RecipeCard';
 import { useRecipes } from '../data/fetchingHooks';
 
-const RecipesPage: React.FC = () => {
+const RecipesPage = () => {
     const { recipes, isLoading, isError } = useRecipes();
     if (isError) return <div>failed to load</div>;
     if (isLoading) return <div>loading...</div>;

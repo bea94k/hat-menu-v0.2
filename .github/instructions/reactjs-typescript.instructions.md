@@ -25,7 +25,6 @@ Apply the [general coding guidelines](./general.instructions.md) to all code.
 ## React Guidelines
 - Use functional components with hooks
 - Follow the React hooks rules (no conditional hooks)
-- Use React.FC type for components with children
 - Keep components small and focused
 - Use CSS modules for component styling
 - Organize components by feature or domain for scalability

@@ -1,7 +1,6 @@
-import React from 'react';
 import { NavLink } from 'react-router';
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
     return (
         <nav>
             <ul>
