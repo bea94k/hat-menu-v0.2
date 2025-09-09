@@ -13,9 +13,9 @@ npm run dev
 
 ### Current phase: basic setup
 - [x] create basic React app (Vite)
-- [ ] install dependencies
+- [x] install dependencies
     - [x] React Router
-    - [ ] Prettier, ESLint (lint on save) incl. a11y rules (eslint-plugin-jsx-a11y)
+    - [x] Prettier, ESLint (lint on save) incl. a11y rules (eslint-plugin-jsx-a11y)(NOPE, the a11y rules don't seem to work for TS and new ESLint)
 - [x] create file structure (components, pages, data, utils, styles)
 - [x] link styles to html
 - [ ] data mock setup
@@ -25,7 +25,7 @@ npm run dev
 - [x] set up routes (/, /add, /menu)
 - [x] create navbar
 - [x] create page components for browse recipes, add recipe, create menu
-- [ ] make sure linting works as expected
+- [x] make sure linting works as expected
 
 ### MVP
 - [ ] Browse recipe names

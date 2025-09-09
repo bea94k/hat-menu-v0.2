@@ -23,7 +23,7 @@ applyTo: "**"
 - Always log errors with contextual information
 
 ## Formatting
-- Use Prettier for code formatting
+- Use ESLint and its config [../hat-menu/eslint.config.js] for linting and code formatting
 - Follow a consistent indentation style (4 spaces)
 - Use single quotes for strings
 - Include trailing commas where possible
