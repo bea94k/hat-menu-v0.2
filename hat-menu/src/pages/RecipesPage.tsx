@@ -9,7 +9,17 @@ const RecipesPage = () => {
     return (
         <main id="maincontent">
             <h1>browsing recipes here</h1>
-            <p> first recipe: {recipes?.[0]?.name}</p>
+            <ul>
+                {(!recipes || recipes.length === 0) ? (
+                    <li>No recipes available</li>
+                ) : (
+                
+                    recipes.map(recipe => (
+                        <li key={recipe.id}>
+                            <RecipeCard recipe={recipe} />
+                        </li>
+                    )))}
+            </ul>
         </main>
     );
 };
