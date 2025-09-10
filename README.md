@@ -17,8 +17,16 @@ npm run json-db
 
 ## Plan
 
+### Current step
+- [ ] create simple form for recipe name
+- [ ] gather the data from the form into state
+- [ ] add correct ID and save to JSON
+- [ ] clear form after success
+- [ ] update recipe list after success
+- [ ] use React Hook Form when needed
+
 ### MVP
-- [ ] Browse recipe names
+- [x] Browse recipe names
 - [ ] Add new recipe name
 - [ ] Menu creation
     - [ ] select 7 recipes randomly
