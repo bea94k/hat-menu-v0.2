@@ -18,7 +18,7 @@ npm run json-db
 ## Plan
 
 ### Current step
-- [ ] create simple form for recipe name
+- [x] create simple form for recipe name
 - [ ] gather the data from the form into state
 - [ ] add correct ID and save to JSON
 - [ ] clear form after success
