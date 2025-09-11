@@ -3,4 +3,8 @@ interface Recipe {
     id: string;
 }
 
-export type { Recipe };
+interface RecipeForm {
+    name: string;
+}
+
+export type { Recipe, RecipeForm };

@@ -19,11 +19,14 @@ npm run json-db
 
 ### Current step
 - [x] create simple form for recipe name
-- [ ] gather the data from the form into state
+- [x] gather the data from the form into state
 - [ ] add correct ID and save to JSON
 - [ ] clear form after success
 - [ ] update recipe list after success
-- [ ] use React Hook Form when needed
+- [x] use React Hook Form when needed
+- [ ] use validator
+        - [ ] set up schema for recipe form
+        - [ ] set up the required field
 
 ### MVP
 - [x] Browse recipe names
