@@ -24,7 +24,7 @@ create menu
 - [ ] prevent duplicate selection
 - [ ] tests for any util functions
 - [ ] with button, save the new menu to json db
-- [ ] list previous menus on the bottom of the page (to check if saved ok)
+- [x] list previous menus on the bottom of the page (to check if saved ok)
 
 ### MVP
 - [x] Browse recipe names

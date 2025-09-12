@@ -1,5 +1,5 @@
 import { array, object, type InferType } from 'yup';
-import { RecipeSchema, type Recipe } from './Recipes';
+import { RecipeSchema } from './Recipes';
 
 const MenuFormSchema = object({
     recipes: array().of(RecipeSchema),
@@ -8,7 +8,7 @@ const MenuFormSchema = object({
 type MenuForm = InferType<typeof MenuFormSchema>;
 
 interface Menu {
-    recipes: Recipe[];
+    recipes: number[];
     id: string;
 }
 
