@@ -1,3 +1,5 @@
-const fetcher = (...args: [RequestInfo, RequestInit?]) => fetch(...args).then(res => res.json());
+const baseAPI = 'http://localhost:3000';
 
-export default fetcher;
+const fetcher = (...args: [RequestInfo, RequestInit?]) => fetch(`${baseAPI}${args[0]}`, args[1]).then(res => res.json());
+
+export { baseAPI, fetcher };

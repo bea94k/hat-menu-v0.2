@@ -1,11 +1,9 @@
 import useSWR, { mutate } from 'swr';
-import fetcher from './fetcher';
+import { baseAPI, fetcher } from './fetcher';
 import type { Recipe, RecipeForm } from '../types/Recipes';
 
-const baseAPI = 'http://localhost:3000';
-
 function useRecipes () {
-    const { data, error, isLoading } = useSWR<Recipe[]>(`${baseAPI}/recipes`, fetcher);
+    const { data, error, isLoading } = useSWR<Recipe[]>('/recipes', fetcher);
  
     return {
         recipes: data,
@@ -28,7 +26,7 @@ async function addRecipe(recipe: RecipeForm): Promise<Recipe | null> {
         }
         const newRecipe = await response.json();
         // Update SWR cache for recipes
-        await mutate(`${baseAPI}/recipes`);
+        await mutate('/recipes');
         return newRecipe;
     } catch (error) {
         console.error('Error adding recipe:', error);
