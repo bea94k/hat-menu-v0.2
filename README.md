@@ -27,7 +27,7 @@ npm run json-db
 - [x] use React Hook Form when needed
 - [x] adjust the naming of files (/data/fetchingHooks -> /data/recipesAPI ?)
 - [ ] use validator
-        - [ ] set up schema for recipe form
+        - [x] set up schema for recipe form
         - [ ] set up the required field
 
 ### MVP
