@@ -21,11 +21,11 @@ npm run json-db
 - [x] create simple form for recipe name
 - [x] gather the data from the form into state
 - [x] add correct ID and save to JSON
-- [ ] consider putting the baseAPI in fetcher (array spreading and type challenging)
+- [x] consider putting the baseAPI in fetcher (array spreading and type challenging)
 - [x] clear form after success
 - [x] update recipe list after success
 - [x] use React Hook Form when needed
-- [ ] adjust the naming of files (/data/fetchingHooks -> /data/recipesAPI ?)
+- [x] adjust the naming of files (/data/fetchingHooks -> /data/recipesAPI ?)
 - [ ] use validator
         - [ ] set up schema for recipe form
         - [ ] set up the required field

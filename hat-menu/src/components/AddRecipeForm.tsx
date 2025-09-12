@@ -1,6 +1,6 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import type { RecipeForm } from '../types/Recipes';
-import { addRecipe } from '../data/fetchingHooks';
+import { addRecipe } from '../data/recipesApi';
 import React, { useEffect } from 'react';
 
 const AddRecipeForm = () => {

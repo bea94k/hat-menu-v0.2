@@ -1,5 +1,5 @@
 import RecipeCard from '../components/RecipeCard';
-import { useRecipes } from '../data/fetchingHooks';
+import { useRecipes } from '../data/recipesApi';
 
 const RecipesPage = () => {
     const { recipes, isLoading, isError } = useRecipes();
