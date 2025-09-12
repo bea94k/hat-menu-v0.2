@@ -1,13 +1,14 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import type { RecipeForm } from '../types/Recipes';
 import { addRecipe } from '../data/fetchingHooks';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const AddRecipeForm = () => {
     const {
         register,
+        reset,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitSuccessful },
     } = useForm<RecipeForm>();
     const [submitStatus, setSubmitStatus] = React.useState<string | null>(null);
     const onSubmit: SubmitHandler<RecipeForm> = async (data) => {
@@ -22,6 +23,13 @@ const AddRecipeForm = () => {
     // TODO: use validator instead of validating by hand
     // TODO: make sure required fields have correct markup, asterisks, explicit error messages
     
+    useEffect(() => {
+        if (isSubmitSuccessful) {
+            reset();
+        }
+    }, [isSubmitSuccessful, reset]);
+
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="recipeName">Recipe Name:</label>

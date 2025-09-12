@@ -22,7 +22,7 @@ npm run json-db
 - [x] gather the data from the form into state
 - [x] add correct ID and save to JSON
 - [ ] consider putting the baseAPI in fetcher (array spreading and type challenging)
-- [ ] clear form after success
+- [x] clear form after success
 - [x] update recipe list after success
 - [x] use React Hook Form when needed
 - [ ] adjust the naming of files (/data/fetchingHooks -> /data/recipesAPI ?)
