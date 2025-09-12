@@ -5,10 +5,13 @@ const RecipeFormSchema = object({
 });
 
 type RecipeForm = InferType<typeof RecipeFormSchema>;
-interface Recipe {
-    name: string;
-    id: string;
-}
 
-export { RecipeFormSchema };
+const RecipeSchema = object({
+    name: string().required(),
+    id: string().required(),
+});
+
+type Recipe = InferType<typeof RecipeSchema>;
+
+export { RecipeFormSchema, RecipeSchema };
 export type { RecipeForm, Recipe };
