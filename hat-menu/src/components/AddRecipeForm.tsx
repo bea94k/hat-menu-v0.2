@@ -21,15 +21,12 @@ const AddRecipeForm = () => {
         } catch (error: unknown) {
             setSubmitStatus(error instanceof Error ? error.message : 'An error occurred while adding the recipe.');
         }
-    };
-
-    // TODO: make sure required fields have correct markup, asterisks, explicit error messages
-    
+    };    
     
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="recipeName">Recipe Name:</label>
-            <input type="text" id="recipeName" {...register('name', { required: 'Recipe name is required' })} />
+            <input type="text" id="recipeName" autoComplete="off" required {...register('name')} />
             <button type="submit">Add Recipe</button>
             {Object.keys(errors).length > 0 && (
                 <div style={{ border: '2px solid red', padding: '1rem' }}>

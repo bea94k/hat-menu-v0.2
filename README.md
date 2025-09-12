@@ -18,21 +18,10 @@ npm run json-db
 ## Plan
 
 ### Current step
-- [x] create simple form for recipe name
-- [x] gather the data from the form into state
-- [x] add correct ID and save to JSON
-- [x] consider putting the baseAPI in fetcher (array spreading and type challenging)
-- [x] clear form after success
-- [x] update recipe list after success
-- [x] use React Hook Form when needed
-- [x] adjust the naming of files (/data/fetchingHooks -> /data/recipesAPI ?)
-- [ ] use validator
-        - [x] set up schema for recipe form
-        - [ ] set up the required field
 
 ### MVP
 - [x] Browse recipe names
-- [ ] Add new recipe name
+- [x] Add new recipe name
 - [ ] Menu creation
     - [ ] select 7 recipes randomly
     - [ ] prevent duplicate selections
