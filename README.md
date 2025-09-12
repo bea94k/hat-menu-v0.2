@@ -17,9 +17,11 @@ npm run json-db
 
 ## Plan
 
+### Current step
+
 ### MVP
-- [ ] Browse recipe names
-- [ ] Add new recipe name
+- [x] Browse recipe names
+- [x] Add new recipe name
 - [ ] Menu creation
     - [ ] select 7 recipes randomly
     - [ ] prevent duplicate selections

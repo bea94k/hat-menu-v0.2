@@ -1,9 +1,10 @@
-import React from 'react';
+import AddRecipeForm from '../components/AddRecipeForm';
 
-const AddRecipePage: React.FC = () => {
+const AddRecipePage = () => {
     return (
         <main id="maincontent">
             <h1>add a recipe here</h1>
+            <AddRecipeForm />
         </main>
     );
 };

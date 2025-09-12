@@ -1,7 +1,7 @@
-import React from 'react';
-import { useRecipes } from '../data/fetchingHooks';
+import RecipeCard from '../components/RecipeCard';
+import { useRecipes } from '../data/recipesApi';
 
-const RecipesPage: React.FC = () => {
+const RecipesPage = () => {
     const { recipes, isLoading, isError } = useRecipes();
     if (isError) return <div>failed to load</div>;
     if (isLoading) return <div>loading...</div>;
@@ -9,7 +9,17 @@ const RecipesPage: React.FC = () => {
     return (
         <main id="maincontent">
             <h1>browsing recipes here</h1>
-            <p> first recipe: {recipes?.[0]?.name}</p>
+            <ul>
+                {(!recipes || recipes.length === 0) ? (
+                    <li>No recipes available</li>
+                ) : (
+                
+                    recipes.map(recipe => (
+                        <li key={recipe.id}>
+                            <RecipeCard recipe={recipe} />
+                        </li>
+                    )))}
+            </ul>
         </main>
     );
 };
