@@ -1,8 +1,7 @@
-import { array, object, type InferType } from 'yup';
-import { RecipeSchema } from './Recipes';
+import { array, object, string, type InferType } from 'yup';
 
 const MenuFormSchema = object({
-    recipes: array().of(RecipeSchema),
+    recipes: array().of(string().uuid()),
 });
 
 type MenuForm = InferType<typeof MenuFormSchema>;

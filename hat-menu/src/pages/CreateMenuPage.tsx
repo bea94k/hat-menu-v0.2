@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMenus } from '../data/menusApi';
+import { addMenu, useMenus } from '../data/menusApi';
 import { useRecipes } from '../data/recipesApi';
 import { getUniqueRandom } from '../utils/utils';
 import type { Recipe } from '../types/Recipes';
@@ -14,11 +14,17 @@ const CreateMenuPage = () => {
         setNewMenu(getUniqueRandom(7, recipes || []));
     };
 
+    const saveMenu = async (newMenu: Recipe[]) => {
+        const newMenuRecipeIDs = newMenu.map(recipe => recipe.id);
+        addMenu({recipes: newMenuRecipeIDs});
+    };
+
     return (
         <main id="maincontent">
             <h1>create a menu here</h1>
             <button onClick={() => getRandomMenu()}>Get 7 random recipes</button>
             <p>{newMenu.map(recipe => recipe.name).join(', ')}</p>
+            {newMenu.length > 0 && <button onClick={() => saveMenu(newMenu)}>Save this menu</button>}
 
             <h2>Past menus (total: {menus?.length || 0})</h2>
             {
