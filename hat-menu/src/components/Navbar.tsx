@@ -15,6 +15,11 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 <li>
+                    <NavLink to="/menus">
+                        Menus
+                    </NavLink>
+                </li>
+                <li>
                     <NavLink to="/create-menu">
                         Create Menu
                     </NavLink>

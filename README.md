@@ -22,9 +22,9 @@ npm run json-db
 ### MVP
 - [x] Browse recipe names
 - [x] Add new recipe name
-- [ ] Menu creation
-    - [ ] select 7 recipes randomly
-    - [ ] prevent duplicate selections
+- [x] Menu creation
+    - [x] select 7 recipes randomly
+    - [x] prevent duplicate selections
 
 ### Next steps
 - [ ] Add ingredients to recipes
@@ -54,3 +54,4 @@ npm run json-db
 - [ ] Styling
     - [ ] accessible (color contrast, focus states, errors, big touch targets etc.)
     - [ ] responsive, zoom
+- [ ] testing (React Testing Library for React components, Vite for unit tests)
