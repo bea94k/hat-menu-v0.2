@@ -30,7 +30,7 @@ create menu
 - [x] with button, save the new menu to json db
 - [x] list previous menus on the bottom of the page (to check if saved ok)
 - [x] create base-db.json for easy reset of mock db
-- [ ] display menus in inverted order (freshest on top)
+- [x] display menus in inverted order (freshest on top)
 
 ### MVP
 - [x] Browse recipe names

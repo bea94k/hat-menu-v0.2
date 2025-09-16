@@ -8,6 +8,8 @@ const CreateMenuPage = () => {
     const { menus, isLoading, isError } = useMenus();
     const { recipes } = useRecipes();
 
+    const latestMenus = menus ? menus.slice(-3).reverse() : [];
+
     const [newMenu, setNewMenu] = useState<Recipe[]>([]);
     const [savingStatus, setSavingStatus] = useState('');
 
@@ -38,22 +40,22 @@ const CreateMenuPage = () => {
             <h1>create a menu here</h1>
             <button onClick={() => getRandomMenu()}>Get 7 random recipes</button>
             <p>{newMenu.map(recipe => recipe.name).join(', ')}</p>
-            {/* {newMenu.length > 0 &&  */}
-            <button onClick={() => saveMenu(newMenu)}>Save this menu</button>
-            {/* } */}
+            {newMenu.length > 0 && 
+                <button onClick={() => saveMenu(newMenu)}>Save this menu</button>
+            }
             {savingStatus && (
                 <div style={{ border: '5px solid black', padding: '1rem' }}>
                     <p>{savingStatus}</p>
                 </div>
             )}
 
-            <h2>Past menus (total: {menus?.length || 0})</h2>
+            <h2>Latest 3 menus</h2>
             {
                 isError ? (<div>failed to load</div>)
                     : isLoading ? (<div>loading...</div>) : 
                         menus && menus.length > 0 ? (
                             <ul>
-                                {menus.map(menu => (
+                                {latestMenus.map(menu => (
                                     <li key={menu.id}>
                                         Menu (ID: {menu.id})
                                         <ul>
