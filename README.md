@@ -18,26 +18,13 @@ npm run json-db
 ## Plan
 
 ### Current step
-create menu
-- [x] button to get 7 random recipes (display name and id)
-- [x] display list of 7 recipes
-- [x] prevent duplicate selection
-- [x] tests for any util functions
-- [x] IDs of schema UUID, type string (never number)
-- [x] handle case where the recipe has been removed (ID not found) in browsing recipes or displaying menus
-- [x] add UI feedback to saving menu
-- [x] disallow saving same menu twice in a row
-- [x] with button, save the new menu to json db
-- [x] list previous menus on the bottom of the page (to check if saved ok)
-- [x] create base-db.json for easy reset of mock db
-- [x] display menus in inverted order (freshest on top)
 
 ### MVP
 - [x] Browse recipe names
 - [x] Add new recipe name
-- [ ] Menu creation
-    - [ ] select 7 recipes randomly
-    - [ ] prevent duplicate selections
+- [x] Menu creation
+    - [x] select 7 recipes randomly
+    - [x] prevent duplicate selections
 
 ### Next steps
 - [ ] Add ingredients to recipes
