@@ -8,7 +8,7 @@ type RecipeForm = InferType<typeof RecipeFormSchema>;
 
 const RecipeSchema = object({
     name: string().required(),
-    id: string().required(),
+    id: string().uuid().required(),
 });
 
 type Recipe = InferType<typeof RecipeSchema>;

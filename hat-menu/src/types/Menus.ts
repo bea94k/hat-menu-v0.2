@@ -6,10 +6,12 @@ const MenuFormSchema = object({
 
 type MenuForm = InferType<typeof MenuFormSchema>;
 
-interface Menu {
-    recipes: number[];
-    id: string;
-}
+const MenuSchema = object({
+    recipes: array().of(string().uuid()).required(),
+    id: string().uuid().required(),
+});
 
-export { MenuFormSchema };
+type Menu = InferType<typeof MenuSchema>;
+
+export { MenuFormSchema, MenuSchema };
 export type { MenuForm, Menu };

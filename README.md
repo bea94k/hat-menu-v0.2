@@ -23,7 +23,7 @@ create menu
 - [x] display list of 7 recipes
 - [x] prevent duplicate selection
 - [x] tests for any util functions
-- [ ] IDs of schema UUID, type string (never number)
+- [x] IDs of schema UUID, type string (never number)
 - [ ] handle case where the recipe has been removed (ID not found) in browsing recipes or displaying menus
 - [ ] add UI feedback to saving menu
 - [ ] disallow saving same menu twice in a row
