@@ -19,7 +19,8 @@ const AddRecipeForm = () => {
             setSubmitStatus(`Recipe added successfully! ${newRecipe?.name}, ${newRecipe?.id}`);
             reset();
         } catch (error: unknown) {
-            setSubmitStatus(error instanceof Error ? error.message : 'An error occurred while adding the recipe.');
+            console.error('Error saving recipe:', error);
+            setSubmitStatus('An error occurred while adding the recipe.');
         }
     };    
     
@@ -39,7 +40,7 @@ const AddRecipeForm = () => {
             )}
             {submitStatus && (
                 <div style={{ border: '5px solid black', padding: '1rem' }}>    {/* shouldn't be red, cause OK status also shown here */}
-                    <p>Status from backend: {submitStatus}</p>
+                    <p>{submitStatus}</p>
                 </div>
             )}
         </form>

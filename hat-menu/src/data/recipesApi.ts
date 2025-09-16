@@ -29,8 +29,7 @@ async function addRecipe(recipe: RecipeForm): Promise<Recipe | null> {
         await mutate('/recipes');
         return newRecipe;
     } catch (error) {
-        console.error('Error adding recipe:', error);
-        return null;
+        throw new Error(error instanceof Error ? error.message : 'An unknown error occurred while adding the recipe.');
     }
 }
 

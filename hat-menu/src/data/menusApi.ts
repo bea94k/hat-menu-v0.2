@@ -29,8 +29,7 @@ async function addMenu(menu: MenuForm): Promise<Menu | null> {
         await mutate('/menus');
         return newMenu;
     } catch (error) {
-        console.error('Error adding menu:', error);
-        return null;
+        throw new Error(error instanceof Error ? error.message : 'An unknown error occurred while adding the menu.');
     }
 }
 
