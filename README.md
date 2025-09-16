@@ -22,7 +22,8 @@ create menu
 - [x] button to get 7 random recipes (display name and id)
 - [x] display list of 7 recipes
 - [x] prevent duplicate selection
-- [ ] tests for any util functions
+- [x] tests for any util functions
+- [ ] IDs of schema UUID, type string (never number)
 - [ ] handle case where the recipe has been removed (ID not found) in browsing recipes or displaying menus
 - [ ] add UI feedback to saving menu
 - [ ] disallow saving same menu twice in a row
@@ -65,3 +66,4 @@ create menu
 - [ ] Styling
     - [ ] accessible (color contrast, focus states, errors, big touch targets etc.)
     - [ ] responsive, zoom
+- [ ] testing (React Testing Library for React components, Vite for unit tests)

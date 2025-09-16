@@ -1,8 +1,8 @@
-const getUniqueRandom = <T extends { id: string | number }>(itemCount: number, items: T[]): T[] => {
+const getUniqueRandom = <T extends { id: string }>(itemCount: number, items: T[]): T[] => {
     if (itemCount <= 0 || items.length === 0) return [];
     const shuffled = [...items].sort(() => Math.random() - 0.5);
     const uniqueItems: T[] = [];
-    const seenIds = new Set<string | number>();
+    const seenIds = new Set<string>();
     for (const item of shuffled) {
         // keep track of seen IDs for the case when the items array includes duplicate IDs
         if (!seenIds.has(item.id)) {
