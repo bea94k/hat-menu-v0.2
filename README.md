@@ -24,12 +24,12 @@ create menu
 - [x] prevent duplicate selection
 - [x] tests for any util functions
 - [x] IDs of schema UUID, type string (never number)
-- [ ] handle case where the recipe has been removed (ID not found) in browsing recipes or displaying menus
+- [x] handle case where the recipe has been removed (ID not found) in browsing recipes or displaying menus
 - [x] add UI feedback to saving menu
 - [x] disallow saving same menu twice in a row
 - [x] with button, save the new menu to json db
 - [x] list previous menus on the bottom of the page (to check if saved ok)
-- [ ] create base-db.json for easy reset of mock db
+- [x] create base-db.json for easy reset of mock db
 - [ ] display menus in inverted order (freshest on top)
 
 ### MVP
