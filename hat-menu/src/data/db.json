@@ -415,7 +415,7 @@
       ]
     }
   ],
-  "allowedIngredients": [
+  "ingredients": [
     "pasta",
     "tomato",
     "potato",

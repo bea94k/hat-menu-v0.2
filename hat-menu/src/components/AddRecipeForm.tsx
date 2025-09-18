@@ -4,8 +4,11 @@ import { useFieldArray, useForm, type SubmitHandler } from 'react-hook-form';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { addRecipe } from '../data/recipesApi';
 import { units } from '../schemas/Ingredients';
+import { useIngredients } from '../data/ingredientsApi';
 
 const AddRecipeForm = () => {
+    const {ingredients} = useIngredients();
+
     const {
         register,
         control,
@@ -34,8 +37,8 @@ const AddRecipeForm = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <label htmlFor="recipeName">Recipe Name:</label>
-                <input type="text" id="recipeName" autoComplete="off" required {...register('name')} />
+                <label htmlFor="recipe-name">Recipe Name:</label>
+                <input type="text" id="recipe-name" autoComplete="off" required {...register('name')} />
             </div>
 
             <div>
@@ -43,13 +46,20 @@ const AddRecipeForm = () => {
                 <div>
                     {fields.map((field, index) => (
                         <div key={field.id}>
-                            <input
-                                type="text"
+                            <input 
+                                type="text" 
                                 placeholder="Ingredient Name"
-                                {...register(`ingredients.${index}.name` as const)}
-                            />
+                                id="ingredient-name" 
+                                list="ingredient-name-datalist"
+                                required 
+                                {...register(`ingredients.${index}.name`)} />
+                            {ingredients && ingredients.length > 0 && <datalist id="ingredient-name-datalist">
+                                {ingredients.map(ingredient => (
+                                    <option key={ingredient} value={ingredient} />
+                                ))}
+                            </datalist>}
                             <select
-                                {...register(`ingredients.${index}.unit` as const)}
+                                {...register(`ingredients.${index}.unit`)}
                             >
                                 <option value="">Select Unit</option>
                                 {units.map((unit) => (
@@ -59,7 +69,7 @@ const AddRecipeForm = () => {
                             <input
                                 type="number"
                                 placeholder="Ingredient Quantity"
-                                {...register(`ingredients.${index}.quantity` as const)}
+                                {...register(`ingredients.${index}.quantity`)}
                             />
                             <button type="button" onClick={() => remove(index)}>Remove</button>
                         </div>
