@@ -244,6 +244,22 @@
         }
       ],
       "name": "an actual pasta bolognese"
+    },
+    {
+      "id": "3860",
+      "ingredients": [
+        {
+          "quantity": 3,
+          "unit": "piece",
+          "name": "potato"
+        },
+        {
+          "quantity": 0,
+          "unit": "",
+          "name": "salt"
+        }
+      ],
+      "name": "boiled potatoes"
     }
   ],
   "menus": [
