@@ -20,13 +20,14 @@ npm run json-db
 ### Current step
 add ingredients
 - [x] how to build the data so that it's usable when adding a recipe but also when summarizing ingredients for the grocery list
-- [ ] create allowed units in json (hardcoded)
-- [ ] create allowed ingredient names in json-db (so that it can be autocompleted but also added if new)
+- [x] create allowed units in json (hardcoded)
+- [x] create allowed ingredient names in json-db (so that it can be autocompleted but also added if new)
 - [ ] create ingredient schema and type
 - [ ] adjust schemas and types for recipe
 - [ ] adjust add-recipe form
     - [ ] add fields for adding ingredients (hard-code just one for now)
     - [ ] number for quantity, dropdown/autocomplete for unit, text/autocomplete/combobox for ingredient name
+    - [ ] allow for an ingredient without quantity and unit (spices)
     - [ ] allow multiple ingredients (field array?)
 - [ ] adjust existing data to fit new schema (add empty ingredient array)
 

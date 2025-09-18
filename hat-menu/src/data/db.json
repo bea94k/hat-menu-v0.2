@@ -410,5 +410,11 @@
         "30"
       ]
     }
+  ],
+  "allowedIngredients": [
+    "pasta",
+    "tomato",
+    "potato",
+    "chicken"
   ]
 }
