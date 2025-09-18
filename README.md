@@ -18,6 +18,17 @@ npm run json-db
 ## Plan
 
 ### Current step
+add ingredients
+- [x] how to build the data so that it's usable when adding a recipe but also when summarizing ingredients for the grocery list
+- [ ] create allowed units in json (hardcoded)
+- [ ] create allowed ingredient names in json-db (so that it can be autocompleted but also added if new)
+- [ ] create ingredient schema and type
+- [ ] adjust schemas and types for recipe
+- [ ] adjust add-recipe form
+    - [ ] add fields for adding ingredients (hard-code just one for now)
+    - [ ] number for quantity, dropdown/autocomplete for unit, text/autocomplete/combobox for ingredient name
+    - [ ] allow multiple ingredients (field array?)
+- [ ] adjust existing data to fit new schema (add empty ingredient array)
 
 ### MVP
 - [x] Browse recipe names
@@ -33,7 +44,7 @@ npm run json-db
 - [ ] Create grocery list from a menu
     - [ ] aggregate ingredients from all 7 recipes
     - [ ] deduplicate repeated ingredients
-- [ ] Browse past menus
+- [x] Browse past menus
 - [ ] Enhance recipe
     - [ ] add instructions
     - [ ] add category or tags
@@ -43,6 +54,8 @@ npm run json-db
 - [ ] Enhance menu creation
     - [ ] possibility to change one recipe in the list of 7
     - [ ] avoid recipes used in the past 2 menus
+    - [ ] mark dates of the menu
+    - [ ] browsing: display dates, sort by dates
 - [ ] Enhance grocery list
     - [ ] sort ingredients in categories
     - [ ] easy copy or export
