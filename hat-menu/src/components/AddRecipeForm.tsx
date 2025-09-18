@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { RecipeFormSchema, type RecipeForm } from '../types/Recipes';
+import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { addRecipe } from '../data/recipesApi';
 
 const AddRecipeForm = () => {

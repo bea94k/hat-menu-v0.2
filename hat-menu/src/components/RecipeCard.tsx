@@ -1,4 +1,4 @@
-import type { Recipe } from '../types/Recipes';
+import type { Recipe } from '../schemas/Recipes';
 
 interface Props {
     recipe: Recipe;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { addMenu, useMenus } from '../data/menusApi';
 import { useRecipes } from '../data/recipesApi';
 import { getUniqueRandom } from '../utils/utils';
-import type { Recipe } from '../types/Recipes';
+import type { Recipe } from '../schemas/Recipes';
 
 const CreateMenuPage = () => {
     const { menus, isLoading, isError } = useMenus();
