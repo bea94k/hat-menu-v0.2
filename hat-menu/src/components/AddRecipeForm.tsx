@@ -1,16 +1,22 @@
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm, type SubmitHandler } from 'react-hook-form';
+import { useFieldArray, useForm, type SubmitHandler } from 'react-hook-form';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { addRecipe } from '../data/recipesApi';
 
 const AddRecipeForm = () => {
     const {
         register,
+        control,
         reset,
         handleSubmit,
         formState: { errors },
     } = useForm({resolver: yupResolver(RecipeFormSchema)});
+    const { fields, append, remove } = useFieldArray({
+        control,
+        name: 'ingredients',
+    });
+
     const [submitStatus, setSubmitStatus] = useState<string | null>(null);
     const onSubmit: SubmitHandler<RecipeForm> = async (data) => {
         setSubmitStatus(null);
@@ -22,13 +28,45 @@ const AddRecipeForm = () => {
             console.error('Error saving recipe:', error);
             setSubmitStatus('An error occurred while adding the recipe.');
         }
-    };    
-    
+    };  
+          
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="recipeName">Recipe Name:</label>
-            <input type="text" id="recipeName" autoComplete="off" required {...register('name')} />
-            <button type="submit">Add Recipe</button>
+            <div>
+                <label htmlFor="recipeName">Recipe Name:</label>
+                <input type="text" id="recipeName" autoComplete="off" required {...register('name')} />
+            </div>
+
+            <div>
+                <label htmlFor="ingredients">Ingredients:</label>  {/* TODO: a11y-wise, one label for many inputs? */}
+                <div>
+                    {fields.map((field, index) => (
+                        <div key={field.id}>
+                            <input
+                                type="text"
+                                placeholder="Ingredient Name"
+                                {...register(`ingredients.${index}.name` as const)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Ingredient Unit"
+                                {...register(`ingredients.${index}.unit` as const)}
+                            />
+                            <input
+                                type="number"
+                                placeholder="Ingredient Quantity"
+                                {...register(`ingredients.${index}.quantity` as const)}
+                            />
+                            <button type="button" onClick={() => remove(index)}>Remove</button>
+                        </div>
+                    ))}
+                    <button type="button" onClick={() => append({ name: '', unit: '', quantity: 0 })}>
+                    Add Ingredient
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" style={{border: '2px solid black'}}>Add Recipe</button>
             {Object.keys(errors).length > 0 && (
                 <div style={{ border: '2px solid red', padding: '1rem' }}>
                     <ul>Errors from form:

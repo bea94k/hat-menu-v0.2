@@ -1,7 +1,9 @@
-import { object, string, type InferType } from 'yup';
+import { array, object, string, type InferType } from 'yup';
+import { IngredientSchema } from './Ingredients';
 
 const RecipeFormSchema = object({
     name: string().required(),
+    ingredients: array().of(IngredientSchema),
 });
 
 type RecipeForm = InferType<typeof RecipeFormSchema>;
