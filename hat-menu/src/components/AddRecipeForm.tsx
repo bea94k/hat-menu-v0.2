@@ -25,8 +25,9 @@ const AddRecipeForm = () => {
     const onSubmit: SubmitHandler<RecipeForm> = async (data) => {
         setSubmitStatus(null);
         try {
-            const newRecipe = await addRecipe({ name: data.name });
+            const newRecipe = await addRecipe(data);
             setSubmitStatus(`Recipe added successfully! ${newRecipe?.name}, ${newRecipe?.id}`);
+            // TODO: try to save the ingredients that are not yet in the db. No need for big error handling, cause that's an additional thing
             reset();
         } catch (error: unknown) {
             console.error('Error saving recipe:', error);

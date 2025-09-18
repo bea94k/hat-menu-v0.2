@@ -207,6 +207,43 @@
     {
       "id": "97c4",
       "name": "shrimp salad"
+    },
+    {
+      "id": "d714",
+      "ingredients": [
+        {
+          "quantity": 2,
+          "unit": "tbsp",
+          "name": "pasta"
+        },
+        {
+          "name": "tomato",
+          "unit": "tsp",
+          "quantity": 0
+        }
+      ],
+      "name": "saving with ingredients"
+    },
+    {
+      "id": "9847",
+      "ingredients": [
+        {
+          "quantity": 1,
+          "unit": "cup",
+          "name": "pasta"
+        },
+        {
+          "quantity": 3,
+          "unit": "dl",
+          "name": "tomato"
+        },
+        {
+          "quantity": 1,
+          "unit": "piece",
+          "name": "onion"
+        }
+      ],
+      "name": "an actual pasta bolognese"
     }
   ],
   "menus": [

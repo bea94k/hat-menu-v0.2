@@ -28,11 +28,15 @@ add ingredients
 - [ ] adjust add-recipe form
     - [x] add fields for adding ingredients (hard-code just one for now)
     - [x] number for quantity, text for unit, text for name
-    - [ ] enhance: dropdown/autocomplete for unit, text/autocomplete/combobox for ingredient name
+    - [x] enhance: dropdown/autocomplete for unit, text/autocomplete/combobox for ingredient name
     - [ ] allow for an ingredient without quantity and unit (spices)
     - [x] allow multiple ingredients (field array?)
     - [ ] add label for each ingredient input (unit, name, quantity), fieldset?, remove placeholders in inputs
     - [ ] enhance UI feedback for validation errors for ingredients ( console.log('form errors:', errors);)
+    - [ ] by default have one ingredient field open when opening the add recipe form
+    - [ ] after activating add ingredient button, move focus into the first input of the new ingredient field
+    - [ ] after successful submit, reset also number of ingredient fields back to one
+    - [ ] consider disabling submit by pressing Enter when in one of the fields
 - [ ] adjust existing data to fit new schema (add empty ingredient array)
 
 ### MVP
