@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useFieldArray, useForm, type SubmitHandler } from 'react-hook-form';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { addRecipe } from '../data/recipesApi';
+import { units } from '../schemas/Ingredients';
 
 const AddRecipeForm = () => {
     const {
@@ -47,11 +48,14 @@ const AddRecipeForm = () => {
                                 placeholder="Ingredient Name"
                                 {...register(`ingredients.${index}.name` as const)}
                             />
-                            <input
-                                type="text"
-                                placeholder="Ingredient Unit"
+                            <select
                                 {...register(`ingredients.${index}.unit` as const)}
-                            />
+                            >
+                                <option value="">Select Unit</option>
+                                {units.map((unit) => (
+                                    <option key={unit} value={unit}>{unit}</option>
+                                ))}
+                            </select>
                             <input
                                 type="number"
                                 placeholder="Ingredient Quantity"

@@ -21,5 +21,5 @@ const IngredientSchema = object({
 
 type Ingredient = InferType<typeof IngredientSchema>
 
-export { IngredientSchema };
+export { units, IngredientSchema };
 export type { Ingredient };
