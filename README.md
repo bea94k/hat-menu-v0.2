@@ -22,7 +22,7 @@ add ingredients
 - [x] how to build the data so that it's usable when adding a recipe but also when summarizing ingredients for the grocery list
 - [x] create allowed units in json (hardcoded)
 - [x] create allowed ingredient names in json-db (so that it can be autocompleted but also added if new)
-- [ ] create ingredient schema and type
+- [x] create ingredient schema and type
 - [ ] adjust schemas and types for recipe
 - [ ] adjust add-recipe form
     - [ ] add fields for adding ingredients (hard-code just one for now)
