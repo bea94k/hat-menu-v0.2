@@ -69,6 +69,7 @@ const AddRecipeForm = () => {
                             </select>
                             <input
                                 type="number"
+                                step="any"
                                 placeholder="Ingredient Quantity"
                                 {...register(`ingredients.${index}.quantity`)}
                             />

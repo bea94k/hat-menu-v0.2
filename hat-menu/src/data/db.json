@@ -260,6 +260,50 @@
         }
       ],
       "name": "boiled potatoes"
+    },
+    {
+      "id": "ffc2",
+      "ingredients": [
+        {
+          "quantity": 0.1,
+          "unit": "",
+          "name": "pasta"
+        }
+      ],
+      "name": "qwasd"
+    },
+    {
+      "id": "f2bd",
+      "ingredients": [
+        {
+          "quantity": 7e-12,
+          "unit": "g",
+          "name": "potato"
+        }
+      ],
+      "name": "testing small ingredient"
+    },
+    {
+      "id": "77a6",
+      "ingredients": [
+        {
+          "quantity": 0.003,
+          "unit": "tsp",
+          "name": "tomato"
+        }
+      ],
+      "name": "testing 3 digits"
+    },
+    {
+      "id": "0361",
+      "ingredients": [
+        {
+          "quantity": 0.003,
+          "unit": "g",
+          "name": "pasta"
+        }
+      ],
+      "name": "test new validation"
     }
   ],
   "menus": [

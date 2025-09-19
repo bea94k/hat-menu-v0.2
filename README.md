@@ -32,7 +32,7 @@ add ingredients
     - [ ] allow for an ingredient without quantity(spices)
     - [x] allow for an ingredient without unit (spices)
     - [x] allow multiple ingredients (field array?)
-    - [ ] allow for ingredient quantity other than integer
+    - [x] allow for ingredient quantity other than integer
     - [ ] add label for each ingredient input (unit, name, quantity), fieldset?, remove placeholders in inputs
     - [ ] enhance UI feedback for validation errors for ingredients ( console.log('form errors:', errors);)
     - [ ] by default have one ingredient field open when opening the add recipe form
