@@ -304,6 +304,17 @@
         }
       ],
       "name": "test new validation"
+    },
+    {
+      "id": "76ee",
+      "ingredients": [
+        {
+          "quantity": 0,
+          "unit": "",
+          "name": "pasta"
+        }
+      ],
+      "name": "testing errors"
     }
   ],
   "menus": [

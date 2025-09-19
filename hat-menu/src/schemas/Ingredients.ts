@@ -21,7 +21,7 @@ const IngredientSchema = object({
     unit: string().oneOf(units),
     quantity: number().test(
         'is-decimal',
-        'The quantity should be a decimal with maximum three digits after comma',
+        'quantity as decimal must have maximum three digits after comma',
         (val) => {
             if (val != undefined) {
                 return patternThreeDigitsAfterComma.test(val.toString());

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useFieldArray, useForm, type SubmitHandler } from 'react-hook-form';
+import { useFieldArray, useForm, type FieldErrors, type SubmitHandler } from 'react-hook-form';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { addRecipe } from '../data/recipesApi';
-import { units } from '../schemas/Ingredients';
+import { units, type Ingredient } from '../schemas/Ingredients';
 import { useIngredients } from '../data/ingredientsApi';
 
 const AddRecipeForm = () => {
@@ -85,10 +85,21 @@ const AddRecipeForm = () => {
             <button type="submit" style={{border: '2px solid black'}}>Add Recipe</button>
             {Object.keys(errors).length > 0 && (
                 <div style={{ border: '2px solid red', padding: '1rem' }}>
-                    <ul>Errors from form:
-                        {Object.entries(errors).map(([key, value]) => (
-                            <li key={key}>{key}: {value?.message}</li>
-                        ))}
+                    <ul>
+                        {Object.entries(errors)
+                            .filter(([key]) => key !== 'ingredients')
+                            .map(([key, value]) => (
+                                <li key={key}>{key}: {value.message}</li>
+                            ))}
+                        {Array.isArray(errors.ingredients) &&
+                            errors.ingredients.map((ingredientError: FieldErrors<Ingredient[]>, index) => (
+                                Object.entries(ingredientError).map(([fieldKey, fieldError]) => (
+                                    <li key={`ingredient-${index}-${fieldKey}`}>
+                                            Ingredient {index + 1} {fieldKey}: {fieldError?.message || 'Unhandled validation error'}
+                                    </li>)
+                                )
+                            ))
+                        }
                     </ul>
                 </div>
             )}
