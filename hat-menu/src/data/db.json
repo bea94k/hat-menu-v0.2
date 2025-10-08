@@ -2,447 +2,315 @@
   "recipes": [
     {
       "id": "1",
-      "name": "Spaghetti Bolognese"
+      "name": "Pasta with Tomato",
+      "ingredients": [
+        { "quantity": 100, "unit": "g", "name": "pasta" }
+      ]
     },
     {
       "id": "2",
-      "name": "Chicken Caesar Salad"
+      "name": "Tomato Salad",
+      "ingredients": [
+        { "quantity": 2, "unit": "piece", "name": "tomato" }
+      ]
     },
     {
       "id": "3",
-      "name": "Vegetable Stir Fry"
+      "name": "Potato Mash",
+      "ingredients": [
+        { "quantity": 3, "unit": "piece", "name": "potato" }
+      ]
     },
     {
       "id": "4",
-      "name": "Beef Tacos"
+      "name": "Chicken Breast",
+      "ingredients": [
+        { "quantity": 1, "unit": "piece", "name": "chicken" }
+      ]
     },
     {
       "id": "5",
-      "name": "Grilled Salmon"
+      "name": "Beef Steak",
+      "ingredients": [
+        { "quantity": 200, "unit": "g", "name": "beef" }
+      ]
     },
     {
       "id": "6",
-      "name": "Tomato Soup"
+      "name": "Rice Bowl",
+      "ingredients": [
+        { "quantity": 150, "unit": "g", "name": "rice" }
+      ]
     },
     {
       "id": "7",
-      "name": "Egg Fried Rice"
+      "name": "Egg Omelette",
+      "ingredients": [
+        { "quantity": 2, "unit": "piece", "name": "egg" }
+      ]
     },
     {
       "id": "8",
-      "name": "Pancakes"
+      "name": "Cheese Plate",
+      "ingredients": [
+        { "quantity": 50, "unit": "g", "name": "cheese" }
+      ]
     },
     {
       "id": "9",
-      "name": "Lentil Curry"
+      "name": "Onion Soup",
+      "ingredients": [
+        { "quantity": 1, "unit": "piece", "name": "onion" }
+      ]
     },
     {
       "id": "10",
-      "name": "Turkey Sandwich"
+      "name": "Garlic Bread",
+      "ingredients": [
+        { "quantity": 2, "unit": "clove", "name": "garlic" }
+      ]
     },
     {
       "id": "11",
-      "name": "Mushroom Risotto"
+      "name": "Pepper Stir Fry",
+      "ingredients": [
+        { "quantity": 1, "unit": "piece", "name": "pepper" }
+      ]
     },
     {
       "id": "12",
-      "name": "Fish Pie"
+      "name": "Carrot Snack",
+      "ingredients": [
+        { "quantity": 2, "unit": "piece", "name": "carrot" }
+      ]
     },
     {
       "id": "13",
-      "name": "Greek Salad"
+      "name": "Lettuce Wrap",
+      "ingredients": [
+        { "quantity": 1, "unit": "piece", "name": "lettuce" }
+      ]
     },
     {
       "id": "14",
-      "name": "Chicken Fajitas"
+      "name": "Cucumber Salad",
+      "ingredients": [
+        { "quantity": 1, "unit": "piece", "name": "cucumber" }
+      ]
     },
     {
       "id": "15",
-      "name": "Vegetable Lasagna"
+      "name": "Salmon Fillet",
+      "ingredients": [
+        { "quantity": 150, "unit": "g", "name": "salmon" }
+      ]
     },
     {
       "id": "16",
-      "name": "Pulled Pork"
+      "name": "Shrimp Cocktail",
+      "ingredients": [
+        { "quantity": 100, "unit": "g", "name": "shrimp" }
+      ]
     },
     {
       "id": "17",
-      "name": "Quinoa Bowl"
+      "name": "Milk Shake",
+      "ingredients": [
+        { "quantity": 200, "unit": "ml", "name": "milk" }
+      ]
     },
     {
       "id": "18",
-      "name": "Roast Chicken"
+      "name": "Cream Soup",
+      "ingredients": [
+        { "quantity": 100, "unit": "ml", "name": "cream" }
+      ]
     },
     {
       "id": "19",
-      "name": "Chili Con Carne"
+      "name": "Flour Pancake",
+      "ingredients": [
+        { "quantity": 100, "unit": "g", "name": "flour" }
+      ]
     },
     {
       "id": "20",
-      "name": "Tuna Pasta Bake"
+      "name": "Butter Toast",
+      "ingredients": [
+        { "quantity": 20, "unit": "g", "name": "butter" }
+      ]
     },
     {
       "id": "21",
-      "name": "Stuffed Bell Peppers"
+      "name": "Veggie Rice Bowl",
+      "ingredients": [
+        { "quantity": 100, "unit": "g", "name": "rice" },
+        { "quantity": 1, "unit": "piece", "name": "carrot" },
+        { "quantity": 1, "unit": "piece", "name": "onion" }
+      ]
     },
     {
       "id": "22",
-      "name": "Shrimp Scampi"
+      "name": "Cheesy Potato Bake",
+      "ingredients": [
+        { "quantity": 2, "unit": "piece", "name": "potato" },
+        { "quantity": 50, "unit": "g", "name": "cheese" }
+      ]
     },
     {
       "id": "23",
-      "name": "Broccoli Cheddar Soup"
+      "name": "Salmon & Egg Salad",
+      "ingredients": [
+        { "quantity": 100, "unit": "g", "name": "salmon" },
+        { "quantity": 2, "unit": "piece", "name": "egg" },
+        { "quantity": 1, "unit": "piece", "name": "lettuce" }
+      ]
     },
     {
       "id": "24",
-      "name": "BBQ Chicken Pizza"
+      "name": "Shrimp Stir Fry",
+      "ingredients": [
+        { "quantity": 100, "unit": "g", "name": "shrimp" },
+        { "quantity": 1, "unit": "piece", "name": "pepper" },
+        { "quantity": 1, "unit": "piece", "name": "onion" }
+      ]
     },
     {
       "id": "25",
-      "name": "Falafel Wrap"
+      "name": "Chicken & Tomato Pasta",
+      "ingredients": [
+        { "quantity": 100, "unit": "g", "name": "pasta" },
+        { "quantity": 1, "unit": "piece", "name": "chicken" },
+        { "quantity": 2, "unit": "piece", "name": "tomato" }
+      ]
     },
     {
       "id": "26",
-      "name": "Teriyaki Chicken"
+      "name": "Butter Garlic Rice",
+      "ingredients": [
+        { "quantity": 100, "unit": "g", "name": "rice" },
+        { "quantity": 2, "unit": "clove", "name": "garlic" },
+        { "quantity": 20, "unit": "g", "name": "butter" }
+      ]
     },
     {
       "id": "27",
-      "name": "Spinach Omelette"
+      "name": "Egg & Cheese Toast",
+      "ingredients": [
+        { "quantity": 2, "unit": "piece", "name": "egg" },
+        { "quantity": 50, "unit": "g", "name": "cheese" },
+        { "quantity": 1, "unit": "piece", "name": "onion" }
+      ]
     },
     {
       "id": "28",
-      "name": "Sweet Potato Fries"
+      "name": "Creamy Potato Soup",
+      "ingredients": [
+        { "quantity": 2, "unit": "piece", "name": "potato" },
+        { "quantity": 100, "unit": "ml", "name": "cream" },
+        { "quantity": 1, "unit": "piece", "name": "carrot" }
+      ]
     },
     {
       "id": "29",
-      "name": "Avocado Toast"
+      "name": "Carrot Lettuce Salad",
+      "ingredients": [
+        { "quantity": 2, "unit": "piece", "name": "carrot" },
+        { "quantity": 1, "unit": "piece", "name": "lettuce" }
+      ]
     },
     {
       "id": "30",
-      "name": "Crispy Fish Tacos"
+      "name": "Cucumber Tomato Wrap",
+      "ingredients": [
+        { "quantity": 1, "unit": "piece", "name": "cucumber" },
+        { "quantity": 2, "unit": "piece", "name": "tomato" },
+        { "quantity": 1, "unit": "piece", "name": "lettuce" }
+      ]
     },
     {
       "id": "31",
-      "name": "Chicken Alfredo"
+      "name": "Milk & Egg Pancake",
+      "ingredients": [
+        { "quantity": 200, "unit": "ml", "name": "milk" },
+        { "quantity": 2, "unit": "piece", "name": "egg" },
+        { "quantity": 100, "unit": "g", "name": "flour" }
+      ]
     },
     {
       "id": "32",
-      "name": "Veggie Quesadilla"
+      "name": "Pepper Cheese Omelette",
+      "ingredients": [
+        { "quantity": 1, "unit": "piece", "name": "pepper" },
+        { "quantity": 2, "unit": "piece", "name": "egg" },
+        { "quantity": 50, "unit": "g", "name": "cheese" }
+      ]
     },
     {
       "id": "33",
-      "name": "Baked Ziti"
+      "name": "Chicken Rice Bowl",
+      "ingredients": [
+        { "quantity": 100, "unit": "g", "name": "rice" },
+        { "quantity": 1, "unit": "piece", "name": "chicken" }
+      ]
     },
     {
       "id": "34",
-      "name": "Coconut Rice"
+      "name": "Butter Lettuce Wrap",
+      "ingredients": [
+        { "quantity": 20, "unit": "g", "name": "butter" },
+        { "quantity": 1, "unit": "piece", "name": "lettuce" }
+      ]
     },
     {
       "id": "35",
-      "name": "Beef Stroganoff"
+      "name": "Salmon Potato Bake",
+      "ingredients": [
+        { "quantity": 100, "unit": "g", "name": "salmon" },
+        { "quantity": 2, "unit": "piece", "name": "potato" }
+      ]
     },
     {
       "id": "36",
-      "name": "Caprese Salad"
+      "name": "Shrimp Cream Pasta",
+      "ingredients": [
+        { "quantity": 100, "unit": "g", "name": "shrimp" },
+        { "quantity": 100, "unit": "g", "name": "pasta" },
+        { "quantity": 100, "unit": "ml", "name": "cream" }
+      ]
     },
     {
       "id": "37",
-      "name": "Lemon Garlic Chicken"
+      "name": "Egg Onion Stir Fry",
+      "ingredients": [
+        { "quantity": 2, "unit": "piece", "name": "egg" },
+        { "quantity": 1, "unit": "piece", "name": "onion" }
+      ]
     },
     {
       "id": "38",
-      "name": "Pumpkin Soup"
+      "name": "Cheese Garlic Toast",
+      "ingredients": [
+        { "quantity": 50, "unit": "g", "name": "cheese" },
+        { "quantity": 2, "unit": "clove", "name": "garlic" },
+        { "quantity": 20, "unit": "g", "name": "butter" }
+      ]
     },
     {
       "id": "39",
-      "name": "Eggplant Parmesan"
+      "name": "Flour Potato Pie",
+      "ingredients": [
+        { "quantity": 100, "unit": "g", "name": "flour" },
+        { "quantity": 2, "unit": "piece", "name": "potato" }
+      ]
     },
     {
       "id": "40",
-      "name": "Ham and Cheese Melt"
-    },
-    {
-      "id": "95b4",
-      "name": "testingggg"
-    },
-    {
-      "id": "e791",
-      "name": "random chicken"
-    },
-    {
-      "id": "46cb",
-      "name": "s"
-    },
-    {
-      "id": "a7b9",
-      "name": "testingggg"
-    },
-    {
-      "id": "c643",
-      "name": "blahblah"
-    },
-    {
-      "id": "62e1",
-      "name": "blahblahblahhh"
-    },
-    {
-      "id": "f859",
-      "name": "tacos"
-    },
-    {
-      "id": "8f13",
-      "name": "some other tacos"
-    },
-    {
-      "id": "aee1",
-      "name": "abcdefgh"
-    },
-    {
-      "id": "08f0",
-      "name": "asdsafadsfdsafasfs"
-    },
-    {
-      "id": "6a6b",
-      "name": "Quesadillas"
-    },
-    {
-      "id": "97c4",
-      "name": "shrimp salad"
-    },
-    {
-      "id": "d714",
+      "name": "Milk Cream Soup",
       "ingredients": [
-        {
-          "quantity": 2,
-          "unit": "tbsp",
-          "name": "pasta"
-        },
-        {
-          "name": "tomato",
-          "unit": "tsp",
-          "quantity": 0
-        }
-      ],
-      "name": "saving with ingredients"
-    },
-    {
-      "id": "9847",
-      "ingredients": [
-        {
-          "quantity": 1,
-          "unit": "cup",
-          "name": "pasta"
-        },
-        {
-          "quantity": 3,
-          "unit": "dl",
-          "name": "tomato"
-        },
-        {
-          "quantity": 1,
-          "unit": "piece",
-          "name": "onion"
-        }
-      ],
-      "name": "an actual pasta bolognese"
-    },
-    {
-      "id": "3860",
-      "ingredients": [
-        {
-          "quantity": 3,
-          "unit": "piece",
-          "name": "potato"
-        },
-        {
-          "quantity": 0,
-          "unit": "",
-          "name": "salt"
-        }
-      ],
-      "name": "boiled potatoes"
-    },
-    {
-      "id": "ffc2",
-      "ingredients": [
-        {
-          "quantity": 0.1,
-          "unit": "",
-          "name": "pasta"
-        }
-      ],
-      "name": "qwasd"
-    },
-    {
-      "id": "f2bd",
-      "ingredients": [
-        {
-          "quantity": 7e-12,
-          "unit": "g",
-          "name": "potato"
-        }
-      ],
-      "name": "testing small ingredient"
-    },
-    {
-      "id": "77a6",
-      "ingredients": [
-        {
-          "quantity": 0.003,
-          "unit": "tsp",
-          "name": "tomato"
-        }
-      ],
-      "name": "testing 3 digits"
-    },
-    {
-      "id": "0361",
-      "ingredients": [
-        {
-          "quantity": 0.003,
-          "unit": "g",
-          "name": "pasta"
-        }
-      ],
-      "name": "test new validation"
-    },
-    {
-      "id": "76ee",
-      "ingredients": [
-        {
-          "quantity": 0,
-          "unit": "",
-          "name": "pasta"
-        }
-      ],
-      "name": "testing errors"
-    },
-    {
-      "id": "5a5e",
-      "name": "abcde",
-      "ingredients": [
-        {
-          "name": "a",
-          "unit": "",
-          "quantity": 0
-        }
+        { "quantity": 200, "unit": "ml", "name": "milk" },
+        { "quantity": 100, "unit": "ml", "name": "cream" }
       ]
-    },
-    {
-      "id": "8567",
-      "ingredients": [
-        {
-          "quantity": 300,
-          "unit": "g",
-          "name": "broccoli"
-        },
-        {
-          "quantity": 50,
-          "unit": "g",
-          "name": "koskenlaskija"
-        },
-        {
-          "quantity": 3,
-          "unit": "dl",
-          "name": "water"
-        }
-      ],
-      "name": "broccoli cheese soup"
-    },
-    {
-      "id": "082d",
-      "ingredients": [
-        {
-          "quantity": 1,
-          "unit": "piece",
-          "name": "chicken cube"
-        },
-        {
-          "quantity": 5,
-          "unit": "dl",
-          "name": "water"
-        },
-        {
-          "quantity": 1,
-          "unit": "piece",
-          "name": "veggie tray"
-        },
-        {
-          "quantity": 300,
-          "unit": "g",
-          "name": "chicken"
-        }
-      ],
-      "name": "chicken soup"
-    },
-    {
-      "id": "f974",
-      "ingredients": [
-        {
-          "quantity": 0,
-          "unit": "",
-          "name": "example"
-        }
-      ],
-      "name": "example"
-    },
-    {
-      "id": "3e1a",
-      "ingredients": [
-        {
-          "quantity": 50,
-          "unit": "g",
-          "name": "pasta"
-        },
-        {
-          "quantity": 2,
-          "unit": "piece",
-          "name": "potato"
-        }
-      ],
-      "name": "another example"
-    },
-    {
-      "id": "656f",
-      "name": "shrimp curry",
-      "ingredients": [
-        {
-          "name": "shrimp",
-          "unit": "",
-          "quantity": 0
-        }
-      ]
-    },
-    {
-      "id": "dc40",
-      "ingredients": [],
-      "name": "abc"
-    },
-    {
-      "id": "981c",
-      "ingredients": [],
-      "name": "test"
-    },
-    {
-      "id": "fdb3",
-      "ingredients": [
-        {
-          "quantity": 2.22,
-          "unit": "tbsp",
-          "name": "tomato"
-        }
-      ],
-      "name": "testing the status"
-    },
-    {
-      "id": "7e72",
-      "ingredients": [
-        {
-          "quantity": 0,
-          "unit": "",
-          "name": "pasta"
-        }
-      ],
-      "name": "testinggggg"
     }
   ],
   "menus": [
@@ -505,168 +373,28 @@
         "26",
         "31"
       ]
-    },
-    {
-      "id": "e7b8",
-      "recipes": [
-        "12",
-        "23",
-        "4",
-        "36",
-        "08f0",
-        "8",
-        "30"
-      ]
-    },
-    {
-      "id": "d38f",
-      "recipes": [
-        "21",
-        "25",
-        "1",
-        "2",
-        "33",
-        "28",
-        "13"
-      ]
-    },
-    {
-      "id": "8330",
-      "recipes": [
-        "21",
-        "40",
-        "36",
-        "7",
-        "3",
-        "62e1",
-        "8"
-      ]
-    },
-    {
-      "id": "f953",
-      "recipes": [
-        "08f0",
-        "5",
-        "6",
-        "13",
-        "17",
-        "12",
-        "e791"
-      ]
-    },
-    {
-      "id": "d90f",
-      "recipes": [
-        "f859",
-        "7",
-        "4",
-        "46cb",
-        "8",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "id": "1330",
-      "recipes": [
-        "1",
-        "26",
-        "8",
-        "28",
-        "10",
-        "9",
-        "13"
-      ]
-    },
-    {
-      "id": "7c2b",
-      "recipes": [
-        "a7b9",
-        "28",
-        "36",
-        "16",
-        "30",
-        "e791",
-        "35"
-      ]
-    },
-    {
-      "id": "7035",
-      "recipes": [
-        "13",
-        "15",
-        "23",
-        "8f13",
-        "29",
-        "30",
-        "14"
-      ]
-    },
-    {
-      "id": "4cf3",
-      "recipes": [
-        "35",
-        "62e1",
-        "6",
-        "e791",
-        "29",
-        "15",
-        "1"
-      ]
-    },
-    {
-      "id": "047b",
-      "recipes": [
-        "46cb",
-        "22",
-        "34",
-        "e791",
-        "1",
-        "8",
-        "36"
-      ]
-    },
-    {
-      "id": "0f02",
-      "recipes": [
-        "12",
-        "22",
-        "21",
-        "40",
-        "36",
-        "46cb",
-        "20"
-      ]
-    },
-    {
-      "id": "d276",
-      "recipes": [
-        "29",
-        "62e1",
-        "31",
-        "a7b9",
-        "10",
-        "20",
-        "30"
-      ]
     }
   ],
   "ingredients": [
-    {
-      "id": "1",
-      "name": "pasta"
-    },
-    {
-      "id": "2",
-      "name": "tomato"
-    },
-    {
-      "id": "3",
-      "name": "potato"
-    },
-    {
-      "id": "4",
-      "name": "chicken"
-    }
+    { "id": "1", "name": "pasta" },
+    { "id": "2", "name": "tomato" },
+    { "id": "3", "name": "potato" },
+    { "id": "4", "name": "chicken" },
+    { "id": "5", "name": "beef" },
+    { "id": "6", "name": "rice" },
+    { "id": "7", "name": "egg" },
+    { "id": "8", "name": "cheese" },
+    { "id": "9", "name": "onion" },
+    { "id": "10", "name": "garlic" },
+    { "id": "11", "name": "pepper" },
+    { "id": "12", "name": "carrot" },
+    { "id": "13", "name": "lettuce" },
+    { "id": "14", "name": "cucumber" },
+    { "id": "15", "name": "salmon" },
+    { "id": "16", "name": "shrimp" },
+    { "id": "17", "name": "milk" },
+    { "id": "18", "name": "cream" },
+    { "id": "19", "name": "flour" },
+    { "id": "20", "name": "butter" }
   ]
 }
