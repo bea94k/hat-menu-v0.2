@@ -16,7 +16,12 @@ const AddRecipeForm = () => {
         reset,
         handleSubmit,
         formState: { errors },
-    } = useForm({resolver: yupResolver(RecipeFormSchema)});
+    } = useForm({
+        resolver: yupResolver(RecipeFormSchema),
+        defaultValues: {
+            ingredients: [{ name: '', unit: '', quantity: 0 }],
+        }
+    });
     const { fields, append, remove, replace } = useFieldArray({
         control,
         name: 'ingredients',
