@@ -524,9 +524,9 @@
     }
   ],
   "ingredients": [
-    "pasta",
-    "tomato",
-    "potato",
-    "chicken"
+    { "id": "1", "name": "pasta" },
+    { "id": "2", "name": "tomato" },
+    { "id": "3", "name": "potato" },
+    { "id": "4", "name": "chicken" }
   ]
 }

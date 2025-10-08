@@ -1,8 +1,9 @@
 import useSWR, { mutate } from 'swr';
 import { baseAPI, fetcher } from './fetcher';
+import type { SuggestedIngredient } from '../schemas/Ingredients';
 
 function useIngredients () {
-    const { data, error, isLoading } = useSWR<string[]>('/ingredients', fetcher);
+    const { data, error, isLoading } = useSWR<SuggestedIngredient[]>('/ingredients', fetcher);
  
     return {
         ingredients: data,
@@ -11,7 +12,7 @@ function useIngredients () {
     };
 }
 
-async function addIngredients(ingredients: string[]): Promise<string[] | null> {
+async function addIngredients(ingredients: SuggestedIngredient[]): Promise<SuggestedIngredient[] | null> {
     try {
         const response = await fetch(`${baseAPI}/ingredients`, {
             method: 'POST',

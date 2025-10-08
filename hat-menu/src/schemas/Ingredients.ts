@@ -1,5 +1,14 @@
 import { number, object, string, type InferType } from 'yup';
 
+// for autocomplete in add-recipe form
+const SuggestedIngredientSchema = object({
+    id: string().uuid().required(),
+    name: string().required().min(1).max(100),
+});
+
+type SuggestedIngredient = InferType<typeof SuggestedIngredientSchema>
+
+
 const patternThreeDigitsAfterComma = /^\d+(\.\d{0,3})?$/;
 
 // Units hardcoded here. If they are in a separate file and imported here, it can't be strictly typed (only as string).
@@ -14,7 +23,6 @@ const units = [
     'piece',
     'clove'
 ] as const;
-type UnitType = typeof units[number];
 
 const IngredientSchema = object({
     name: string().required().min(1).max(100),
@@ -33,5 +41,5 @@ const IngredientSchema = object({
 
 type Ingredient = InferType<typeof IngredientSchema>
 
-export { units, IngredientSchema };
-export type { Ingredient };
+export { units, IngredientSchema, SuggestedIngredientSchema };
+export type { Ingredient, SuggestedIngredient };

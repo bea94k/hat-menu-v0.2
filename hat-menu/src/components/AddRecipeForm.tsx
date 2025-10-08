@@ -43,7 +43,7 @@ const AddRecipeForm = () => {
             </div>
 
             <div>
-                <label htmlFor="ingredients">Ingredients:</label>  {/* TODO: a11y-wise, one label for many inputs? */}
+                <label htmlFor="ingredients">Ingredients:</label>  {/* TODO: a11y-wise, one label for many inputs? fieldset+legend ? */}
                 <div>
                     {fields.map((field, index) => (
                         <div key={field.id}>
@@ -56,7 +56,7 @@ const AddRecipeForm = () => {
                                 {...register(`ingredients.${index}.name`)} />
                             {ingredients && ingredients.length > 0 && <datalist id="ingredient-name-datalist">
                                 {ingredients.map(ingredient => (
-                                    <option key={ingredient} value={ingredient} />
+                                    <option key={ingredient.id} value={ingredient.name} />
                                 ))}
                             </datalist>}
                             <select
