@@ -141,11 +141,15 @@ const AddRecipeForm = () => {
                     </ul>
                 </div>
             )}
-            {submitStatus && (
-                <div style={{ border: '5px solid black', padding: '1rem' }}>    {/* shouldn't be red, cause OK status also shown here */}
-                    <p>{submitStatus}</p>
-                </div>
-            )}
+            <div 
+                role="status"
+                aria-live="polite">
+                {submitStatus && (
+                    <div style={{ border: '5px solid black', padding: '1rem' }} /* shouldn't be red, cause OK status also shown here */>
+                        <p>{submitStatus}</p>
+                    </div>
+                )}
+            </div>
         </form>
     );
 };
