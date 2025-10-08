@@ -35,10 +35,11 @@ add ingredients
     - [x] allow for ingredient quantity other than integer
     - [x] add label for each ingredient input (unit, name, quantity), fieldset?, remove placeholders in inputs
     - [x] enhance UI feedback for validation errors for ingredients ( console.log('form errors:', errors);)
-        - [ ] can the errors be linked to the correct fields a11y-wise?
+        - [x] can the errors be linked to the correct fields a11y-wise?
     - [ ] by default have one ingredient field open when opening the add recipe form
     - [ ] after activating add ingredient button, move focus into the first input of the new ingredient field
     - [ ] after successful submit, reset also number of ingredient fields back to one
+    - [ ] after successful submit, the success message should be cleared when some field is edited
     - [ ] consider disabling submit by pressing Enter when in one of the fields
     - [ ] adjust the base db so that the recipes have ingredients array
 - [ ] adjust existing data to fit new schema (add empty ingredient array)

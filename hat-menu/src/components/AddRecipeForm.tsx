@@ -39,7 +39,13 @@ const AddRecipeForm = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <label htmlFor="recipe-name">Recipe Name:</label>
-                <input type="text" id="recipe-name" autoComplete="off" required {...register('name')} />
+                <input 
+                    type="text" 
+                    id="recipe-name" 
+                    aria-describedby='error-name'
+                    autoComplete="off" 
+                    required 
+                    {...register('name')} />
             </div>
 
             <div>
@@ -54,6 +60,7 @@ const AddRecipeForm = () => {
                                 <input 
                                     type="text"
                                     id={`ingredient-name-${index + 1}`}
+                                    aria-describedby={`error-ingredient-${index}-name`}
                                     list="ingredient-name-datalist"
                                     required 
                                     {...register(`ingredients.${index}.name`)} />
@@ -68,6 +75,7 @@ const AddRecipeForm = () => {
                                 <label htmlFor={`ingredient-unit-${index + 1}`}>Unit:</label>
                                 <select
                                     id={`ingredient-unit-${index + 1}`}
+                                    aria-describedby={`error-ingredient-${index}-unit`}
                                     {...register(`ingredients.${index}.unit`)}
                                 >
                                     <option value="">Select Unit</option>
@@ -82,6 +90,7 @@ const AddRecipeForm = () => {
                                 <input
                                     type="number"
                                     id={`ingredient-quantity-${index + 1}`}
+                                    aria-describedby={`error-ingredient-${index}-quantity`}
                                     step="any"
                                     {...register(`ingredients.${index}.quantity`)}
                                 />
@@ -102,12 +111,12 @@ const AddRecipeForm = () => {
                         {Object.entries(errors)
                             .filter(([key]) => key !== 'ingredients')
                             .map(([key, value]) => (
-                                <li key={key}>{key}: {value.message}</li>
+                                <li key={key} id={`error-${key}`}>{key}: {value.message}</li>
                             ))}
                         {Array.isArray(errors.ingredients) &&
                             errors.ingredients.map((ingredientError: FieldErrors<Ingredient[]>, index) => (
                                 Object.entries(ingredientError).map(([fieldKey, fieldError]) => (
-                                    <li key={`ingredient-${index}-${fieldKey}`}>
+                                    <li key={`ingredient-${index}-${fieldKey}`} id={`error-ingredient-${index}-${fieldKey}`}>
                                             Ingredient {index + 1} {fieldKey}: {fieldError?.message || 'Unhandled validation error'}
                                     </li>)
                                 )
