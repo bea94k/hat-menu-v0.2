@@ -43,38 +43,51 @@ const AddRecipeForm = () => {
             </div>
 
             <div>
-                <label htmlFor="ingredients">Ingredients: (for spices "to taste", use no unit and zero for quantity)</label>  {/* TODO: a11y-wise, one label for many inputs? fieldset+legend ? */}
+                <p>Note: for spices "to taste", use no unit and zero for quantity.</p> {/* TODO: for accessibility, make sure this is easily discoverable. aria-describedby linked to unit and quantity? or too repetitive? */}
                 <div>
                     {fields.map((field, index) => (
-                        <div key={field.id}>
-                            <input 
-                                type="text" 
-                                placeholder="Ingredient Name"
-                                id="ingredient-name" 
-                                list="ingredient-name-datalist"
-                                required 
-                                {...register(`ingredients.${index}.name`)} />
-                            {ingredients && ingredients.length > 0 && <datalist id="ingredient-name-datalist">
-                                {ingredients.map(ingredient => (
-                                    <option key={ingredient.id} value={ingredient.name} />
-                                ))}
-                            </datalist>}
-                            <select
-                                {...register(`ingredients.${index}.unit`)}
-                            >
-                                <option value="">Select Unit</option>
-                                {units.map((unit) => (
-                                    <option key={unit} value={unit}>{unit}</option>
-                                ))}
-                            </select>
-                            <input
-                                type="number"
-                                step="any"
-                                placeholder="Ingredient Quantity"
-                                {...register(`ingredients.${index}.quantity`)}
-                            />
+                        <fieldset key={field.id}>
+                            <legend>Ingredient {index + 1}</legend>
+
+                            <div>
+                                <label htmlFor={`ingredient-name-${index + 1}`}>Name:</label>
+                                <input 
+                                    type="text"
+                                    id={`ingredient-name-${index + 1}`}
+                                    list="ingredient-name-datalist"
+                                    required 
+                                    {...register(`ingredients.${index}.name`)} />
+                                {ingredients && ingredients.length > 0 && <datalist id="ingredient-name-datalist">
+                                    {ingredients.map(ingredient => (
+                                        <option key={ingredient.id} value={ingredient.name} />
+                                    ))}
+                                </datalist>}
+                            </div>
+
+                            <div>
+                                <label htmlFor={`ingredient-unit-${index + 1}`}>Unit:</label>
+                                <select
+                                    id={`ingredient-unit-${index + 1}`}
+                                    {...register(`ingredients.${index}.unit`)}
+                                >
+                                    <option value="">Select Unit</option>
+                                    {units.map((unit) => (
+                                        <option key={unit} value={unit}>{unit}</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div>
+                                <label htmlFor={`ingredient-quantity-${index + 1}`}>Quantity:</label>
+                                <input
+                                    type="number"
+                                    id={`ingredient-quantity-${index + 1}`}
+                                    step="any"
+                                    {...register(`ingredients.${index}.quantity`)}
+                                />
+                            </div>
                             <button type="button" onClick={() => remove(index)}>Remove</button>
-                        </div>
+                        </fieldset>
                     ))}
                     <button type="button" onClick={() => append({ name: '', unit: '', quantity: 0 })}>
                     Add Ingredient
