@@ -43,7 +43,7 @@ const AddRecipeForm = () => {
             </div>
 
             <div>
-                <label htmlFor="ingredients">Ingredients:</label>  {/* TODO: a11y-wise, one label for many inputs? fieldset+legend ? */}
+                <label htmlFor="ingredients">Ingredients: (for spices "to taste", use no unit and zero for quantity)</label>  {/* TODO: a11y-wise, one label for many inputs? fieldset+legend ? */}
                 <div>
                     {fields.map((field, index) => (
                         <div key={field.id}>

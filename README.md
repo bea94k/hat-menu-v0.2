@@ -29,7 +29,7 @@ add ingredients
     - [x] add fields for adding ingredients (hard-code just one for now)
     - [x] number for quantity, text for unit, text for name
     - [x] enhance: dropdown/autocomplete for unit, text/autocomplete/combobox for ingredient name
-    - [ ] allow for an ingredient without quantity(spices)
+    - [x] allow for an ingredient without quantity(spices)
     - [x] allow for an ingredient without unit (spices)
     - [x] allow multiple ingredients (field array?)
     - [x] allow for ingredient quantity other than integer
@@ -40,6 +40,7 @@ add ingredients
     - [ ] after activating add ingredient button, move focus into the first input of the new ingredient field
     - [ ] after successful submit, reset also number of ingredient fields back to one
     - [ ] consider disabling submit by pressing Enter when in one of the fields
+    - [ ] adjust the base db so that the recipes have ingredients array
 - [ ] adjust existing data to fit new schema (add empty ingredient array)
 
 ### MVP
