@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useFieldArray, useForm, type FieldErrors, type SubmitHandler } from 'react-hook-form';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
@@ -7,6 +7,7 @@ import { units, type Ingredient } from '../schemas/Ingredients';
 import { useIngredients } from '../data/ingredientsApi';
 
 const AddRecipeForm = () => {
+    const inputRef = useRef<HTMLInputElement>(null);
     const {ingredients} = useIngredients();
 
     const {
@@ -30,11 +31,15 @@ const AddRecipeForm = () => {
             // TODO: try to save the ingredients that are not yet in the db. No need for big error handling, cause that's an additional thing
             replace([{ name: '', unit: '', quantity: 0 }]); // clear ingredient fields, leave one empty
             reset();
+            inputRef?.current?.focus();
         } catch (error: unknown) {
             console.error('Error saving recipe:', error);
             setSubmitStatus('An error occurred while adding the recipe.');
         }
     };  
+
+    // to be able to use ref along with register, ref for focusing after submit
+    const { ref, ...rest } = register('name');
           
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -46,7 +51,12 @@ const AddRecipeForm = () => {
                     aria-describedby='error-name'
                     autoComplete="off" 
                     required 
-                    {...register('name')} />
+                    {...rest}
+                    ref={(e) => {
+                        ref(e);
+                        inputRef.current = e;
+                    }}
+                />
             </div>
 
             <div>
