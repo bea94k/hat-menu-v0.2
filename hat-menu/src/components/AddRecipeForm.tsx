@@ -16,7 +16,7 @@ const AddRecipeForm = () => {
         handleSubmit,
         formState: { errors },
     } = useForm({resolver: yupResolver(RecipeFormSchema)});
-    const { fields, append, remove } = useFieldArray({
+    const { fields, append, remove, replace } = useFieldArray({
         control,
         name: 'ingredients',
     });
@@ -28,6 +28,7 @@ const AddRecipeForm = () => {
             const newRecipe = await addRecipe(data);
             setSubmitStatus(`Recipe added successfully! ${newRecipe?.name}, ${newRecipe?.id}`);
             // TODO: try to save the ingredients that are not yet in the db. No need for big error handling, cause that's an additional thing
+            replace([{ name: '', unit: '', quantity: 0 }]); // clear ingredient fields, leave one empty
             reset();
         } catch (error: unknown) {
             console.error('Error saving recipe:', error);
