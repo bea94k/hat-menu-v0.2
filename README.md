@@ -18,32 +18,7 @@ npm run json-db
 ## Plan
 
 ### Current step
-add ingredients
-- [x] how to build the data so that it's usable when adding a recipe but also when summarizing ingredients for the grocery list
-- [x] create allowed units in json (hardcoded)
-- [x] create allowed ingredient names in json-db (so that it can be autocompleted but also added if new)
-- [x] create ingredient schema and type
-- [x] adjust schemas and types for recipe in form
-- [x] adjust schemas and types for saving and fetching recipe -> extend form schema to full (incl. ID)
-- [x] adjust existing data to fit new schema (add empty ingredient array)
-- [x] adjust add-recipe form
-    - [x] add fields for adding ingredients (hard-code just one for now)
-    - [x] number for quantity, text for unit, text for name
-    - [x] enhance: dropdown/autocomplete for unit, text/autocomplete/combobox for ingredient name
-    - [x] allow for an ingredient without quantity(spices)
-    - [x] allow for an ingredient without unit (spices)
-    - [x] allow multiple ingredients (field array?)
-    - [x] allow for ingredient quantity other than integer
-    - [x] add label for each ingredient input (unit, name, quantity), fieldset?, remove placeholders in inputs
-    - [x] enhance UI feedback for validation errors for ingredients ( console.log('form errors:', errors);)
-        - [x] can the errors be linked to the correct fields a11y-wise?
-    - [x] by default have one ingredient field open when opening the add recipe form
-    - [x] after activating add ingredient button, move focus into the first input of the new ingredient field
-    - [x] after successful submit, reset also number of ingredient fields back to one and focus back to recipe name
-    - [x] after successful submit, the success message should be cleared when some field is edited
-    - [x] consider disabling submit by pressing Enter when in one of the fields
-    - [x] adjust the base db so that the recipes have ingredients array
-    - [x] check TODOs - save ingredients if not in suggested yet
+
 
 ### MVP
 - [x] Browse recipe names
