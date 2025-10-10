@@ -53,9 +53,9 @@ add ingredients
     - [x] prevent duplicate selections
 
 ### Next steps
-- [ ] Add ingredients to recipes
-    - [ ] when adding a new recipe
-    - [ ] show when browsing recipes
+- [x] Add ingredients to recipes
+    - [x] when adding a new recipe
+    - [x] show when browsing recipes
 - [ ] Create grocery list from a menu
     - [ ] aggregate ingredients from all 7 recipes
     - [ ] deduplicate repeated ingredients
