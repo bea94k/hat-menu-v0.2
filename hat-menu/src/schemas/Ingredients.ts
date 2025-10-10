@@ -1,18 +1,14 @@
 import { number, object, string, type InferType } from 'yup';
 
-// for autocomplete in add-recipe form
-const NewSuggestedIngredientSchema = object({
-    name: string().required().min(1).max(100),
-});
-
-type NewSuggestedIngredient = InferType<typeof NewSuggestedIngredientSchema>
-
+// suggested ingredients from DB for autocomplete in add-recipe form
 const SuggestedIngredientSchema = object({
     id: string().uuid().required(),
     name: string().required().min(1).max(100),
 });
-
 type SuggestedIngredient = InferType<typeof SuggestedIngredientSchema>
+
+const NewSuggestedIngredientSchema = SuggestedIngredientSchema.omit(['id']);
+type NewSuggestedIngredient = InferType<typeof NewSuggestedIngredientSchema>
 
 
 const patternThreeDigitsAfterComma = /^\d+(\.\d{0,3})?$/;

@@ -24,8 +24,8 @@ add ingredients
 - [x] create allowed ingredient names in json-db (so that it can be autocompleted but also added if new)
 - [x] create ingredient schema and type
 - [x] adjust schemas and types for recipe in form
-- [ ] adjust schemas and types for saving and fetching recipe -> extend form schema to full (incl. ID)
-- [ ] adjust existing data to fit new schema (add empty ingredient array)
+- [x] adjust schemas and types for saving and fetching recipe -> extend form schema to full (incl. ID)
+- [x] adjust existing data to fit new schema (add empty ingredient array)
 - [x] adjust add-recipe form
     - [x] add fields for adding ingredients (hard-code just one for now)
     - [x] number for quantity, text for unit, text for name
