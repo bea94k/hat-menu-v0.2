@@ -1,6 +1,12 @@
 import { number, object, string, type InferType } from 'yup';
 
 // for autocomplete in add-recipe form
+const NewSuggestedIngredientSchema = object({
+    name: string().required().min(1).max(100),
+});
+
+type NewSuggestedIngredient = InferType<typeof NewSuggestedIngredientSchema>
+
 const SuggestedIngredientSchema = object({
     id: string().uuid().required(),
     name: string().required().min(1).max(100),
@@ -41,5 +47,5 @@ const IngredientSchema = object({
 
 type Ingredient = InferType<typeof IngredientSchema>
 
-export { units, IngredientSchema, SuggestedIngredientSchema };
-export type { Ingredient, SuggestedIngredient };
+export { units, IngredientSchema, SuggestedIngredientSchema, NewSuggestedIngredientSchema };
+export type { Ingredient, SuggestedIngredient, NewSuggestedIngredient };

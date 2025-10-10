@@ -1,14 +1,15 @@
 import { useRef, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useFieldArray, useForm, type FieldErrors, type SubmitHandler } from 'react-hook-form';
-import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { addRecipe } from '../data/recipesApi';
+import { addSuggestedIngredients, useSuggestedIngredients } from '../data/ingredientsApi';
+import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { units, type Ingredient } from '../schemas/Ingredients';
-import { useIngredients } from '../data/ingredientsApi';
 
 const AddRecipeForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
-    const {ingredients} = useIngredients();
+    const { suggestedIngredients } = useSuggestedIngredients();
+    const suggestedNamesSet = new Set(suggestedIngredients?.map(ing => ing.name));
 
     const {
         register,
@@ -33,7 +34,12 @@ const AddRecipeForm = () => {
         try {
             const newRecipe = await addRecipe(data);
             setSubmitStatus(`Recipe added successfully! ${newRecipe?.name}, ${newRecipe?.id}`);
-            // TODO: try to save the ingredients that are not yet in the db. No need for big error handling, cause that's an additional thing
+
+            const newIngredientsNames = data.ingredients?.map(ing => ({ name: ing.name })).filter(ing => !suggestedNamesSet.has(ing.name));
+            // TODO: with proper backend, make sure this accepts an array to save at once, with one request. Make changes in the ingredientsApi as well.
+            // This is okay to fail silently, cause it's an additional feature
+            newIngredientsNames?.forEach(ing => addSuggestedIngredients(ing));
+
             replace([{ name: '', unit: '', quantity: 0 }]); // clear ingredient fields, leave one empty
             reset();
             inputRef?.current?.focus();
@@ -65,7 +71,7 @@ const AddRecipeForm = () => {
             </div>
 
             <div>
-                <p>Note: for spices "to taste", use no unit and zero for quantity.</p> {/* TODO: for accessibility, make sure this is easily discoverable. aria-describedby linked to unit and quantity? or too repetitive? */}
+                <p>Note: for spices "to taste", use no unit and zero for quantity.</p>
                 <div>
                     {fields.map((field, index) => (
                         <fieldset key={field.id}>
@@ -80,9 +86,9 @@ const AddRecipeForm = () => {
                                     list="ingredient-name-datalist"
                                     required 
                                     {...register(`ingredients.${index}.name`)} />
-                                {ingredients && ingredients.length > 0 && <datalist id="ingredient-name-datalist">
-                                    {ingredients.map(ingredient => (
-                                        <option key={ingredient.id} value={ingredient.name} />
+                                {suggestedIngredients && suggestedIngredients.length > 0 && <datalist id="ingredient-name-datalist">
+                                    {suggestedIngredients.map(suggestedIngredient => (
+                                        <option key={suggestedIngredient.id} value={suggestedIngredient.name} />
                                     ))}
                                 </datalist>}
                             </div>

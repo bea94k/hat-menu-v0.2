@@ -25,7 +25,8 @@ add ingredients
 - [x] create ingredient schema and type
 - [x] adjust schemas and types for recipe in form
 - [ ] adjust schemas and types for saving and fetching recipe -> extend form schema to full (incl. ID)
-- [ ] adjust add-recipe form
+- [ ] adjust existing data to fit new schema (add empty ingredient array)
+- [x] adjust add-recipe form
     - [x] add fields for adding ingredients (hard-code just one for now)
     - [x] number for quantity, text for unit, text for name
     - [x] enhance: dropdown/autocomplete for unit, text/autocomplete/combobox for ingredient name
@@ -42,8 +43,7 @@ add ingredients
     - [x] after successful submit, the success message should be cleared when some field is edited
     - [x] consider disabling submit by pressing Enter when in one of the fields
     - [x] adjust the base db so that the recipes have ingredients array
-    - [ ] check TODOs
-- [ ] adjust existing data to fit new schema (add empty ingredient array)
+    - [x] check TODOs - save ingredients if not in suggested yet
 
 ### MVP
 - [x] Browse recipe names
