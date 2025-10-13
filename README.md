@@ -19,6 +19,7 @@ npm run json-db
 
 ### Current step
 
+
 ### MVP
 - [x] Browse recipe names
 - [x] Add new recipe name
@@ -27,13 +28,13 @@ npm run json-db
     - [x] prevent duplicate selections
 
 ### Next steps
-- [ ] Add ingredients to recipes
-    - [ ] when adding a new recipe
-    - [ ] show when browsing recipes
+- [x] Add ingredients to recipes
+    - [x] when adding a new recipe
+    - [x] show when browsing recipes
 - [ ] Create grocery list from a menu
     - [ ] aggregate ingredients from all 7 recipes
     - [ ] deduplicate repeated ingredients
-- [ ] Browse past menus
+- [x] Browse past menus
 - [ ] Enhance recipe
     - [ ] add instructions
     - [ ] add category or tags
@@ -43,6 +44,8 @@ npm run json-db
 - [ ] Enhance menu creation
     - [ ] possibility to change one recipe in the list of 7
     - [ ] avoid recipes used in the past 2 menus
+    - [ ] mark dates of the menu
+    - [ ] browsing: display dates, sort by dates
 - [ ] Enhance grocery list
     - [ ] sort ingredients in categories
     - [ ] easy copy or export

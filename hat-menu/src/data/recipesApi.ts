@@ -1,6 +1,6 @@
 import useSWR, { mutate } from 'swr';
 import { baseAPI, fetcher } from './fetcher';
-import type { Recipe, RecipeForm } from '../types/Recipes';
+import type { Recipe, RecipeForm } from '../schemas/Recipes';
 
 function useRecipes () {
     const { data, error, isLoading } = useSWR<Recipe[]>('/recipes', fetcher);

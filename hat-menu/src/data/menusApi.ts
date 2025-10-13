@@ -1,6 +1,6 @@
 import useSWR, { mutate } from 'swr';
 import { baseAPI, fetcher } from './fetcher';
-import type { Menu, MenuForm } from '../types/Menus';
+import type { Menu, MenuForm } from '../schemas/Menus';
 
 function useMenus () {
     const { data, error, isLoading } = useSWR<Menu[]>('/menus', fetcher);
