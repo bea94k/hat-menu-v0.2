@@ -44,6 +44,24 @@ const CreateMenuPage = () => {
         setNewMenu(prevMenu => prevMenu.map((r, i) => i === index ? randomRecipe : r));
     };
 
+    const moveRecipeUp = (index: number) => {
+        if (index <= 0) return;
+        setNewMenu(prevMenu => {
+            const updatedMenu = [...prevMenu];
+            [updatedMenu[index - 1], updatedMenu[index]] = [updatedMenu[index], updatedMenu[index - 1]];
+            return updatedMenu;
+        });
+    };
+
+    const moveRecipeDown = (index: number) => {
+        if (index >= newMenu.length - 1) return;
+        setNewMenu(prevMenu => {
+            const updatedMenu = [...prevMenu];
+            [updatedMenu[index], updatedMenu[index + 1]] = [updatedMenu[index + 1], updatedMenu[index]];
+            return updatedMenu;
+        });
+    };
+
     return (
         <main id="maincontent">
             <h1>create a menu here</h1>
@@ -53,8 +71,20 @@ const CreateMenuPage = () => {
             <ol>
                 {newMenu.map((recipe, index) => (
                     <li key={recipe.id}>
-                        <button>Move up</button> {/* TODO: implement changing order of recipes in list */}
-                        <button>Move down</button>
+                        <button
+                            onClick={() => moveRecipeUp(index)}
+                            disabled={index === 0}
+                            aria-label={`Move ${recipe.name} up`}
+                        >
+                            Move up
+                        </button>
+                        <button
+                            onClick={() => moveRecipeDown(index)}
+                            disabled={index === newMenu.length - 1}
+                            aria-label={`Move ${recipe.name} down`}
+                        >
+                            Move down
+                        </button>
                         <button
                             onClick={() => randomizeRecipeAtIndex(index)}
                             aria-label={`Change ${recipe.name}`}
@@ -84,11 +114,11 @@ const CreateMenuPage = () => {
                                 {latestMenus.map(menu => (
                                     <li key={menu.id}>
                                         Menu (ID: {menu.id})
-                                        <ul>
+                                        <ol>
                                             {menu.recipes.map(recipe => (
                                                 <li key={recipe}>Recipe ID: {recipe}</li>
                                             ))}
-                                        </ul>
+                                        </ol>
                                     </li>
                                 ))}
                             </ul>
