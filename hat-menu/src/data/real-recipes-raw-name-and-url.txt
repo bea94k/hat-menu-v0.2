@@ -1,6 +1,7 @@
 SIMPLER VERSION OF RAW DATA: 
 NAME AND URL
 SKIP SOME EXPLICIT INGREDIENTS
+(managed to extract by AI into name, id, url)
 
 chicken, kantarelli sauce, potatoes
 rice noodles, frozen soy pieces, shiitake mushrooms, edamame, soy sauce, sesame seeds
