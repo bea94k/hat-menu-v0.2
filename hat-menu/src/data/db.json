@@ -3,6 +3,7 @@
     {
       "id": "1",
       "name": "Pasta with Tomato",
+      "url": "https://example.com/pasta-with-tomato",
       "ingredients": [
         {
           "quantity": 100,
@@ -663,6 +664,28 @@
         }
       ],
       "name": "sandwich with ham and mayo"
+    },
+    {
+      "id": "4c23",
+      "ingredients": [
+        {
+          "quantity": 100,
+          "unit": "g",
+          "name": "pasta"
+        },
+        {
+          "quantity": 100,
+          "unit": "g",
+          "name": "ham"
+        },
+        {
+          "quantity": 2,
+          "unit": "piece",
+          "name": "egg"
+        }
+      ],
+      "url": "https://www.k-ruoka.fi/reseptit/pasta-carbonara",
+      "name": "New recipe with link testing"
     }
   ],
   "menus": [

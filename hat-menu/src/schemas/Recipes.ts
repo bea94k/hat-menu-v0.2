@@ -4,6 +4,7 @@ import { IngredientSchema } from './Ingredients';
 const RecipeSchema = object({
     id: string().uuid().required(),
     name: string().required(),
+    url: string().url(),
     ingredients: array().of(IngredientSchema),
 });
 type Recipe = InferType<typeof RecipeSchema>;
