@@ -35,11 +35,67 @@ const CreateMenuPage = () => {
         }
     };
 
+    const randomizeRecipeAtIndex = (index: number) => {
+        if (!recipes || recipes.length === 0) return;
+        const usedIds = newMenu.map(r => r.id);
+        const unusedRecipes = recipes.filter(r => !usedIds.includes(r.id));
+        if (unusedRecipes.length === 0) return;
+        const randomRecipe = unusedRecipes[Math.floor(Math.random() * unusedRecipes.length)];
+        setNewMenu(prevMenu => prevMenu.map((r, i) => i === index ? randomRecipe : r));
+    };
+
+    const moveRecipeUp = (index: number) => {
+        if (index <= 0) return;
+        setNewMenu(prevMenu => {
+            const updatedMenu = [...prevMenu];
+            [updatedMenu[index - 1], updatedMenu[index]] = [updatedMenu[index], updatedMenu[index - 1]];
+            return updatedMenu;
+        });
+    };
+
+    const moveRecipeDown = (index: number) => {
+        if (index >= newMenu.length - 1) return;
+        setNewMenu(prevMenu => {
+            const updatedMenu = [...prevMenu];
+            [updatedMenu[index], updatedMenu[index + 1]] = [updatedMenu[index + 1], updatedMenu[index]];
+            return updatedMenu;
+        });
+    };
+
     return (
         <main id="maincontent">
             <h1>create a menu here</h1>
             <button onClick={() => getRandomMenu()}>Get 7 random recipes</button>
-            <p>{newMenu.map(recipe => recipe.name).join(', ')}</p>
+
+            <h2>Suggested menu</h2>
+            <ol>
+                {newMenu.map((recipe, index) => (
+                    <li key={recipe.id}>
+                        <button
+                            onClick={() => moveRecipeUp(index)}
+                            disabled={index === 0}
+                            aria-label={`Move ${recipe.name} up`}
+                        >
+                            Move up
+                        </button>
+                        <button
+                            onClick={() => moveRecipeDown(index)}
+                            disabled={index === newMenu.length - 1}
+                            aria-label={`Move ${recipe.name} down`}
+                        >
+                            Move down
+                        </button>
+                        <button
+                            onClick={() => randomizeRecipeAtIndex(index)}
+                            aria-label={`Change ${recipe.name}`}
+                        >
+                            Change
+                        </button>
+                        {recipe.name}
+                    </li>
+                ))}
+            </ol>
+
             {newMenu.length > 0 && 
                 <button onClick={() => saveMenu(newMenu)}>Save this menu</button>
             }
@@ -58,11 +114,11 @@ const CreateMenuPage = () => {
                                 {latestMenus.map(menu => (
                                     <li key={menu.id}>
                                         Menu (ID: {menu.id})
-                                        <ul>
+                                        <ol>
                                             {menu.recipes.map(recipe => (
                                                 <li key={recipe}>Recipe ID: {recipe}</li>
                                             ))}
-                                        </ul>
+                                        </ol>
                                     </li>
                                 ))}
                             </ul>

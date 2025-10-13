@@ -42,7 +42,7 @@ npm run json-db
     - [ ] filter by category or tag
     - [ ] search by name or ingredient
 - [ ] Enhance menu creation
-    - [ ] possibility to change one recipe in the list of 7
+    - [x] possibility to change one recipe in the list of 7
     - [ ] avoid recipes used in the past 2 menus
     - [ ] mark dates of the menu
     - [ ] browsing: display dates, sort by dates
