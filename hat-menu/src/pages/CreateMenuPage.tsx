@@ -35,11 +35,37 @@ const CreateMenuPage = () => {
         }
     };
 
+    const randomizeRecipeAtIndex = (index: number) => {
+        if (!recipes || recipes.length === 0) return;
+        const usedIds = newMenu.map(r => r.id);
+        const unusedRecipes = recipes.filter(r => !usedIds.includes(r.id));
+        if (unusedRecipes.length === 0) return;
+        const randomRecipe = unusedRecipes[Math.floor(Math.random() * unusedRecipes.length)];
+        setNewMenu(prevMenu => prevMenu.map((r, i) => i === index ? randomRecipe : r));
+    };
+
     return (
         <main id="maincontent">
             <h1>create a menu here</h1>
             <button onClick={() => getRandomMenu()}>Get 7 random recipes</button>
-            <p>{newMenu.map(recipe => recipe.name).join(', ')}</p>
+
+            <h2>Suggested menu</h2>
+            <ol>
+                {newMenu.map((recipe, index) => (
+                    <li key={recipe.id}>
+                        <button>Move up</button> {/* TODO: implement changing order of recipes in list */}
+                        <button>Move down</button>
+                        <button
+                            onClick={() => randomizeRecipeAtIndex(index)}
+                            aria-label={`Change ${recipe.name}`}
+                        >
+                            Change
+                        </button>
+                        {recipe.name}
+                    </li>
+                ))}
+            </ol>
+
             {newMenu.length > 0 && 
                 <button onClick={() => saveMenu(newMenu)}>Save this menu</button>
             }
