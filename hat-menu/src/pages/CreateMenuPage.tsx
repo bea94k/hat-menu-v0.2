@@ -26,7 +26,11 @@ const CreateMenuPage = () => {
         }
         try {
             const newMenuRecipeIDs = newMenu.map(recipe => recipe.id);
-            const response = await addMenu({recipes: newMenuRecipeIDs});
+            const response = await addMenu({
+                startDate: new Date(), // TODO: the dates should come from user selection/form
+                endDate: new Date(),
+                recipes: newMenuRecipeIDs
+            });
             setSavingStatus(`Menu saved! with ID: ${response?.id}`);
             setNewMenu([]);
         } catch (error: unknown) {
