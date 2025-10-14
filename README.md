@@ -18,7 +18,16 @@ npm run json-db
 ## Plan
 
 ### Current step
-
+mark dates of the menu
+- [x] make creating a menu into a form with 2x date input and recipes randomized
+- [x] take the form out into a separate component
+- [x] test if date validation works for end earlier than start
+- [x] error handling for wrong dates and no recipes randomized
+- [ ] adjust the randomize single recipe, make sure it's updated in form data
+- [ ] adjust the move up/down, make sure it's updated in form data
+- [ ] clean up the code, console logs, unused imports
+- [ ] display menus by dates, not by IDs
+- [ ] get the correct number of recipes randomized based on the dates chosen
 
 ### MVP
 - [x] Browse recipe names

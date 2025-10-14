@@ -3,6 +3,7 @@ import { addMenu, useMenus } from '../data/menusApi';
 import { useRecipes } from '../data/recipesApi';
 import { getUniqueRandom } from '../utils/utils';
 import type { Recipe } from '../schemas/Recipes';
+import CreateMenuForm from '../components/CreateMenuForm';
 
 const CreateMenuPage = () => {
     const { menus, isLoading, isError } = useMenus();
@@ -10,8 +11,8 @@ const CreateMenuPage = () => {
 
     const latestMenus = menus ? menus.slice(-3).reverse() : [];
 
-    const [newMenu, setNewMenu] = useState<Recipe[]>([]);
     const [savingStatus, setSavingStatus] = useState('');
+    const [newMenu, setNewMenu] = useState<Recipe[]>([]);
 
     const getRandomMenu = () => {
         setSavingStatus('');
@@ -26,13 +27,14 @@ const CreateMenuPage = () => {
         }
         try {
             const newMenuRecipeIDs = newMenu.map(recipe => recipe.id);
-            const response = await addMenu({
+            console.log('Saving menu with recipes IDs:', newMenuRecipeIDs);
+            /* const response = await addMenu({
                 startDate: new Date(), // TODO: the dates should come from user selection/form
                 endDate: new Date(),
                 recipes: newMenuRecipeIDs
             });
             setSavingStatus(`Menu saved! with ID: ${response?.id}`);
-            setNewMenu([]);
+            setNewMenu([]); */
         } catch (error: unknown) {
             console.error('Error saving menu:', error);
             setSavingStatus('An error occurred while saving the menu.');
@@ -100,6 +102,7 @@ const CreateMenuPage = () => {
                 ))}
             </ol>
 
+            {/* TODO: error handling when trying to save a menu with dates but no recipes (should never happen through UI) */}
             {newMenu.length > 0 && 
                 <button onClick={() => saveMenu(newMenu)}>Save this menu</button>
             }
@@ -108,6 +111,10 @@ const CreateMenuPage = () => {
                     <p>{savingStatus}</p>
                 </div>
             )}
+
+            <hr />
+            <CreateMenuForm />
+            <hr />
 
             <h2>Latest 3 menus</h2>
             {
