@@ -29,7 +29,7 @@ const CreateMenuForm = () => {
         //     ingredients: [{ name: '', unit: '', quantity: 0 }],
         // }
     });
-    const { fields, append, remove, replace } = useFieldArray({
+    const { fields, append, remove, update } = useFieldArray({
         control,
         name: 'recipes',
     });
@@ -51,7 +51,12 @@ const CreateMenuForm = () => {
     };
 
     const randomizeRecipeAtIndex = (index: number) => {
-        console.log('randomizeRecipeAtIndex index:', index);
+        if (!recipes || recipes.length === 0) return;
+        const usedIds = getValues('recipes')?.map(r => r.id);
+        const unusedRecipes = recipes.filter(r => !usedIds?.includes(r.id));
+        if (unusedRecipes.length === 0) return;
+        const newRandomRecipe = unusedRecipes[Math.floor(Math.random() * unusedRecipes.length)];
+        update(index, newRandomRecipe);
     };
 
 
