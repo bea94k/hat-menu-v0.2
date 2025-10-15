@@ -18,17 +18,7 @@ npm run json-db
 ## Plan
 
 ### Current step
-mark dates of the menu
-- [x] make creating a menu into a form with 2x date input and recipes randomized
-- [x] take the form out into a separate component
-- [x] test if date validation works for end earlier than start
-- [x] error handling for wrong dates and no recipes randomized
-- [x] adjust the randomize single recipe, make sure it's updated in form data
-- [x] adjust the move up/down, make sure it's updated in form data
-- [x] test that the saving of menu actually works, reset form state after success
-- [x] clean up the code, remove randomizing and button in CreateMenuPage, remove console logs, unused imports
-- [x] display menus by dates, not by IDs
-- [x] get the correct number of recipes randomized based on the dates chosen
+
 
 ### MVP
 - [x] Browse recipe names
@@ -49,7 +39,7 @@ mark dates of the menu
     - [ ] add instructions
     - [ ] add category or tags
     - [ ] disable all buttons while recipe is being saved
-- [ ] Enhance browsing
+- [ ] Enhance recipes browsing
     - [ ] filter by category or tag
     - [ ] search by name or ingredient
 - [ ] Enhance menu creation

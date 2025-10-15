@@ -31,7 +31,7 @@ const CreateMenuForm = () => {
 
     const getRandomMenu = (numberOfDays: number) => {
         if (numberOfDays <= 0) {
-            setValue('recipes', []); // TODO: or replace([]) or resetField?
+            replace([]);
             setSubmitStatus('End date must be later than start date');
             return;
         }
@@ -75,7 +75,7 @@ const CreateMenuForm = () => {
                     aria-describedby='error-start-date'
                     required 
                     {...register('startDate')}
-                    onChange={() => replace([])}// TODO: or replace([]) or resetField?
+                    onChange={() => replace([])}
                 />
             </div>
             <div>
@@ -86,7 +86,7 @@ const CreateMenuForm = () => {
                     aria-describedby='error-end-date'
                     required 
                     {...register('endDate')}
-                    onChange={() => replace([])}// TODO: or replace([]) or resetField?
+                    onChange={() => replace([])}
                 />
             </div>
 
