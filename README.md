@@ -24,7 +24,8 @@ mark dates of the menu
 - [x] test if date validation works for end earlier than start
 - [x] error handling for wrong dates and no recipes randomized
 - [x] adjust the randomize single recipe, make sure it's updated in form data
-- [ ] adjust the move up/down, make sure it's updated in form data
+- [x] adjust the move up/down, make sure it's updated in form data
+- [ ] test that the saving of menu actually works, reset form state after success
 - [ ] clean up the code, remove randomizing and button in CreateMenuPage, remove console logs, unused imports
 - [ ] display menus by dates, not by IDs
 - [ ] get the correct number of recipes randomized based on the dates chosen
@@ -47,13 +48,15 @@ mark dates of the menu
 - [ ] Enhance recipe
     - [ ] add instructions
     - [ ] add category or tags
+    - [ ] disable all buttons while recipe is being saved
 - [ ] Enhance browsing
     - [ ] filter by category or tag
     - [ ] search by name or ingredient
 - [ ] Enhance menu creation
     - [x] possibility to change one recipe in the list of 7
     - [ ] avoid recipes used in the past 2 menus
-    - [ ] mark dates of the menu
+    - [ ] disable all buttons when menu is being saved
+    - [x] mark dates of the menu
     - [ ] browsing: display dates, sort by dates
 - [ ] Enhance grocery list
     - [ ] sort ingredients in categories

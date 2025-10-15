@@ -29,7 +29,7 @@ const CreateMenuForm = () => {
         //     ingredients: [{ name: '', unit: '', quantity: 0 }],
         // }
     });
-    const { fields, append, remove, update } = useFieldArray({
+    const { fields, append, remove, update, swap } = useFieldArray({
         control,
         name: 'recipes',
     });
@@ -40,14 +40,6 @@ const CreateMenuForm = () => {
         setSubmitStatus('');
         // setNewMenu(getUniqueRandom(7, recipes || []));
         setValue('recipes', getUniqueRandom(7, recipes || []));
-    };
-
-    const moveRecipeUp = (index: number) => {
-        console.log('moveRecipeUp index:', index);
-    };
-    
-    const moveRecipeDown = (index: number) => {
-        console.log('moveRecipeDown index:', index);
     };
 
     const randomizeRecipeAtIndex = (index: number) => {
@@ -116,22 +108,22 @@ const CreateMenuForm = () => {
                 {getValues('recipes')?.map((recipe, index) => (
                     <li key={recipe.id}>
                         <button
-                            onClick={() => moveRecipeUp(index)}
-                            // disabled={index === 0} //TODO:
-                            // aria-label={`Move ${recipe.name} up`} //TODO:
+                            onClick={() => swap(index, index - 1)}
+                            disabled={index === 0}
+                            aria-label={`Move up ${recipe.name}`}
                         >
                             Move up
                         </button>
                         <button
-                            onClick={() => moveRecipeDown(index)}
-                            // disabled={index === newMenu.length - 1} //TODO:
-                            // aria-label={`Move ${recipe.name} down`} //TODO: 
+                            onClick={() => swap(index, index + 1)}
+                            disabled={index === fields.length - 1}
+                            aria-label={`Move down ${recipe.name}`} 
                         >
                             Move down
                         </button>
                         <button
                             onClick={() => randomizeRecipeAtIndex(index)}
-                            // aria-label={`Change ${recipe.name}`} //TODO:
+                            aria-label={`Change ${recipe.name}`}
                         >
                             Change
                         </button>
