@@ -27,8 +27,7 @@ mark dates of the menu
 - [x] adjust the move up/down, make sure it's updated in form data
 - [x] test that the saving of menu actually works, reset form state after success
 - [x] clean up the code, remove randomizing and button in CreateMenuPage, remove console logs, unused imports
-- [ ] display menus by dates, not by IDs
-- [ ] display recipe names not IDs (move fetching all recipes up to page component)
+- [x] display menus by dates, not by IDs
 - [ ] get the correct number of recipes randomized based on the dates chosen
 
 ### MVP
@@ -58,7 +57,8 @@ mark dates of the menu
     - [ ] avoid recipes used in the past 2 menus
     - [ ] disable all buttons when menu is being saved
     - [x] mark dates of the menu
-    - [ ] browsing: display dates, sort by dates
+    - [ ] browsing: sort by dates
+    - [ ] browsing: display recipe names not IDs (prob needs context)
 - [ ] Enhance grocery list
     - [ ] sort ingredients in categories
     - [ ] easy copy or export

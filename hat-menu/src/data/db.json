@@ -631,6 +631,20 @@
       ],
       "startDate": "2025-09-30T21:00:00.000Z",
       "endDate": "2025-10-07T21:00:00.000Z"
+    },
+    {
+      "id": "c2d0",
+      "recipes": [
+        "fecb2ef7-1bfd-4dfe-ab9e-986fc925ec20",
+        "cb63fab5-9fc9-41bb-a198-42bc80d4ec60",
+        "a0e1ea21-29f1-4048-b9c2-71d69d04ef1b",
+        "67935b10-0e9d-4a58-adce-f8429fb69778",
+        "336bab0f-49c4-4414-9fcd-ef7c7f4ed9c6",
+        "f8d172ef-b8de-4d67-9f47-3cc53c94eb44",
+        "34dda4ae-9007-4f89-9c98-dae7c930849b"
+      ],
+      "startDate": "2025-10-15T21:00:00.000Z",
+      "endDate": "2025-10-29T22:00:00.000Z"
     }
   ],
   "ingredients": [

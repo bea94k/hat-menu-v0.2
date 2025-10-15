@@ -1,5 +1,6 @@
 import { useMenus } from '../data/menusApi';
 import CreateMenuForm from '../components/CreateMenuForm';
+import MenuCard from '../components/MenuCard';
 
 const CreateMenuPage = () => {
     const { menus, isLoading, isError } = useMenus();
@@ -19,12 +20,7 @@ const CreateMenuPage = () => {
                             <ul>
                                 {latestMenus.map(menu => (
                                     <li key={menu.id}>
-                                        Menu (ID: {menu.id})
-                                        <ol>
-                                            {menu.recipes.map(recipe => (
-                                                <li key={recipe}>Recipe ID: {recipe}</li>
-                                            ))}
-                                        </ol>
+                                        <MenuCard menu={menu} />
                                     </li>
                                 ))}
                             </ul>
