@@ -7,6 +7,7 @@ import { RecipeFormSchema, type Recipe, type RecipeForm } from '../schemas/Recip
 import { units, type Ingredient } from '../schemas/Ingredients';
 import { MenuFormSchema, type MenuForm } from '../schemas/Menus';
 import { getUniqueRandom } from '../utils/utils';
+import { addMenu } from '../data/menusApi';
 
 const CreateMenuForm = () => {
     // const inputRef = useRef<HTMLInputElement>(null);
@@ -61,15 +62,11 @@ const CreateMenuForm = () => {
         }
         try {
             console.log('Before sending, not stripped:', data);
-            const newMenuRecipeIDs = data.recipes.map(recipe => recipe.id);
-            console.log('About to send to backend:', {...data, recipes: newMenuRecipeIDs});
-            /* const response = await addMenu({
-                startDate: new Date(), // TODO: the dates should come from user selection/form
-                endDate: new Date(),
-                recipes: newMenuRecipeIDs
-            });
+            const response = await addMenu(data);
+            console.log('Response from backend:', response);
             setSubmitStatus(`Menu saved! with ID: ${response?.id}`);
-            setNewMenu([]); */
+            // setNewMenu([]);
+            reset();
         } catch (error: unknown) {
             console.error('Error saving menu:', error);
             setSubmitStatus('An error occurred while saving the menu.');

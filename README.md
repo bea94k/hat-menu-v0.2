@@ -25,7 +25,7 @@ mark dates of the menu
 - [x] error handling for wrong dates and no recipes randomized
 - [x] adjust the randomize single recipe, make sure it's updated in form data
 - [x] adjust the move up/down, make sure it's updated in form data
-- [ ] test that the saving of menu actually works, reset form state after success
+- [x] test that the saving of menu actually works, reset form state after success
 - [ ] clean up the code, remove randomizing and button in CreateMenuPage, remove console logs, unused imports
 - [ ] display menus by dates, not by IDs
 - [ ] get the correct number of recipes randomized based on the dates chosen
