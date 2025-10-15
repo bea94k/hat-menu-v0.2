@@ -6,6 +6,7 @@ import { type Recipe} from '../schemas/Recipes';
 import { MenuFormSchema, type MenuForm } from '../schemas/Menus';
 import { getUniqueRandom } from '../utils/utils';
 import { addMenu } from '../data/menusApi';
+import { differenceInCalendarDays } from 'date-fns';
 
 const CreateMenuForm = () => {
     const { recipes } = useRecipes();
@@ -21,16 +22,21 @@ const CreateMenuForm = () => {
     } = useForm({
         resolver: yupResolver(MenuFormSchema)
     });
-    const { fields, update, swap } = useFieldArray({
+    const { fields, update, swap, replace } = useFieldArray({
         control,
         name: 'recipes',
     });
 
     const [submitStatus, setSubmitStatus] = useState<string | null>(null);
 
-    const getRandomMenu = () => {
+    const getRandomMenu = (numberOfDays: number) => {
+        if (numberOfDays <= 0) {
+            setValue('recipes', []); // TODO: or replace([]) or resetField?
+            setSubmitStatus('End date must be later than start date');
+            return;
+        }
         setSubmitStatus('');
-        setValue('recipes', getUniqueRandom(7, recipes || []));
+        setValue('recipes', getUniqueRandom(numberOfDays, recipes || []));
     };
 
     const randomizeRecipeAtIndex = (index: number) => {
@@ -57,7 +63,7 @@ const CreateMenuForm = () => {
             console.error('Error saving menu:', error);
             setSubmitStatus('An error occurred while saving the menu.');
         }
-    };  
+    };
 
     return (
         <form style={{ border: '4px solid magenta', padding: '1rem' }} onSubmit={handleSubmit(onSubmit)}>
@@ -69,6 +75,7 @@ const CreateMenuForm = () => {
                     aria-describedby='error-start-date'
                     required 
                     {...register('startDate')}
+                    onChange={() => replace([])}// TODO: or replace([]) or resetField?
                 />
             </div>
             <div>
@@ -79,11 +86,12 @@ const CreateMenuForm = () => {
                     aria-describedby='error-end-date'
                     required 
                     {...register('endDate')}
+                    onChange={() => replace([])}// TODO: or replace([]) or resetField?
                 />
             </div>
 
             <h2>Suggested menu</h2>
-            <button type="button" onClick={() => getRandomMenu()}>Get 7 random recipes</button>
+            <button type="button" onClick={() => getRandomMenu(differenceInCalendarDays(getValues('endDate'), getValues('startDate')) + 1 || 0)}>Get random recipes</button>
             <ol>
                 {getValues('recipes')?.map((recipe, index) => (
                     <li key={recipe.id}>

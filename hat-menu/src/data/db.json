@@ -645,6 +645,43 @@
       ],
       "startDate": "2025-10-15T21:00:00.000Z",
       "endDate": "2025-10-29T22:00:00.000Z"
+    },
+    {
+      "id": "149e",
+      "recipes": [
+        "ce3a56e5-33a0-4aa9-9e61-8c95ee6f3b02",
+        "bf7b1099-4a63-4ead-8a8b-bef58501b4b4",
+        "41ff47f0-d118-4852-8e37-e075c5f9f792",
+        "1772b16e-6a7b-4544-abf8-b8b6adb988ac",
+        "024777a9-2ced-40fb-84ee-ee9c1afc614c",
+        "dae7fd55-0367-438a-93a1-e108181b3561",
+        "beb0743a-4910-4f5b-b6e0-15fc1a2c42bc"
+      ],
+      "startDate": "2025-10-16T21:00:00.000Z",
+      "endDate": "2025-10-21T21:00:00.000Z"
+    },
+    {
+      "id": "cf2b",
+      "recipes": [
+        "abd66487-abf0-48dc-92ba-ed936864c3ae"
+      ],
+      "startDate": "2025-10-16T21:00:00.000Z",
+      "endDate": "2025-10-16T21:00:00.000Z"
+    },
+    {
+      "id": "8d3c",
+      "recipes": [
+        "1772b16e-6a7b-4544-abf8-b8b6adb988ac",
+        "55dafe89-98b0-4919-b989-d0d5b02da7db",
+        "86352c5f-e303-43e7-a699-e10fff8b5978",
+        "3dc6d40d-4172-434f-b7bf-8bb3f28c257f",
+        "f3dcc0fc-a204-424b-b081-81f93feaee60",
+        "8a2ba339-8ed6-47f5-9252-97d83c741163",
+        "ca4cc64f-f5e5-4662-9fd4-b8aebca7abf7",
+        "53b54d70-4eb4-4a12-9ff6-adfe4314a20f"
+      ],
+      "startDate": "2025-10-09T21:00:00.000Z",
+      "endDate": "2025-10-16T21:00:00.000Z"
     }
   ],
   "ingredients": [

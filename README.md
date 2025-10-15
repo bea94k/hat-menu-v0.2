@@ -28,7 +28,7 @@ mark dates of the menu
 - [x] test that the saving of menu actually works, reset form state after success
 - [x] clean up the code, remove randomizing and button in CreateMenuPage, remove console logs, unused imports
 - [x] display menus by dates, not by IDs
-- [ ] get the correct number of recipes randomized based on the dates chosen
+- [x] get the correct number of recipes randomized based on the dates chosen
 
 ### MVP
 - [x] Browse recipe names
