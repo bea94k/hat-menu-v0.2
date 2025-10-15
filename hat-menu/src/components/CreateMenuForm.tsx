@@ -1,20 +1,14 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useFieldArray, useForm, type FieldErrors, type SubmitHandler } from 'react-hook-form';
-import { addRecipe, useRecipes } from '../data/recipesApi';
-import { addSuggestedIngredients, useSuggestedIngredients } from '../data/ingredientsApi';
-import { RecipeFormSchema, type Recipe, type RecipeForm } from '../schemas/Recipes';
-import { units, type Ingredient } from '../schemas/Ingredients';
+import { useRecipes } from '../data/recipesApi';
+import { type Recipe} from '../schemas/Recipes';
 import { MenuFormSchema, type MenuForm } from '../schemas/Menus';
 import { getUniqueRandom } from '../utils/utils';
 import { addMenu } from '../data/menusApi';
 
 const CreateMenuForm = () => {
-    // const inputRef = useRef<HTMLInputElement>(null);
-    // const { suggestedIngredients } = useSuggestedIngredients();
-    // const suggestedNamesSet = new Set(suggestedIngredients?.map(ing => ing.name));
     const { recipes } = useRecipes();
-
 
     const {
         register,
@@ -25,12 +19,9 @@ const CreateMenuForm = () => {
         handleSubmit,
         formState: { errors },
     } = useForm({
-        resolver: yupResolver(MenuFormSchema),
-        // defaultValues: {
-        //     ingredients: [{ name: '', unit: '', quantity: 0 }],
-        // }
+        resolver: yupResolver(MenuFormSchema)
     });
-    const { fields, append, remove, update, swap } = useFieldArray({
+    const { fields, update, swap } = useFieldArray({
         control,
         name: 'recipes',
     });
@@ -39,7 +30,6 @@ const CreateMenuForm = () => {
 
     const getRandomMenu = () => {
         setSubmitStatus('');
-        // setNewMenu(getUniqueRandom(7, recipes || []));
         setValue('recipes', getUniqueRandom(7, recipes || []));
     };
 
@@ -54,27 +44,20 @@ const CreateMenuForm = () => {
 
 
     const onSubmit: SubmitHandler<MenuForm> = async (data) => {
-        // setSubmitStatus(null);
         setSubmitStatus('Saving...');
         if (!data.recipes || data.recipes.length === 0) {
             setSubmitStatus('First randomize some recipes into a menu');
             return;
         }
         try {
-            console.log('Before sending, not stripped:', data);
             const response = await addMenu(data);
-            console.log('Response from backend:', response);
             setSubmitStatus(`Menu saved! with ID: ${response?.id}`);
-            // setNewMenu([]);
             reset();
         } catch (error: unknown) {
             console.error('Error saving menu:', error);
             setSubmitStatus('An error occurred while saving the menu.');
         }
     };  
-
-    // to be able to use ref along with register, ref for focusing after submit
-    // const { ref, ...rest } = register('name');
 
     return (
         <form style={{ border: '4px solid magenta', padding: '1rem' }} onSubmit={handleSubmit(onSubmit)}>
@@ -129,10 +112,8 @@ const CreateMenuForm = () => {
                 ))}
             </ol>
 
-
             <button type="submit" style={{border: '2px solid black'}}>Save menu</button>
 
-            {/* TODO: errors should be correctly live-regioned */}
             {Object.keys(errors).length > 0 && (
                 <div style={{ border: '2px solid red', padding: '1rem' }}>
                     <ul>
