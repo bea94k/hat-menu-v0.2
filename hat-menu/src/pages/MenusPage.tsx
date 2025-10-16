@@ -1,3 +1,4 @@
+import MenuCard from '../components/MenuCard';
 import { useMenus } from '../data/menusApi';
 
 const MenusPage = () => {
@@ -15,12 +16,7 @@ const MenusPage = () => {
                             <ul>
                                 {menus.reverse().map(menu => (
                                     <li key={menu.id}>
-                                        Menu (ID: {menu.id})
-                                        <ul>
-                                            {menu.recipes.map(recipe => (
-                                                <li key={recipe}>Recipe ID: {recipe}</li>
-                                            ))}
-                                        </ul>
+                                        <MenuCard menu={menu} />
                                     </li>
                                 ))}
                             </ul>

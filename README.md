@@ -38,14 +38,17 @@ npm run json-db
 - [ ] Enhance recipe
     - [ ] add instructions
     - [ ] add category or tags
-- [ ] Enhance browsing
+    - [ ] disable all buttons while recipe is being saved
+- [ ] Enhance recipes browsing
     - [ ] filter by category or tag
     - [ ] search by name or ingredient
 - [ ] Enhance menu creation
     - [x] possibility to change one recipe in the list of 7
     - [ ] avoid recipes used in the past 2 menus
-    - [ ] mark dates of the menu
-    - [ ] browsing: display dates, sort by dates
+    - [ ] disable all buttons when menu is being saved
+    - [x] mark dates of the menu
+    - [ ] browsing: sort by dates
+    - [ ] browsing: display recipe names not IDs (prob needs context)
 - [ ] Enhance grocery list
     - [ ] sort ingredients in categories
     - [ ] easy copy or export

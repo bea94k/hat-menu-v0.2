@@ -14,12 +14,14 @@ function useMenus () {
 
 async function addMenu(menu: MenuForm): Promise<Menu | null> {
     try {
+        const newMenuRecipeIDs = menu.recipes?.map(recipe => recipe.id);
+        const data = {...menu, recipes: newMenuRecipeIDs};
         const response = await fetch(`${baseAPI}/menus`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(menu),
+            body: JSON.stringify(data),
         });
         if (!response.ok) {
             throw new Error(`Failed to add menu: ${response.statusText}`);
