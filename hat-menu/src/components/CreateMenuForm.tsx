@@ -96,6 +96,7 @@ const CreateMenuForm = () => {
                 {getValues('recipes')?.map((recipe, index) => (
                     <li key={recipe.id}>
                         <button
+                            type="button"
                             onClick={() => swap(index, index - 1)}
                             disabled={index === 0}
                             aria-label={`Move up ${recipe.name}`}
@@ -103,6 +104,7 @@ const CreateMenuForm = () => {
                             Move up
                         </button>
                         <button
+                            type="button"
                             onClick={() => swap(index, index + 1)}
                             disabled={index === fields.length - 1}
                             aria-label={`Move down ${recipe.name}`} 
@@ -110,6 +112,7 @@ const CreateMenuForm = () => {
                             Move down
                         </button>
                         <button
+                            type="button"
                             onClick={() => randomizeRecipeAtIndex(index)}
                             aria-label={`Change ${recipe.name}`}
                         >
