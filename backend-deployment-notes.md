@@ -2,7 +2,7 @@
 
 ## ✅ **Checklist: Supabase + Vercel setup (React + TS + Vite)**
 
-### 1. **Create your Supabase project**
+<del>1. **Create your Supabase project**</del>
 
 * Go to [supabase.com](https://supabase.com/).
 * Sign up (GitHub or email).
@@ -275,14 +275,11 @@
 * Use `select('columns')` to fetch only what you need from Supabase.
 * Use RLS wisely — it’s great for security, but can slow queries if overcomplicated.
 
----
-
-Would you like me to include a **minimal example repo structure** (with files like `supabaseClient.ts`, `.env.example`, and a basic login form + image upload component)? That’d give you a head start.
 
 
 # From internal AI
 
-## 1. Create a Supabase project
+<del> 1. Create a Supabase project</del>
 
 * Sign up / log in at app.supabase.com and create a new project.
 * Choose a project name and password. Note the project ref / URL shown in the dashboard.
