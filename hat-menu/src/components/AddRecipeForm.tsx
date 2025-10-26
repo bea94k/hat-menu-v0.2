@@ -1,67 +1,54 @@
 import { useRef, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useFieldArray, useForm, type FieldErrors, type SubmitHandler } from 'react-hook-form';
-import { addRecipe } from '../data/recipesApi';
-import { addSuggestedIngredients, useSuggestedIngredients } from '../data/ingredientsApi';
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import { useRecipesMutation } from '../data/recipesApi';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
-import { units, type Ingredient } from '../schemas/Ingredients';
 
 const AddRecipeForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
-    const { suggestedIngredients } = useSuggestedIngredients();
-    const suggestedNamesSet = new Set(suggestedIngredients?.map(ing => ing.name));
 
     const {
         register,
-        control,
         reset,
         handleSubmit,
         formState: { errors },
-    } = useForm({
+    } = useForm<RecipeForm>({
         resolver: yupResolver(RecipeFormSchema),
         defaultValues: {
-            ingredients: [{ name: '', unit: '', quantity: 0 }],
+            name: '',
+            url: '',
+            ingredients: '',
         }
-    });
-    const { fields, append, remove, replace } = useFieldArray({
-        control,
-        name: 'ingredients',
     });
 
     const [submitStatus, setSubmitStatus] = useState<string | null>(null);
     const onSubmit: SubmitHandler<RecipeForm> = async (data) => {
         setSubmitStatus(null);
         try {
-            const newRecipe = await addRecipe(data);
-            setSubmitStatus(`Recipe added successfully! ${newRecipe?.name}, ${newRecipe?.id}`);
-
-            const newIngredientsNames = data.ingredients?.map(ing => ({ name: ing.name })).filter(ing => !suggestedNamesSet.has(ing.name));
-            // TODO: with proper backend, make sure this accepts an array to save at once, with one request. Make changes in the ingredientsApi as well.
-            // This is okay to fail silently, cause it's an additional feature
-            newIngredientsNames?.forEach(ing => addSuggestedIngredients(ing));
-
-            replace([{ name: '', unit: '', quantity: 0 }]); // clear ingredient fields, leave one empty
+            const { mutate } = useRecipesMutation();
+            await mutate('insert', data, 'NEW');
             reset();
             inputRef?.current?.focus();
-        } catch (error: unknown) {
+            setSubmitStatus('Recipe added successfully!');
+        } catch (error) {
             console.error('Error saving recipe:', error);
             setSubmitStatus('An error occurred while adding the recipe.');
         }
-    };  
+    };
 
     // to be able to use ref along with register, ref for focusing after submit
     const { ref, ...rest } = register('name');
-          
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <label htmlFor="recipe-name">Recipe Name:</label>
-                <input 
-                    type="text" 
-                    id="recipe-name" 
+                <input
+                    type="text"
+                    id="recipe-name"
                     aria-describedby='error-name'
-                    autoComplete="off" 
-                    required 
+                    autoComplete="off"
+                    required
                     {...rest}
                     ref={(e) => {
                         ref(e);
@@ -71,93 +58,45 @@ const AddRecipeForm = () => {
             </div>
             <div>
                 <label htmlFor="recipe-url">Recipe URL (optional):</label>
-                <input 
-                    type="text" 
-                    id="recipe-url" 
+                <input
+                    type="text"
+                    id="recipe-url"
                     aria-describedby='error-url'
-                    autoComplete="off" 
+                    autoComplete="off"
                     {...register('url')}
                 />
             </div>
 
             <div>
-                <p>Note: for spices "to taste", use no unit and zero for quantity.</p>
-                <div>
-                    {fields.map((field, index) => (
-                        <fieldset key={field.id}>
-                            <legend>Ingredient {index + 1}</legend>
-
-                            <div>
-                                <label htmlFor={`ingredient-name-${index + 1}`}>Name:</label>
-                                <input 
-                                    type="text"
-                                    id={`ingredient-name-${index + 1}`}
-                                    aria-describedby={`error-ingredient-${index}-name`}
-                                    list="ingredient-name-datalist"
-                                    required 
-                                    {...register(`ingredients.${index}.name`)} />
-                                {suggestedIngredients && suggestedIngredients.length > 0 && <datalist id="ingredient-name-datalist">
-                                    {suggestedIngredients.map(suggestedIngredient => (
-                                        <option key={suggestedIngredient.id} value={suggestedIngredient.name} />
-                                    ))}
-                                </datalist>}
-                            </div>
-
-                            <div>
-                                <label htmlFor={`ingredient-unit-${index + 1}`}>Unit:</label>
-                                <select
-                                    id={`ingredient-unit-${index + 1}`}
-                                    aria-describedby={`error-ingredient-${index}-unit`}
-                                    {...register(`ingredients.${index}.unit`)}
-                                >
-                                    <option value="">Select Unit</option>
-                                    {units.map((unit) => (
-                                        <option key={unit} value={unit}>{unit}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            <div>
-                                <label htmlFor={`ingredient-quantity-${index + 1}`}>Quantity:</label>
-                                <input
-                                    type="number"
-                                    id={`ingredient-quantity-${index + 1}`}
-                                    aria-describedby={`error-ingredient-${index}-quantity`}
-                                    step="any"
-                                    {...register(`ingredients.${index}.quantity`)}
-                                />
-                            </div>
-                            <button type="button" onClick={() => remove(index)}>Remove</button>
-                        </fieldset>
-                    ))}
-                    <button type="button" onClick={() => append({ name: '', unit: '', quantity: 0 })}>
-                    Add Ingredient
-                    </button>
-                </div>
+                <label htmlFor="recipe-ingredients">Ingredients:</label>
+                <textarea
+                    id="recipe-ingredients"
+                    aria-describedby="error-ingredients"
+                    rows={4}
+                    cols={50}
+                    placeholder="Enter ingredients (e.g., 2 cups flour, 1 tsp salt, 3 eggs)"
+                    {...register('ingredients')}
+                />
+                {errors.ingredients && (
+                    <div id="error-ingredients" style={{ color: 'red' }}>
+                        {errors.ingredients.message}
+                    </div>
+                )}
             </div>
 
-            <button type="submit" style={{border: '2px solid black'}}>Add Recipe</button>
+            <button type="submit" style={{ border: '2px solid black' }}>Add Recipe</button>
             {Object.keys(errors).length > 0 && (
                 <div style={{ border: '2px solid red', padding: '1rem' }}>
                     <ul>
-                        {Object.entries(errors)
-                            .filter(([key]) => key !== 'ingredients')
-                            .map(([key, value]) => (
-                                <li key={key} id={`error-${key}`}>{key}: {value.message}</li>
-                            ))}
-                        {Array.isArray(errors.ingredients) &&
-                            errors.ingredients.map((ingredientError: FieldErrors<Ingredient[]>, index) => (
-                                Object.entries(ingredientError).map(([fieldKey, fieldError]) => (
-                                    <li key={`ingredient-${index}-${fieldKey}`} id={`error-ingredient-${index}-${fieldKey}`}>
-                                            Ingredient {index + 1} {fieldKey}: {fieldError?.message || 'Unhandled validation error'}
-                                    </li>)
-                                )
-                            ))
-                        }
+                        {Object.entries(errors).map(([key, value]) => (
+                            <li key={key} id={`error-${key}`}>
+                                {key}: {value?.message || 'Invalid input'}
+                            </li>
+                        ))}
                     </ul>
                 </div>
             )}
-            <div 
+            <div
                 role="status"
                 aria-live="polite">
                 {submitStatus && (

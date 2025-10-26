@@ -1,22 +1,21 @@
-import { useEffect } from 'react';
-import useSWR, { mutate } from 'swr';
+import useSWR, { mutate as mutateSWR } from 'swr';
 import { supabase } from '../supabase-config';
-import type { RealtimePostgresChangesPayload } from '@supabase/supabase-js';
+
+type AllowedTables = 'recipe' | 'menu' | 'menu_recipe';
 
 interface UseSupabaseQueryOptions {
-    table: string;
+    table: AllowedTables;
     select?: string;
     filters?: Record<string, any>;
-    realtime?: boolean;
 }
 
 /**
- * Custom hook that combines SWR with Supabase for optimal caching and real-time updates
+ * Custom hook that combines SWR with Supabase for optimal caching
  */
 export function useSupabaseQuery<T = any>(
     options: UseSupabaseQueryOptions
 ) {
-    const { table, select = '*', filters = {}, realtime = true } = options;
+    const { table, select = '*', filters = {} } = options;
 
     // Create a unique key for SWR
     const swrKey = `/${table}?${JSON.stringify({ select, filters })}`;
@@ -44,33 +43,6 @@ export function useSupabaseQuery<T = any>(
         revalidateOnReconnect: true,
     });
 
-    // Set up real-time subscription
-    useEffect(() => {
-        if (!realtime) return;
-
-        const channel = supabase
-            .channel(`${table}-changes`)
-            .on(
-                'postgres_changes',
-                {
-                    event: '*',
-                    schema: 'public',
-                    table: table,
-                },
-                (payload: RealtimePostgresChangesPayload<any>) => {
-                    console.log('Real-time update received:', payload);
-
-                    // Revalidate the SWR cache when data changes
-                    swrMutate();
-                }
-            )
-            .subscribe();
-
-        return () => {
-            supabase.removeChannel(channel);
-        };
-    }, [table, realtime, swrMutate]);
-
     return {
         data,
         error,
@@ -82,12 +54,13 @@ export function useSupabaseQuery<T = any>(
 /**
  * Hook for mutations with optimistic updates
  */
-export function useSupabaseMutation<T = any>(table: string) {
-    const mutate = async (operation: 'insert' | 'update' | 'delete', data: any, id?: string) => {
+export function useSupabaseMutation(table: AllowedTables) {
+    const mutate = async (operation: 'insert' | 'update' | 'delete', data: any, id: string) => {
         let query;
 
         switch (operation) {
             case 'insert':
+                // NOTE: use "NEW" as id for 'create' queries
                 query = supabase.from(table).insert([data]).select();
                 break;
             case 'update':
@@ -105,7 +78,7 @@ export function useSupabaseMutation<T = any>(table: string) {
         }
 
         // Revalidate all queries for this table
-        await mutate(`/${table}`);
+        await mutateSWR(`/${table}`);
 
         return result;
     };

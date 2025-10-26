@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "update-types": "npx supabase gen types --lang=typescript --project-id \"mhkyawszdfzvqpabtekd\" > src/schemas/database.types.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "json-db": "npx json-server src/data/db.json",
@@ -32,6 +33,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
+    "supabase": "^2.53.6",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
     "vite": "^7.1.2",
