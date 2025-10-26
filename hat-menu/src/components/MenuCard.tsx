@@ -7,13 +7,13 @@ interface Props {
 
 const MenuCard = ({ menu }: Props) => (
     <div>
-        Menu{' '} 
-        <span style={{ fontWeight: 'bold' }}>{format(menu.startDate, 'd MMM yyyy')}</span>
+        Menu{' '}
+        <span style={{ fontWeight: 'bold' }}>{menu.startDate && format(menu.startDate, 'd MMM yyyy')}</span>
         {' '}to{' '}
-        <span style={{ fontWeight: 'bold' }}>{format(menu.endDate, 'd MMM yyyy')}</span>
+        <span style={{ fontWeight: 'bold' }}>{menu.endDate && format(menu.endDate, 'd MMM yyyy')}</span>
         <ol>
-            {menu.recipes.map(recipe => (
-                <li key={recipe}>Recipe ID: {recipe}</li>
+            {menu.recipes.map((recipe, i) => (
+                <li key={`${recipe}-${i}`}>Recipe ID: {recipe.id}</li>
             ))}
         </ol>
     </div>

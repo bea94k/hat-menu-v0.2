@@ -3,6 +3,7 @@ import { useRecipes } from '../data/recipesApi';
 
 const RecipesPage = () => {
     const { recipes, isLoading, isError } = useRecipes();
+
     if (isError) return <div>failed to load</div>;
     if (isLoading) return <div>loading...</div>;
 
@@ -13,8 +14,8 @@ const RecipesPage = () => {
                 {(!recipes || recipes.length === 0) ? (
                     <li>No recipes available</li>
                 ) : (
-                
-                    recipes.map(recipe => (
+
+                    recipes?.map(recipe => (
                         <li key={recipe.id}>
                             <RecipeCard recipe={recipe} />
                         </li>

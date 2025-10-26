@@ -1,5 +1,6 @@
 import { array, object, string, date, type InferType } from 'yup';
 import { RecipeSchema } from './Recipes';
+import type { Menu } from './supabase-helpers';
 
 const MenuSchema = object({
     recipes: array().of(string().uuid()).required(),
@@ -7,12 +8,11 @@ const MenuSchema = object({
     startDate: string().required(), // stringified ISO date
     endDate: string().required() // stringified ISO date
 });
-type Menu = InferType<typeof MenuSchema>;
 
 const MenuFormSchema = object({
     startDate: date().required(),
     endDate: date().required().when('startDate', (startDate, yup) => startDate && yup.min(startDate, 'End date must be later than start date')),
-    recipes: array().of(RecipeSchema),
+    recipes: array().of(RecipeSchema).required(),
 });
 type MenuForm = InferType<typeof MenuFormSchema>;
 

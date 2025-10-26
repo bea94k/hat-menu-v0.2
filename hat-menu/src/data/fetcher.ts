@@ -1,5 +1,30 @@
-const baseAPI = 'http://localhost:3000';
+import { supabase } from '../supabase-config';
 
-const fetcher = (...args: [RequestInfo, RequestInit?]) => fetch(`${baseAPI}${args[0]}`, args[1]).then(res => res.json());
+// Generic fetcher for Supabase queries
+const fetcher = async (url: string) => {
+    const { data, error } = await supabase
+        .from(url.split('/')[1]) // Extract table name from URL
+        .select('*');
 
-export { baseAPI, fetcher };
+    if (error) {
+        throw new Error(error.message);
+    }
+
+    return data;
+};
+
+// Specific fetchers for different operations
+const fetcherWithFilters = async (url: string) => {
+    const [table] = url.split('/').slice(1);
+    const { data, error } = await supabase
+        .from(table)
+        .select('*');
+
+    if (error) {
+        throw new Error(error.message);
+    }
+
+    return data;
+};
+
+export { fetcher, fetcherWithFilters };

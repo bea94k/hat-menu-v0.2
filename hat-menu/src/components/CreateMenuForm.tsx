@@ -6,7 +6,7 @@ import { type Recipe} from '../schemas/Recipes';
 import { MenuFormSchema, type MenuForm } from '../schemas/Menus';
 import { getUniqueRandom } from '../utils/utils';
 import { addMenu } from '../data/menusApi';
-import { differenceInCalendarDays } from 'date-fns';
+import { differenceInCalendarDays, addDays, format } from 'date-fns';
 
 const CreateMenuForm = () => {
     const { recipes } = useRecipes();
@@ -93,34 +93,39 @@ const CreateMenuForm = () => {
             <h2>Suggested menu</h2>
             <button type="button" onClick={() => getRandomMenu(differenceInCalendarDays(getValues('endDate'), getValues('startDate')) + 1 || 0)}>Get random recipes</button>
             <ol>
-                {getValues('recipes')?.map((recipe, index) => (
-                    <li key={recipe.id}>
-                        <button
-                            type="button"
-                            onClick={() => swap(index, index - 1)}
-                            disabled={index === 0}
-                            aria-label={`Move up ${recipe.name}`}
-                        >
-                            Move up
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => swap(index, index + 1)}
-                            disabled={index === fields.length - 1}
-                            aria-label={`Move down ${recipe.name}`} 
-                        >
-                            Move down
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => randomizeRecipeAtIndex(index)}
-                            aria-label={`Change ${recipe.name}`}
-                        >
-                            Change
-                        </button>
-                        {recipe.name}
-                    </li>
-                ))}
+                {getValues('recipes')?.map((recipe, index) => {
+                    const startDate = getValues('startDate') ? new Date(getValues('startDate')) : null;
+                    const recipeDate = startDate ? format(addDays(startDate, index), 'd MMM yyyy') : '';
+                    
+                    return (
+                        <li key={recipe.id}>
+                            <button
+                                type="button"
+                                onClick={() => swap(index, index - 1)}
+                                disabled={index === 0}
+                                aria-label={`Move up ${recipe.name}`}
+                            >
+                                Move up
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => swap(index, index + 1)}
+                                disabled={index === fields.length - 1}
+                                aria-label={`Move down ${recipe.name}`} 
+                            >
+                                Move down
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => randomizeRecipeAtIndex(index)}
+                                aria-label={`Change ${recipe.name}`}
+                            >
+                                Change
+                            </button>
+                            <strong>{recipeDate}</strong> - {recipe.name}
+                        </li>
+                    );
+                })}
             </ol>
 
             <button type="submit" style={{border: '2px solid black'}}>Save menu</button>

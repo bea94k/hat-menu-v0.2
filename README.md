@@ -2,6 +2,12 @@
 
 Coding supported by AI.
 
+## .env needed in /hat-menu
+```
+VITE_SUPABASE_URL=<from Supabase>
+VITE_SUPABASE_ANON_KEY=<from Supabase>
+```
+
 ## To run the frontend
 ```
 cd hat-menu
