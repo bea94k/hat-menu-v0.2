@@ -57,12 +57,13 @@ const AddRecipeForm = () => {
                 />
             </div>
             <div>
-                <label htmlFor="recipe-url">Recipe URL (optional):</label>
+                <label htmlFor="recipe-url">Recipe URL:</label>
                 <input
                     type="text"
                     id="recipe-url"
                     aria-describedby='error-url'
                     autoComplete="off"
+                    required
                     {...register('url')}
                 />
             </div>
@@ -75,6 +76,7 @@ const AddRecipeForm = () => {
                     rows={4}
                     cols={50}
                     placeholder="Enter ingredients (e.g., 2 cups flour, 1 tsp salt, 3 eggs)"
+                    required
                     {...register('ingredients')}
                 />
                 {errors.ingredients && (
