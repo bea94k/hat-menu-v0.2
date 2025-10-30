@@ -2,6 +2,7 @@ import { useSupabaseQuery, useSupabaseMutation } from './useSupabaseQuery';
 import { supabase } from '../supabase-config';
 import type { Menu, MenuInsert, MenuWithRecipes, MenuRecipeInsert } from '../schemas/supabase-helpers';
 import type { MenuForm } from '../schemas/Menus';
+import { format } from 'date-fns';
 
 
 function useMenus() {
@@ -36,8 +37,8 @@ async function addMenu(menu: MenuForm): Promise<Menu | null> {
         const { data: menuData, error: menuError } = await supabase
             .from('menu')
             .insert({
-                startDate: menu.startDate.toISOString().split('T')[0],
-                endDate: menu.endDate.toISOString().split('T')[0],
+                startDate: format(menu.startDate, 'yyyy-MM-dd'),
+                endDate: format(menu.endDate, 'yyyy-MM-dd')
             })
             .select()
             .single();
