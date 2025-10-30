@@ -79,11 +79,6 @@ const AddRecipeForm = () => {
                     required
                     {...register('ingredients')}
                 />
-                {errors.ingredients && (
-                    <div id="error-ingredients" style={{ color: 'red' }}>
-                        {errors.ingredients.message}
-                    </div>
-                )}
             </div>
 
             <button type="submit" style={{ border: '2px solid black' }}>Add Recipe</button>
@@ -92,7 +87,7 @@ const AddRecipeForm = () => {
                     <ul>
                         {Object.entries(errors).map(([key, value]) => (
                             <li key={key} id={`error-${key}`}>
-                                {key}: {value?.message || 'Invalid input'}
+                                {value?.message || `${key}: Invalid input`}
                             </li>
                         ))}
                     </ul>
