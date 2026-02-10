@@ -12,7 +12,7 @@
 
 ## Phase 1: Database Schema
 
-### Task 1.1: Create database tables
+### ✅ Task 1.1: Create database tables
 **Commit**: `feat(db): add suggested_ingredient and recipe_ingredient tables`
 
 - Create migration SQL file with:
