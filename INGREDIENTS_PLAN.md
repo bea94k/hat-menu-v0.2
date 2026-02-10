@@ -47,7 +47,7 @@
   - Add `RecipeWithIngredients` type (extends Recipe with recipe_ingredient array)
   - Add `SuggestedIngredient`, `RecipeIngredient` Row/Insert/Update types
 
-### Task 2.2: Update recipes API for junction table handling
+### ✅ Task 2.2: Update recipes API for junction table handling
 **Commit**: `refactor(api): handle recipe_ingredient junction table in recipe CRUD`
 
 - Update `hat-menu/src/data/recipesApi.ts`:
