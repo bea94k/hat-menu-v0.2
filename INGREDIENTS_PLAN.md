@@ -59,7 +59,7 @@
 
 ## Phase 3: Form Components
 
-### Task 3.1: Create atomic ingredient input component
+### ✅ Task 3.1: Create atomic ingredient input component
 **Commit**: `feat(components): add IngredientInput with autocomplete and unit dropdown`
 
 - Create `hat-menu/src/components/IngredientInput.tsx`:
