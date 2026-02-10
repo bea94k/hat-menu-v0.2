@@ -22,7 +22,7 @@
 - Run migration in Supabase
 - Run `npm run update-types` to regenerate `database.types.ts`
 
-### Task 1.2: Populate suggested ingredients from existing recipes
+### ✅ Task 1.2: Populate suggested ingredients from existing recipes
 **Commit**: `chore(db): seed suggested_ingredient from existing recipe data`
 
 - Create migration script to:
@@ -31,6 +31,7 @@
   - Insert into `suggested_ingredient` table
 - Execute migration
 - Document manual cleanup needed for duplicates (e.g., "potato" vs "potatoes")
+- **Standards established**: singular form, lowercase (even for origin-based names)
 
 ---
 

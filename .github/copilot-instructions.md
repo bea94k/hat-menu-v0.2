@@ -73,7 +73,11 @@ Import the singleton from [hat-menu/src/supabase-config.ts](hat-menu/src/supabas
 - **File organization**: Components in `/components`, full-page components in `/pages`, API hooks in `/data`
 - **Routing**: Using React Router v7 (not react-router-dom), see [hat-menu/src/main.tsx](hat-menu/src/main.tsx)
 - **Styling**: Use Tailwind CSS utility classes for component styling. Avoid inline styles and prefer Tailwind classes.
-- **Ingredients storage**: Stored as plain text string in the database (future: might be JSON array or separate table)
+- **Ingredients storage**: Structured format using `recipe_ingredient` junction table. Legacy recipes use plain text in `recipe.ingredients` field.
+- **Ingredient naming**: All ingredients in `suggested_ingredient` table must be:
+  - **Singular form** (e.g., "potato" not "potatoes")
+  - **Lowercase** (e.g., "asian" not "Asian", even for origin-based names)
+  - This applies regardless of grammatical correctness for consistency
 - **Date handling**: Uses `date-fns` for formatting. Convert form dates to `yyyy-MM-dd` format for Supabase (e.g., `format(menu.startDate, 'yyyy-MM-dd')`)
 
 ## Common Pitfalls
