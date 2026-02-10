@@ -37,7 +37,7 @@
 
 ## Phase 2: Data Layer & API
 
-### Task 2.1: Create ingredients API hooks
+### ✅ Task 2.1: Create ingredients API hooks
 **Commit**: `feat(api): add ingredients data layer with autocomplete support`
 
 - Create `hat-menu/src/data/ingredientsApi.ts`:
