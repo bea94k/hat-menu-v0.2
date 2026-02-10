@@ -79,7 +79,7 @@
   - "Add Ingredient" button
   - Integrates with form validation
 
-### Task 3.3: Update recipe form schema and validation
+### ✅ Task 3.3: Update recipe form schema and validation
 **Commit**: `refactor(schemas): update RecipeFormSchema for structured ingredients`
 
 - Update `hat-menu/src/schemas/Recipes.ts`:
