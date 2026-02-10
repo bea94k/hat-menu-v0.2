@@ -70,7 +70,7 @@
   - Tailwind styling
   - Accessibility (proper labels, aria-* attributes)
 
-### Task 3.2: Create ingredients list manager
+### ✅ Task 3.2: Create ingredients list manager
 **Commit**: `feat(components): add IngredientsListInput for managing ingredient arrays`
 
 - Create `hat-menu/src/components/IngredientsListInput.tsx`:
