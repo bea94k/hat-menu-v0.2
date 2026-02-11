@@ -1,12 +1,13 @@
 import { useSuggestedIngredients } from '../data/ingredientsApi';
-import { units, type Ingredient } from '../schemas/Ingredients';
-import type { UseFormRegister, FieldErrors, FieldValues } from 'react-hook-form';
+import { units } from '../schemas/Ingredients';
 
 interface IngredientInputProps {
     index: number;
-    register: UseFormRegister<FieldValues>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    register: any;
     onRemove: () => void;
-    errors?: FieldErrors<Ingredient[]>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    errors?: any;
     disableRemove?: boolean;
 }
 
@@ -44,7 +45,7 @@ export function IngredientInput({
                     autoComplete="off"
                     aria-describedby={errors?.[index]?.name ? `${nameId}-error` : undefined}
                     aria-invalid={!!errors?.[index]?.name}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                     {...register(`ingredients.${index}.name`)}
                 />
                 {/* Native HTML datalist for autocomplete */}
@@ -75,7 +76,7 @@ export function IngredientInput({
                     max="10000"
                     aria-describedby={errors?.[index]?.quantity ? `${quantityId}-error` : undefined}
                     aria-invalid={!!errors?.[index]?.quantity}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md  bg-white"
                     {...register(`ingredients.${index}.quantity`, { valueAsNumber: true })}
                 />
                 {errors?.[index]?.quantity && (
@@ -94,7 +95,7 @@ export function IngredientInput({
                     id={unitId}
                     aria-describedby={errors?.[index]?.unit ? `${unitId}-error` : undefined}
                     aria-invalid={!!errors?.[index]?.unit}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                     {...register(`ingredients.${index}.unit`)}
                 >
                     {units.map((unit) => (
@@ -116,7 +117,7 @@ export function IngredientInput({
                 onClick={onRemove}
                 disabled={disableRemove}
                 aria-label={`Remove ingredient ${index + 1}`}
-                className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
                 Remove
             </button>

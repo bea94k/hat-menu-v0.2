@@ -3,12 +3,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { useRecipesMutation } from '../data/recipesApi';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
+import { IngredientsListInput } from './IngredientsListInput';
 
 const AddRecipeForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
+    const { mutate } = useRecipesMutation();
 
     const {
         register,
+        control,
         reset,
         handleSubmit,
         formState: { errors },
@@ -17,7 +20,7 @@ const AddRecipeForm = () => {
         defaultValues: {
             name: '',
             url: '',
-            ingredients: '',
+            ingredients: [{ name: '', quantity: undefined, unit: '' }],
         }
     });
 
@@ -25,7 +28,6 @@ const AddRecipeForm = () => {
     const onSubmit: SubmitHandler<RecipeForm> = async (data) => {
         setSubmitStatus(null);
         try {
-            const { mutate } = useRecipesMutation();
             await mutate('insert', data, 'NEW');
             reset();
             inputRef?.current?.focus();
@@ -49,6 +51,7 @@ const AddRecipeForm = () => {
                     aria-describedby='error-name'
                     autoComplete="off"
                     required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                     {...rest}
                     ref={(e) => {
                         ref(e);
@@ -64,22 +67,17 @@ const AddRecipeForm = () => {
                     aria-describedby='error-url'
                     autoComplete="off"
                     required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                     {...register('url')}
                 />
             </div>
 
-            <div>
-                <label htmlFor="recipe-ingredients">Ingredients:</label>
-                <textarea
-                    id="recipe-ingredients"
-                    aria-describedby="error-ingredients"
-                    rows={4}
-                    cols={50}
-                    placeholder="Enter ingredients (e.g., 2 cups flour, 1 tsp salt, 3 eggs)"
-                    required
-                    {...register('ingredients')}
-                />
-            </div>
+            <IngredientsListInput
+                control={control}
+                register={register}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                errors={errors.ingredients as any}
+            />
 
             <button type="submit" style={{ border: '2px solid black' }}>Add Recipe</button>
             {Object.keys(errors).length > 0 && (

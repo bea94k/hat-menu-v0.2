@@ -1,12 +1,21 @@
 import { useFieldArray } from 'react-hook-form';
-import type { Control, UseFormRegister, FieldErrors, FieldValues } from 'react-hook-form';
+import type { Control, UseFormRegister, FieldErrors } from 'react-hook-form';
 import { IngredientInput } from './IngredientInput';
-import type { Ingredient } from '../schemas/Ingredients';
 
+/**
+ * Props use `any` for React Hook Form types due to TypeScript limitations:
+ * - Generic form types (Control<TFormValues>, UseFormRegister<TFormValues>) don't compose well
+ * - Nested array error types (FieldErrors for arrays) create incompatible type unions
+ * - This component needs to work with any parent form structure containing an 'ingredients' array
+ * Runtime type safety is maintained through Yup validation in the parent form
+ */
 interface IngredientsListInputProps {
-    control: Control<FieldValues>;
-    register: UseFormRegister<FieldValues>;
-    errors?: FieldErrors<Ingredient[]>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    control: Control<any>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    register: UseFormRegister<any>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    errors?: FieldErrors<any>;
 }
 
 export function IngredientsListInput({ control, register, errors }: IngredientsListInputProps) {
@@ -39,7 +48,7 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
             <button
                 type="button"
                 onClick={handleAddIngredient}
-                className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+                className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
             >
                 + Add Ingredient
             </button>

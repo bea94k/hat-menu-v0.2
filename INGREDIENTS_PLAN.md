@@ -87,7 +87,7 @@
   - Import and use `IngredientSchema` from Ingredients.ts
   - Update `RecipeForm` type accordingly
 
-### Task 3.4: Integrate new components into AddRecipeForm
+### ✅ Task 3.4: Integrate new components into AddRecipeForm
 **Commit**: `feat(forms): replace textarea with structured ingredient inputs in AddRecipeForm`
 
 - Update `hat-menu/src/components/AddRecipeForm.tsx`:
