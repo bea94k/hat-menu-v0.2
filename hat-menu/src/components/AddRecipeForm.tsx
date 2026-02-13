@@ -1,13 +1,12 @@
 import { useRef, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { useRecipesMutation } from '../data/recipesApi';
+import { addRecipe } from '../data/recipesApi';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { IngredientsListInput } from './IngredientsListInput';
 
 const AddRecipeForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
-    const { mutate } = useRecipesMutation();
 
     const {
         register,
@@ -28,10 +27,10 @@ const AddRecipeForm = () => {
     const onSubmit: SubmitHandler<RecipeForm> = async (data) => {
         setSubmitStatus(null);
         try {
-            await mutate('insert', data, 'NEW');
+            const response = await addRecipe(data);
+            setSubmitStatus(`Recipe saved! with ID: ${response?.id}`);
             reset();
             inputRef?.current?.focus();
-            setSubmitStatus('Recipe added successfully!');
         } catch (error) {
             console.error('Error saving recipe:', error);
             setSubmitStatus('An error occurred while adding the recipe.');

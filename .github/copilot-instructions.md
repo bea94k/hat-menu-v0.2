@@ -73,8 +73,11 @@ Import the singleton from [hat-menu/src/supabase-config.ts](hat-menu/src/supabas
 - **File organization**: Components in `/components`, full-page components in `/pages`, API hooks in `/data`
 - **Routing**: Using React Router v7 (not react-router-dom), see [hat-menu/src/main.tsx](hat-menu/src/main.tsx)
 - **Styling**: Use Tailwind CSS utility classes for component styling. Avoid inline styles and prefer Tailwind classes.
-- **Ingredients storage**: Structured format using `recipe_ingredient` junction table. Legacy recipes use plain text in `recipe.ingredients` field.
-- **Ingredient naming**: All ingredients in `suggested_ingredient` table must be:
+- **Ingredients storage**: 
+  - **Current**: New recipes use `recipe_ingredient` junction table with structured data (`ingredient_name`, `quantity`, `unit`)
+  - **Legacy**: Old recipes have stringified JSON arrays in `recipe.ingredients` text field - these need manual migration
+  - **Recipe mutations**: Use custom `addRecipe`/`updateRecipe` functions from [hat-menu/src/data/recipesApi.ts](hat-menu/src/data/recipesApi.ts), not generic `useSupabaseMutation`, to properly handle the junction table inserts
+- **Ingredient naming**: All ingredients in `suggested_ingredient` table and `recipe_ingredient.ingredient_name` must be:
   - **Singular form** (e.g., "potato" not "potatoes")
   - **Lowercase** (e.g., "asian" not "Asian", even for origin-based names)
   - This applies regardless of grammatical correctness for consistency
@@ -83,9 +86,10 @@ Import the singleton from [hat-menu/src/supabase-config.ts](hat-menu/src/supabas
 ## Common Pitfalls
 
 1. **Don't edit database.types.ts** - It's auto-generated. Run `npm run update-types` after schema changes.
-2. **Junction table handling** - Simple `useSupabaseMutation` won't work for menu creation. Use custom functions like `addMenu` for complex multi-table operations.
+2. **Junction table handling** - Simple `useSupabaseMutation` won't work for recipes or menus. Use custom functions like `addRecipe`, `updateRecipe`, `addMenu` for complex multi-table operations that involve junction tables.
 3. **Mutation ID convention** - Use string `'NEW'` as the ID parameter when calling `mutate('insert', ...)`.
 4. **SWR cache invalidation** - The mutation hook auto-revalidates, but complex queries (with joins) may need manual `mutate()` calls.
+5. **Legacy ingredient data** - Some old recipes may still have stringified arrays in `recipe.ingredients` field instead of using the `recipe_ingredient` table. Handle both formats when reading.
 
 ## Reference Files
 - Type generation workflow: [backend-deployment-notes.md](backend-deployment-notes.md) (sections 6-7)
