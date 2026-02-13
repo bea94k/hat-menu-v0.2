@@ -100,7 +100,7 @@
 
 ## Phase 4: Display & UX
 
-### Task 4.1: Create ingredient display component
+### ✅ Task 4.1: Create ingredient display component
 **Commit**: `feat(components): add IngredientsList for displaying structured ingredients`
 
 - Create `hat-menu/src/components/IngredientsList.tsx`:
@@ -108,7 +108,7 @@
   - Formats as clean list (e.g., "2 cups flour", "1 tsp salt")
   - Tailwind styling
 
-### Task 4.2: Update RecipeCard to display structured ingredients
+### ✅ Task 4.2: Update RecipeCard to display structured ingredients
 **Commit**: `refactor(components): display structured ingredients in RecipeCard with text fallback`
 
 - Update `hat-menu/src/components/RecipeCard.tsx`:

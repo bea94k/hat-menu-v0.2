@@ -44,7 +44,7 @@ async function addRecipe(recipe: RecipeForm, ingredients: RecipeIngredientInsert
             .insert({
                 name: recipe.name,
                 url: recipe.url,
-                ingredients: recipe.ingredients, // Keep old text field for backward compatibility
+                ingredients: JSON.stringify(recipe.ingredients), // Store as JSON string for backward compatibility
             } as RecipeInsert)
             .select()
             .single();
