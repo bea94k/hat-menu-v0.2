@@ -1,20 +1,16 @@
+import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { useSuggestedIngredients } from '../data/ingredientsApi';
-import { units } from '../schemas/Ingredients';
+import { units, type Ingredient } from '../schemas/Ingredients';
+import type { RecipeForm } from '../schemas/Recipes';
 
 interface IngredientInputProps {
     index: number;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    register: any;
+    register: UseFormRegister<RecipeForm>;
     onRemove: () => void;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    errors?: any;
+    errors?: FieldErrors<Ingredient>;
     disableRemove?: boolean;
 }
 
-/**
- * Atomic ingredient input component with autocomplete, quantity, and unit inputs
- * Designed for use with React Hook Form's useFieldArray
- */
 export function IngredientInput({
     index,
     register,
@@ -32,7 +28,7 @@ export function IngredientInput({
 
     return (
         <div className="flex gap-2 items-start mb-2">
-            {/* Ingredient Name Input with Autocomplete */}
+
             <div className="flex-1 min-w-0">
                 <label htmlFor={nameId} className="sr-only">
                     Ingredient name {index + 1}
@@ -43,8 +39,8 @@ export function IngredientInput({
                     list={datalistId}
                     placeholder="e.g., flour, salt, egg"
                     autoComplete="off"
-                    aria-describedby={errors?.[index]?.name ? `${nameId}-error` : undefined}
-                    aria-invalid={!!errors?.[index]?.name}
+                    aria-describedby={errors?.name ? `${nameId}-error` : undefined}
+                    aria-invalid={!!errors?.name}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                     {...register(`ingredients.${index}.name`)}
                 />
@@ -55,14 +51,13 @@ export function IngredientInput({
                             <option key={ingredient.id} value={ingredient.name} />
                         ))}
                 </datalist>
-                {errors?.[index]?.name && (
+                {errors?.name && (
                     <p id={`${nameId}-error`} className="text-red-600 text-sm mt-1" role="alert">
-                        {errors[index].name?.message}
+                        {errors.name.message}
                     </p>
                 )}
             </div>
 
-            {/* Quantity Input */}
             <div className="w-24">
                 <label htmlFor={quantityId} className="sr-only">
                     Quantity {index + 1}
@@ -74,27 +69,26 @@ export function IngredientInput({
                     step="0.001"
                     min="0"
                     max="10000"
-                    aria-describedby={errors?.[index]?.quantity ? `${quantityId}-error` : undefined}
-                    aria-invalid={!!errors?.[index]?.quantity}
+                    aria-describedby={errors?.quantity ? `${quantityId}-error` : undefined}
+                    aria-invalid={!!errors?.quantity}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md  bg-white"
                     {...register(`ingredients.${index}.quantity`, { valueAsNumber: true })}
                 />
-                {errors?.[index]?.quantity && (
+                {errors?.quantity && (
                     <p id={`${quantityId}-error`} className="text-red-600 text-sm mt-1" role="alert">
-                        {errors[index].quantity?.message}
+                        {errors.quantity.message}
                     </p>
                 )}
             </div>
 
-            {/* Unit Select Dropdown */}
             <div className="w-28">
                 <label htmlFor={unitId} className="sr-only">
                     Unit {index + 1}
                 </label>
                 <select
                     id={unitId}
-                    aria-describedby={errors?.[index]?.unit ? `${unitId}-error` : undefined}
-                    aria-invalid={!!errors?.[index]?.unit}
+                    aria-describedby={errors?.unit ? `${unitId}-error` : undefined}
+                    aria-invalid={!!errors?.unit}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                     {...register(`ingredients.${index}.unit`)}
                 >
@@ -104,14 +98,13 @@ export function IngredientInput({
                         </option>
                     ))}
                 </select>
-                {errors?.[index]?.unit && (
+                {errors?.unit && (
                     <p id={`${unitId}-error`} className="text-red-600 text-sm mt-1" role="alert">
-                        {errors[index].unit?.message}
+                        {errors.unit.message}
                     </p>
                 )}
             </div>
 
-            {/* Remove Button */}
             <button
                 type="button"
                 onClick={onRemove}

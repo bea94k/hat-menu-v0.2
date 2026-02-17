@@ -1,21 +1,12 @@
 import { useFieldArray } from 'react-hook-form';
 import type { Control, UseFormRegister, FieldErrors } from 'react-hook-form';
 import { IngredientInput } from './IngredientInput';
+import type { RecipeForm } from '../schemas/Recipes';
 
-/**
- * Props use `any` for React Hook Form types due to TypeScript limitations:
- * - Generic form types (Control<TFormValues>, UseFormRegister<TFormValues>) don't compose well
- * - Nested array error types (FieldErrors for arrays) create incompatible type unions
- * - This component needs to work with any parent form structure containing an 'ingredients' array
- * Runtime type safety is maintained through Yup validation in the parent form
- */
 interface IngredientsListInputProps {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    control: Control<any>;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    register: UseFormRegister<any>;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    errors?: FieldErrors<any>;
+    control: Control<RecipeForm>;
+    register: UseFormRegister<RecipeForm>;
+    errors?: FieldErrors<RecipeForm>['ingredients'];
 }
 
 export function IngredientsListInput({ control, register, errors }: IngredientsListInputProps) {
@@ -28,6 +19,8 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
         append({ name: '', quantity: undefined, unit: '' });
     };
 
+    console.log('Ingredients list errors: ', errors);
+
     return (
         <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Ingredients</label>
@@ -39,7 +32,7 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
                         index={index}
                         register={register}
                         onRemove={() => remove(index)}
-                        errors={errors}
+                        errors={errors?.[index]}
                         disableRemove={fields.length === 1}
                     />
                 ))}

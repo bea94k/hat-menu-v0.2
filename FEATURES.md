@@ -49,7 +49,9 @@ This document provides an overview of currently implemented features in the Hat 
 ## ⚠️ Not Yet Implemented
 
 ### Priority/Where I left off last time
+- **Authentication** - Supabase Auth configured but not used in app
 - **Make the app a PWA**
+- **Change from anon keys to sb_secret** https://supabase.com/docs/guides/api/api-keys#why-are-anon-and-servicerole-jwt-based-keys-no-longer-recommended 
 - **Deploy** to access it on other devices
 - **Make the app mobile friendly**, especially menu creation and recipe adding
 - **Legacy ingredient migration** - Old recipes with stringified ingredients need migration to `recipe_ingredient` table
@@ -59,7 +61,6 @@ This document provides an overview of currently implemented features in the Hat 
 
 ### Other
 - **Update/Delete recipes** - Functions exist but not exposed in UI
-- **Authentication** - Supabase Auth configured but not used in app
 - **Update/Delete menus** - Only create functionality exists
 - **Recipe categories/filtering** - Hook exists but not implemented in UI
 - **Image uploads** - Storage bucket configured but not implemented

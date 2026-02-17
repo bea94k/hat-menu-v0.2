@@ -74,8 +74,7 @@ const AddRecipeForm = () => {
             <IngredientsListInput
                 control={control}
                 register={register}
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                errors={errors.ingredients as any}
+                errors={errors.ingredients}
             />
 
             <button type="submit" style={{ border: '2px solid black' }}>Add Recipe</button>
