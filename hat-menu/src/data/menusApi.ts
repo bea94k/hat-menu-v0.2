@@ -1,6 +1,6 @@
 import { useSupabaseQuery, useSupabaseMutation } from './useSupabaseQuery';
 import { supabase } from '../supabase-config';
-import type { Menu, MenuInsert, MenuWithRecipes, MenuRecipeInsert } from '../schemas/supabase-helpers';
+import type { Menu, MenuWithRecipes, MenuRecipeInsert } from '../schemas/supabase-helpers';
 import type { MenuForm } from '../schemas/Menus';
 import { format } from 'date-fns';
 

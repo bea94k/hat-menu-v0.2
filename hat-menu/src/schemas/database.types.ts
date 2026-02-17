@@ -95,6 +95,59 @@ export type Database = {
         }
         Relationships: []
       }
+      recipe_ingredient: {
+        Row: {
+          created_at: string | null
+          id: string
+          ingredient_name: string
+          quantity: number | null
+          recipe_id: string
+          unit: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          ingredient_name: string
+          quantity?: number | null
+          recipe_id: string
+          unit?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          ingredient_name?: string
+          quantity?: number | null
+          recipe_id?: string
+          unit?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "recipe_ingredient_recipe_id_fkey"
+            columns: ["recipe_id"]
+            isOneToOne: false
+            referencedRelation: "recipe"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      suggested_ingredient: {
+        Row: {
+          created_at: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

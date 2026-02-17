@@ -88,3 +88,6 @@ nav a:hover {
 main {
     padding: 2rem;
 }
+
+/* Tailwind import */
+@import "tailwindcss";

@@ -1,7 +1,7 @@
 import useSWR, { mutate as mutateSWR } from 'swr';
 import { supabase } from '../supabase-config';
 
-type AllowedTables = 'recipe' | 'menu' | 'menu_recipe';
+type AllowedTables = 'recipe' | 'menu' | 'menu_recipe' | 'suggested_ingredient' | 'recipe_ingredient';
 
 interface UseSupabaseQueryOptions {
     table: AllowedTables;
@@ -59,16 +59,16 @@ export function useSupabaseMutation(table: AllowedTables) {
         let query;
 
         switch (operation) {
-            case 'insert':
-                // NOTE: use "NEW" as id for 'create' queries
-                query = supabase.from(table).insert([data]).select();
-                break;
-            case 'update':
-                query = supabase.from(table).update(data).eq('id', id).select();
-                break;
-            case 'delete':
-                query = supabase.from(table).delete().eq('id', id);
-                break;
+        case 'insert':
+            // NOTE: use "NEW" as id for 'create' queries
+            query = supabase.from(table).insert([data]).select();
+            break;
+        case 'update':
+            query = supabase.from(table).update(data).eq('id', id).select();
+            break;
+        case 'delete':
+            query = supabase.from(table).delete().eq('id', id);
+            break;
         }
 
         const { data: result, error } = await query;

@@ -7,7 +7,9 @@ This document provides an overview of currently implemented features in the Hat 
 ### 1. **Recipe Management**
 - **View all recipes** - Recipe listing functionality via [`useSupabaseQuery`](hat-menu/src/data/useSupabaseQuery.ts)
 - **Add new recipes** - Form implementation in [`AddRecipeForm.tsx`](hat-menu/src/components/AddRecipeForm.tsx) using React Hook Form + Yup validation
-- **Data model** - Recipes have `name`, `url`, and `ingredients` (stored as plain text string)
+- **Data model** - Recipes have `name`, `url`, and structured ingredients stored in `recipe_ingredient` junction table
+- **Structured ingredients** - Each ingredient has `ingredient_name` (lowercase, singular), optional `quantity`, and optional `unit`
+- **Legacy data** - Old recipes still have stringified ingredient arrays in `recipe.ingredients` field (needs manual migration)
 
 ### 2. **Menu Management**
 - **Create menus** - Complex menu creation with recipe associations via [`addMenu`](hat-menu/src/data/menusApi.ts) function
@@ -37,19 +39,31 @@ This document provides an overview of currently implemented features in the Hat 
 - **Testing setup** - Vitest configured
 
 ### 6. **Database Schema**
-- **`recipe` table** - With id, name, url, ingredients fields
+- **`recipe` table** - With id, name, url, ingredients (legacy text field, being phased out)
+- **`recipe_ingredient` junction table** - Links recipes to ingredients with quantity/unit (new structured format)
+- **`suggested_ingredient` table** - Autocomplete suggestions (lowercase, singular form)
 - **`menu` table** - With id, startDate, endDate fields
 - **`menu_recipe` junction table** - Links menus to recipes (many-to-many)
 - **Seed data** - Available in [`seed-recipes.sql`](hat-menu/src/data/seed-recipes.sql)
 
 ## ⚠️ Not Yet Implemented
 
-- **Update/Delete recipes** - Commented out in [`recipesApi.ts`](hat-menu/src/data/recipesApi.ts)
-- **Recipe categories/filtering** - Hook exists but not implemented in UI
-- **Ingredients as structured data** - Currently plain text, future: JSON array or separate table
+### Priority/Where I left off last time
 - **Authentication** - Supabase Auth configured but not used in app
-- **Image uploads** - Storage bucket configured but not implemented
+- **Make the app a PWA**
+- **Change from anon keys to sb_secret** https://supabase.com/docs/guides/api/api-keys#why-are-anon-and-servicerole-jwt-based-keys-no-longer-recommended 
+- **Deploy** to access it on other devices
+- **Make the app mobile friendly**, especially menu creation and recipe adding
+- **Legacy ingredient migration** - Old recipes with stringified ingredients need migration to `recipe_ingredient` table
+- **Testing** of everything we have so far
+- **Accessibility and good practices** - are there unused or unnecessary classes, properties or attributes?
+- **Clean up** comments, types, API files - See which comments are too verbose (and try to fix the instructions.agents). Are there any unused functions? Do we need the supabase hooks at all or everything needs to be a custom hook (because joint tables)?
+
+### Other
+- **Update/Delete recipes** - Functions exist but not exposed in UI
 - **Update/Delete menus** - Only create functionality exists
+- **Recipe categories/filtering** - Hook exists but not implemented in UI
+- **Image uploads** - Storage bucket configured but not implemented
 
 ## 💡 Ideas
 
