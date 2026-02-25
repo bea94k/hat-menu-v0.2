@@ -27,6 +27,11 @@ const SignInPage = () => {
         const error = await signIn(email, password);
 
         if (error) {
+            if (error.code === 'email_not_confirmed') {
+                setSubmitError('Your email is not verified yet. Please check your inbox and confirm your email before signing in.');
+                return;
+            }
+
             setSubmitError('Invalid email or password. Please try again.');
             return;
         }
