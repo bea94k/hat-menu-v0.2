@@ -77,12 +77,25 @@ nav a {
     font-weight: 500;
 }
 
+nav button {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 nav a.active {
     border-bottom: 2px solid #fff;
 }
 
 nav a:hover {
     outline: 2px solid #fff;
+}
+
+nav button:hover {
+  outline: 2px solid #fff;
 }
 
 main {
