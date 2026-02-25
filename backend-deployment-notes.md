@@ -84,7 +84,7 @@
 
   ```bash
   VITE_SUPABASE_URL=https://your-project-url.supabase.co
-  VITE_SUPABASE_ANON_KEY=your-anon-key
+  VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY=your-publishable-key
   ```
 * Add `.env` to `.gitignore` (never commit your keys).
 
@@ -100,9 +100,9 @@
   import { createClient } from '@supabase/supabase-js'
 
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL!
-  const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY!
+  const supabasePublishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY!
 
-  export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+  export const supabase = createClient(supabaseUrl, supabasePublishableKey)
   ```
 * Import and use it anywhere in your app:
 
@@ -181,7 +181,7 @@
   * Add your environment variables:
 
     * `VITE_SUPABASE_URL`
-    * `VITE_SUPABASE_ANON_KEY`
+    * `VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY`
 * Deploy.
 
   🔗 Docs: [Deploying Vite Apps on Vercel](https://vercel.com/docs/frameworks/vite)
@@ -311,7 +311,7 @@
 ## 5. Local dev: add environment variables
 * In your Vite app, create .env.local (add to .gitignore):
     * VITE_SUPABASE_URL=<your-supabase-url>
-    * VITE_SUPABASE_ANON_KEY=<your-anon-key>
+    * VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY=<your-publishable-key>
 * Reminder: Vite env vars must begin with VITE_ to be exposed to the client.
 
 
@@ -323,7 +323,7 @@
 ## 7. Initialize Supabase client in your app
 * Example (create a single client file used across app):
     * import { createClient } from '@supabase/supabase-js'
-    * export const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY)
+    * export const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY)
 * Treat this client as singleton (provide via React Context if convenient).
 
 
@@ -354,7 +354,7 @@
 * Create a Vercel account and connect your Git repo (or use Vercel CLI).
 * In Vercel project settings → Environment Variables add:
     * VITE_SUPABASE_URL = <value>
-    * VITE_SUPABASE_ANON_KEY = <value>
+    * VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY = <value>
     * (If using server functions) add SUPABASE_SERVICE_ROLE or other server-only secrets under "Environment Variables" with the scope set to Production/Preview appropriately.
 * For preview deployments, set the same env vars for the Preview environment (Vercel allows separate values).
 

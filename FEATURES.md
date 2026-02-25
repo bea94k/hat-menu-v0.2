@@ -46,12 +46,14 @@ This document provides an overview of currently implemented features in the Hat 
 - **`menu_recipe` junction table** - Links menus to recipes (many-to-many)
 - **Seed data** - Available in [`seed-recipes.sql`](hat-menu/src/data/seed-recipes.sql)
 
+### 7. **Misc**
+- switched to use **supabase publishable keys**, away from the legacy anon keys (https://supabase.com/docs/guides/api/api-keys#why-are-anon-and-servicerole-jwt-based-keys-no-longer-recommended)
+
 ## ⚠️ Not Yet Implemented
 
 ### Priority/Where I left off last time
 - **Authentication** - Supabase Auth configured but not used in app
 - **Make the app a PWA**
-- **Change from anon keys to sb_secret** https://supabase.com/docs/guides/api/api-keys#why-are-anon-and-servicerole-jwt-based-keys-no-longer-recommended 
 - **Deploy** to access it on other devices
 - **Make the app mobile friendly**, especially menu creation and recipe adding
 - **Legacy ingredient migration** - Old recipes with stringified ingredients need migration to `recipe_ingredient` table

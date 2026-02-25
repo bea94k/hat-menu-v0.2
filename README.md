@@ -6,7 +6,7 @@ More documentation in [copilot-instructions](.github/copilot-instructions.md).
 ## .env needed in /hat-menu
 ```
 VITE_SUPABASE_URL=<from Supabase>
-VITE_SUPABASE_ANON_KEY=<from Supabase>
+VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY=<from Supabase>
 ```
 
 ## To run the frontend

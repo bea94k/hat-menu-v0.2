@@ -62,7 +62,7 @@ npm run test             # Run Vitest tests
 Create `hat-menu/.env`:
 ```
 VITE_SUPABASE_URL=<from Supabase dashboard>
-VITE_SUPABASE_ANON_KEY=<from Supabase dashboard>
+VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY=<from Supabase dashboard>
 ```
 
 ### Supabase Client Initialization
