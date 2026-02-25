@@ -95,6 +95,7 @@ This plan aligns with existing architecture in:
   - expired/invalid session
   - network/auth service errors
 - Standardize auth error messages on sign-in/sign-up pages.
+- When user tries to access an url that doesn't exist (for example '/nowhere'), redirect to '/'.
 
 ### 11) Verification and testing
 - Run and verify locally:
@@ -118,13 +119,13 @@ This plan aligns with existing architecture in:
 - Update feature status in `FEATURES.md`.
 
 ## Implementation Checklist
-- [ ] Auth context/provider and hook added
-- [ ] Protected routing implemented
-- [ ] Sign-in and sign-up pages added
-- [ ] Navbar sign-out flow integrated
-- [ ] Supabase local auth redirect config fixed
-- [ ] Authenticated-only RLS migration created and applied
-- [ ] RLS policies created and verified
+- [x] Auth context/provider and hook added
+- [x] Protected routing implemented
+- [x] Sign-in and sign-up pages added
+- [x] Navbar sign-out flow integrated
+- [x] Supabase local auth redirect config fixed
+- [x] Authenticated-only RLS migration created and applied
+- [x] RLS policies created and verified
 - [ ] Client mutation paths verified for authenticated access
 - [ ] Session/error edge cases handled
 - [ ] Tests and manual auth flow verified
