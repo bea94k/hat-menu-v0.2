@@ -71,6 +71,9 @@ Import the singleton from [hat-menu/src/supabase-config.ts](hat-menu/src/supabas
 ## Conventions
 
 - **File organization**: Components in `/components`, full-page components in `/pages`, API hooks in `/data`
+- **Plan files**: Whenever asked to create a plan for a feature/task/work, always save it as a Markdown file in `/docs/plans/` (root-level directory).
+  - Filename must start with the current date in `YYYY-MM-DD` format.
+  - Recommended pattern: `YYYY-MM-DD-short-plan-name.md`.
 - **Routing**: Using React Router v7 (not react-router-dom), see [hat-menu/src/main.tsx](hat-menu/src/main.tsx)
 - **Styling**: Use Tailwind CSS utility classes for component styling. Avoid inline styles and prefer Tailwind classes.
 - **Ingredients storage**: 
