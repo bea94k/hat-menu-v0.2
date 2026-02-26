@@ -2,6 +2,7 @@ import { useSupabaseQuery, useSupabaseMutation } from './useSupabaseQuery';
 import { supabase } from '../supabase-config';
 import type { RecipeWithIngredients, /* RecipeInsert, */ RecipeUpdate, RecipeIngredientInsert } from '../schemas/supabase-helpers';
 import type { RecipeForm } from '../schemas/Recipes';
+import { checkAuthenticatedSession } from '../utils/auth';
 
 /**
  * Hook to fetch all recipes with their structured ingredients
@@ -38,6 +39,8 @@ export function useRecipesMutation() {
  */
 async function addRecipe(recipe: RecipeForm): Promise<RecipeWithIngredients | null> {
     try {
+        await checkAuthenticatedSession();
+
         // 1. Insert the recipe first and get the new ID
         const { data: recipeData, error: recipeError } = await supabase
             .from('recipe')
@@ -104,6 +107,8 @@ async function updateRecipe(
     ingredients: RecipeIngredientInsert[]
 ): Promise<RecipeWithIngredients | null> {
     try {
+        await checkAuthenticatedSession();
+
         // 1. Update main recipe fields
         const { data: recipeData, error: recipeError } = await supabase
             .from('recipe')
@@ -170,6 +175,8 @@ async function updateRecipe(
  * Ingredients are automatically deleted via CASCADE
  */
 async function deleteRecipe(recipeId: string): Promise<void> {
+    await checkAuthenticatedSession();
+
     const { error } = await supabase
         .from('recipe')
         .delete()
