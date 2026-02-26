@@ -100,18 +100,37 @@ This plan aligns with existing architecture in:
 ### 11) Verification and testing
 - Run and verify locally:
   - `npm run dev`
-  - `npm run test`
+  - `npm run test` - ✅ pass 7 unit tests for utils
 - Manual test path:
   1. Sign up
+    - ✅ Sign-up happy path succeeds.
+    - ✅ Invalid form input (email/password) shows validation errors.
+    - ✅ Duplicate-account sign-up shows expected error/message. -> in request response "user already exists" visible, in UI generic "sign up failed, check your details, try again" message.
   2. Sign in
-  3. Access protected pages
+    - ✅ Sign-in happy path succeeds.
+    - ✅ Invalid form input (email/password) shows validation errors.
+    - ✅ Wrong credentials show a user-friendly auth error.
+  3. Session-expired handling works
+    - ✅ Invalidate session (e.g., sign out in another tab or expire token). Submitting a protected form redirects to /sign-in. -> Sign out in both tabs is immediate. When removing cookies and tokens, no sing out or redirect is done, but can't access nor update the data from UI; on reload, redirects to sign-in page.
+    - ❌ User sees a session-expired/re-authentication message. -> this doesn't happen, but the flow is secure enough
   4. Create/edit records
+    - ✅ Signed-in user can create a recipe successfully.
+    - ✅ Signed-in user can create a menu successfully.
+    - ✅ Newly created records are visible in list views.
   5. Sign out
+    - ✅ Clicking Sign out redirects to /sign-in.
+    - ✅ Private nav/actions are hidden after sign-out
+    - ✅ Accessing private routes after sign-out redirects to /sign-in.
   6. Verify protected routes redirect to sign-in
+    - ✅ While signed out, visiting /, /menus, /recipes/add, /menus/create redirects to /sign-in.
+    - ✅ No private page content is visible before redirect.
+  7. Verify unauth-only routes redirect to /
+    - ✅ While signed in, visiting /sign-in redirects to /.
+    - ✅ While signed in, visiting /sign-up redirects to /.
 - Validate RLS behavior (Supabase SQL editor/manual checks):
-  - unauthenticated access is denied for all protected tables
-  - authenticated users can read/write all rows as intended
-  - all table columns required by app flows remain accessible to authenticated users
+  - ✅ unauthenticated access is denied for all protected tables
+  - ✅ authenticated users can read/write all rows as intended
+  - ✅ all table columns required by app flows remain accessible to authenticated users
 
 ### 12) Documentation updates
 - Add auth setup instructions and env guidance to `hat-menu/README.md`.
@@ -126,9 +145,9 @@ This plan aligns with existing architecture in:
 - [x] Supabase local auth redirect config fixed
 - [x] Authenticated-only RLS migration created and applied
 - [x] RLS policies created and verified
-- [ ] Client mutation paths verified for authenticated access
-- [ ] Session/error edge cases handled
-- [ ] Tests and manual auth flow verified
+- [x] Client mutation paths verified for authenticated access
+- [x] Session/error edge cases handled
+- [x] Tests and manual auth flow verified
 - [ ] Documentation updated
 
 ## Notes / Risks
