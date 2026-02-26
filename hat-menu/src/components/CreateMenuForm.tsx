@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useFieldArray, useForm, type FieldErrors, type SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router';
 import { useRecipes } from '../data/recipesApi';
 import { type Recipe} from '../schemas/Recipes';
 import { MenuFormSchema, type MenuForm } from '../schemas/Menus';
 import { getUniqueRandom } from '../utils/utils';
 import { addMenu } from '../data/menusApi';
 import { differenceInCalendarDays, addDays, format } from 'date-fns';
+import { isSessionError } from '../utils/auth';
 
 const CreateMenuForm = () => {
     const { recipes } = useRecipes();
+    const navigate = useNavigate();
 
     const {
         register,
@@ -61,6 +64,12 @@ const CreateMenuForm = () => {
             reset();
         } catch (error: unknown) {
             console.error('Error saving menu:', error);
+
+            if (isSessionError(error)) {
+                navigate('/sign-in', { replace: true, state: { reason: 'session-expired' } });
+                return;
+            }
+
             setSubmitStatus('An error occurred while saving the menu.');
         }
     };

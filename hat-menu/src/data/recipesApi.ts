@@ -93,7 +93,11 @@ async function addRecipe(recipe: RecipeForm): Promise<RecipeWithIngredients | nu
             recipe_ingredient: []
         };
     } catch (error) {
-        throw new Error(error instanceof Error ? error.message : 'Failed to add recipe');
+        if (error instanceof Error) {
+            throw error;
+        }
+
+        throw new Error('Failed to add recipe');
     }
 }
 
@@ -166,7 +170,11 @@ async function updateRecipe(
             recipe_ingredient: []
         };
     } catch (error) {
-        throw new Error(error instanceof Error ? error.message : 'Failed to update recipe');
+        if (error instanceof Error) {
+            throw error;
+        }
+
+        throw new Error('Failed to update recipe');
     }
 }
 

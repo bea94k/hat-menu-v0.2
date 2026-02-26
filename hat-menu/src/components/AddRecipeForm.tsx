@@ -1,12 +1,15 @@
 import { useRef, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, type SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router';
 import { addRecipe } from '../data/recipesApi';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { IngredientsListInput } from './IngredientsListInput';
+import { isSessionError } from '../utils/auth';
 
 const AddRecipeForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
+    const navigate = useNavigate();
 
     const {
         register,
@@ -31,8 +34,14 @@ const AddRecipeForm = () => {
             setSubmitStatus(`Recipe saved! with ID: ${response?.id}`);
             reset();
             inputRef?.current?.focus();
-        } catch (error) {
+        } catch (error: unknown) {
             console.error('Error saving recipe:', error);
+
+            if (isSessionError(error)) {
+                navigate('/sign-in', { replace: true, state: { reason: 'session-expired' } });
+                return;
+            }
+
             setSubmitStatus('An error occurred while adding the recipe.');
         }
     };

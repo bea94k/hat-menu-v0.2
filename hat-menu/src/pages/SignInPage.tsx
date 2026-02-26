@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { useAuth } from '../auth/useAuth';
 import { AuthSchema, type AuthForm } from '../schemas/Auth';
+import { mapAuthErrorMessage } from '../utils/auth';
 
 const SignInPage = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const { signIn } = useAuth();
     const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -27,21 +29,27 @@ const SignInPage = () => {
         const error = await signIn(email, password);
 
         if (error) {
-            if (error.code === 'email_not_confirmed') {
-                setSubmitError('Your email is not verified yet. Please check your inbox and confirm your email before signing in.');
-                return;
-            }
-
-            setSubmitError('Invalid email or password. Please try again.');
+            setSubmitError(mapAuthErrorMessage(error, 'sign-in'));
             return;
         }
 
         navigate('/');
     };
 
+    const routeState = location.state as { reason?: string } | null;
+    const routeError = routeState?.reason === 'session-expired'
+        ? mapAuthErrorMessage(null, 'session')
+        : null;
+
     return (
         <main id="maincontent">
             <h1>Sign in</h1>
+
+            {routeError && (
+                <p role="alert" aria-live="assertive">
+                    {routeError}
+                </p>
+            )}
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>

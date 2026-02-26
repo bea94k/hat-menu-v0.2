@@ -4,6 +4,7 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { Link } from 'react-router';
 import { useAuth } from '../auth/useAuth';
 import { AuthSchema, type AuthForm } from '../schemas/Auth';
+import { mapAuthErrorMessage } from '../utils/auth';
 
 const SignUpPage = () => {
     const { signUp } = useAuth();
@@ -28,7 +29,7 @@ const SignUpPage = () => {
         const error = await signUp(email, password);
 
         if (error) {
-            setSubmitError(error.message);
+            setSubmitError(mapAuthErrorMessage(error, 'sign-up'));
             return;
         }
 

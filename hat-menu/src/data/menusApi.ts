@@ -73,7 +73,11 @@ async function addMenu(menu: MenuForm): Promise<Menu | null> {
 
         return newlyCreatedMenu;
     } catch (error) {
-        throw new Error(error instanceof Error ? error.message : 'An unknown error occurred while adding the menu.');
+        if (error instanceof Error) {
+            throw error;
+        }
+
+        throw new Error('An unknown error occurred while adding the menu.');
     }
 }
 
