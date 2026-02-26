@@ -117,6 +117,7 @@ This plan aligns with existing architecture in:
     - ✅ Signed-in user can create a recipe successfully.
     - ✅ Signed-in user can create a menu successfully.
     - ✅ Newly created records are visible in list views.
+    - NOTE: 'Edit' functionality implemented on API level, but not in UI, so not tested here.
   5. Sign out
     - ✅ Clicking Sign out redirects to /sign-in.
     - ✅ Private nav/actions are hidden after sign-out
@@ -148,7 +149,7 @@ This plan aligns with existing architecture in:
 - [x] Client mutation paths verified for authenticated access
 - [x] Session/error edge cases handled
 - [x] Tests and manual auth flow verified
-- [ ] Documentation updated
+- [x] Documentation updated
 
 ## Notes / Risks
 - Avoid exposing secret keys in frontend; browser app should use anon/publishable key only.
