@@ -19,8 +19,6 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
         append({ name: '', quantity: undefined, unit: '' });
     };
 
-    console.log('Ingredients list errors: ', errors);
-
     return (
         <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Ingredients</label>

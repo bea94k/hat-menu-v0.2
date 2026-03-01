@@ -42,9 +42,19 @@ CREATE INDEX IF NOT EXISTS idx_recipe_ingredient_name ON recipe_ingredient(ingre
 -- Ensures only valid units are stored in the database
 -- Matches the units array defined in hat-menu/src/schemas/Ingredients.ts
 
-ALTER TABLE recipe_ingredient 
-ADD CONSTRAINT check_valid_unit 
-CHECK (unit IS NULL OR unit IN ('', 'g', 'ml', 'dl', 'tsp', 'tbsp', 'cup', 'piece', 'clove'));
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'check_valid_unit'
+          AND conrelid = 'recipe_ingredient'::regclass
+    ) THEN
+        ALTER TABLE recipe_ingredient
+        ADD CONSTRAINT check_valid_unit
+        CHECK (unit IS NULL OR unit IN ('', 'g', 'ml', 'dl', 'tsp', 'tbsp', 'cup', 'piece', 'clove'));
+    END IF;
+END $$;
 
 -- ============================================
 -- Comments for documentation

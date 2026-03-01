@@ -3,6 +3,7 @@ import { supabase } from '../supabase-config';
 import type { Menu, MenuWithRecipes, MenuRecipeInsert } from '../schemas/supabase-helpers';
 import type { MenuForm } from '../schemas/Menus';
 import { format } from 'date-fns';
+import { checkAuthenticatedSession } from '../utils/auth';
 
 
 function useMenus() {
@@ -33,6 +34,8 @@ export function useMenusMutation() {
 
 async function addMenu(menu: MenuForm): Promise<Menu | null> {
     try {
+        await checkAuthenticatedSession();
+
         // First, create the menu
         const { data: menuData, error: menuError } = await supabase
             .from('menu')
@@ -70,7 +73,11 @@ async function addMenu(menu: MenuForm): Promise<Menu | null> {
 
         return newlyCreatedMenu;
     } catch (error) {
-        throw new Error(error instanceof Error ? error.message : 'An unknown error occurred while adding the menu.');
+        if (error instanceof Error) {
+            throw error;
+        }
+
+        throw new Error('An unknown error occurred while adding the menu.');
     }
 }
 

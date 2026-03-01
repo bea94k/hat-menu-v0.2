@@ -1,5 +1,6 @@
 import useSWR, { mutate as mutateSWR } from 'swr';
 import { supabase } from '../supabase-config';
+import { checkAuthenticatedSession } from '../utils/auth';
 
 type AllowedTables = 'recipe' | 'menu' | 'menu_recipe' | 'suggested_ingredient' | 'recipe_ingredient';
 
@@ -56,6 +57,8 @@ export function useSupabaseQuery<T = any>(
  */
 export function useSupabaseMutation(table: AllowedTables) {
     const mutate = async (operation: 'insert' | 'update' | 'delete', data: any, id: string) => {
+        await checkAuthenticatedSession();
+
         let query;
 
         switch (operation) {

@@ -1,69 +1,45 @@
-# React + TypeScript + Vite
+# Hat Menu Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Environment
+Create `hat-menu/.env`:
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+VITE_SUPABASE_URL=<from Supabase dashboard>
+VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY=<from Supabase dashboard>
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Run locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
+
+## Authentication
+- Auth method: email/password via Supabase Auth.
+- All app routes are protected; unauthenticated users are redirected to `/sign-in`.
+- Auth-only pages (`/sign-in`, `/sign-up`) redirect authenticated users to `/`.
+- Unknown routes redirect to `/`.
+
+## Local auth URL configuration
+This app uses Vite's default local origin: `http://localhost:5173`.
+
+In `hat-menu/supabase/config.toml`, keep:
+
+```toml
+[auth]
+site_url = "http://localhost:5173"
+additional_redirect_urls = [
+  "http://localhost:5173",
+  "http://localhost:5173/sign-in",
+  "http://localhost:5173/sign-up"
+]
+```
+
+If you run on a different local port, update these URLs to match your Vite origin.
+
+## Supabase dashboard setup
+- In Supabase, enable **Email** provider under Authentication.
+- In Authentication URL settings, include local URLs above and your production URL(s).
+- Keep using only publishable/anon key in frontend; never expose `service_role` in client code.
+
