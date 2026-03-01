@@ -36,7 +36,7 @@ export function useSupabaseQuery<T = any>(
             throw new Error(error.message);
         }
 
-        return data;
+        return data as T[];
     };
 
     const { data, error, isLoading, mutate: swrMutate } = useSWR<T[]>(swrKey, fetcher, {

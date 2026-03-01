@@ -1,9 +1,11 @@
 import { supabase } from '../supabase-config';
 
-// Generic fetcher for Supabase queries
+type AllowedTables = 'recipe' | 'menu' | 'menu_recipe' | 'suggested_ingredient' | 'recipe_ingredient';
+
 const fetcher = async (url: string) => {
+    const table = url.split('/')[1] as AllowedTables;
     const { data, error } = await supabase
-        .from(url.split('/')[1]) // Extract table name from URL
+        .from(table)
         .select('*');
 
     if (error) {
@@ -13,9 +15,8 @@ const fetcher = async (url: string) => {
     return data;
 };
 
-// Specific fetchers for different operations
 const fetcherWithFilters = async (url: string) => {
-    const [table] = url.split('/').slice(1);
+    const table = url.split('/')[1] as AllowedTables;
     const { data, error } = await supabase
         .from(table)
         .select('*');
