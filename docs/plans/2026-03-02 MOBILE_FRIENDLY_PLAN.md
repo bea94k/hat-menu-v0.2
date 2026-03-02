@@ -16,7 +16,7 @@
 
 ## Step-by-Step Plan (Commit-Sized)
 
-## Step 1 — Page layout system (wrapper, H1, padding, text breaking, overflow)
+## ✅ Step 1 — Page layout system (wrapper, H1, padding, text breaking, overflow)
 **Commit goal:** Standardize page-level structure for consistent compact layout.
 
 **Tasks**
@@ -28,6 +28,9 @@
 - All main pages share consistent compact spacing.
 - No horizontal scrolling in normal views.
 - Headings and long strings wrap cleanly.
+
+✅ Done:
+- Shared layout wrapper that takes title as prop for H1.
 
 ---
 
@@ -87,7 +90,7 @@
 
 ---
 
-## Step 6 — Navbar responsiveness (including Sign-in page)
+## ✅ Step 6 — Navbar responsiveness (including Sign-in page)
 **Commit goal:** Ensure navbar stays usable and readable in all app contexts.
 
 **Tasks**
@@ -98,6 +101,13 @@
 **Acceptance criteria**
 - Navbar is readable and operable from `320px+`.
 - No clipped nav items or layout jumps across pages.
+
+✅ Done:
+- No navbar on sign-in page.
+- After auth, navbar split into top (sign out) and bottom (links to recipes and menus).
+- Consistent styling especially for bottom button-looking links.
+- No clipping or overflow (depends on the short wording).
+- Both navbars height is 40px.
 
 ---
 

@@ -1,10 +1,10 @@
-import { NavLink } from 'react-router';
 import { useNavigate } from 'react-router';
 import { useAuth } from '../auth/useAuth';
+import NavbarLink from './NavbarLink';
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { user, loading, signOut } = useAuth();
+    const { loading, signOut } = useAuth();
 
     const handleSignOut = async () => {
         const error = await signOut();
@@ -17,51 +17,51 @@ const Navbar = () => {
         navigate('/sign-in', { replace: true });
     };
 
+    if (loading) {
+        return null;
+    }
+
     return (
-        <nav>
-            <ul>
-                {!loading && user && (
-                    <>
-                        <li>
-                            <NavLink to="/">
-                                Recipes
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/add-recipe">
-                                Add Recipe
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/menus">
-                                Menus
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/create-menu">
-                                Create Menu
-                            </NavLink>
-                        </li>
-                        <li>
-                            <button type="button" onClick={handleSignOut}>
-                                Sign out
-                            </button>
-                        </li>
-                    </>
-                )}
+        <header className="w-full">
+            <nav aria-label="Account" className="h-10 w-full bg-primary-500 text-white">
+                <ul className="flex h-full justify-end">
+                    <li className="h-full">
+                        <button
+                            type="button"
+                            onClick={handleSignOut}
+                            className="h-full px-4 transition-colors hover:bg-primary-700 focus-visible:bg-primary-700"
+                        >
+                            Log out
+                        </button>
+                    </li>
+                </ul>
+            </nav>
 
-                {!loading && !user && (
-                    <>
-                        <li>
-                            <NavLink to="/sign-in">
-                                Sign In
-                            </NavLink>
-                        </li>
-                    </>
-                )}
-
-            </ul>
-        </nav>
+            <nav aria-label="Main" className="fixed right-0 bottom-0 left-0 z-50 w-full bg-gray-200 px-0 py-0 text-gray-700">
+                <ul className="m-0 flex items-stretch divide-x divide-gray-400">
+                    <li className="flex-1">
+                        <NavbarLink to="/" end>
+                            All recipes
+                        </NavbarLink>
+                    </li>
+                    <li className="flex-1">
+                        <NavbarLink to="/add-recipe">
+                            New recipe
+                        </NavbarLink>
+                    </li>
+                    <li className="flex-1">
+                        <NavbarLink to="/menus" end>
+                            All menus
+                        </NavbarLink>
+                    </li>
+                    <li className="flex-1">
+                        <NavbarLink to="/create-menu">
+                            New menu
+                        </NavbarLink>
+                    </li>
+                </ul>
+            </nav>
+        </header>
     );
 };
 

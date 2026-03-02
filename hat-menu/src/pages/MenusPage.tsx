@@ -4,11 +4,11 @@ import { useMenus } from '../data/menusApi';
 
 const MenusPage = () => {
     const { menus, isLoading, isError } = useMenus();
-    if (isError) return <PageWrapper title="Past menus">failed to load</PageWrapper>;
-    if (isLoading) return <PageWrapper title="Past menus">loading...</PageWrapper>;
+    if (isError) return <PageWrapper title="All menus">failed to load</PageWrapper>;
+    if (isLoading) return <PageWrapper title="All menus">loading...</PageWrapper>;
 
     return (
-        <PageWrapper title={`Past menus (total: ${menus?.length || 0})`}>
+        <PageWrapper title={`All menus (total: ${menus?.length || 0})`}>
             {menus && menus.length > 0 ? (
                 <ul>
                     {menus.reverse().map(menu => (
