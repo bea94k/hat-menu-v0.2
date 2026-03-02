@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { useAuth } from '../auth/useAuth';
 import { AuthSchema, type AuthForm } from '../schemas/Auth';
 import { mapAuthErrorMessage } from '../utils/auth';
+import PageWrapper from '../components/PageWrapper';
 
 const SignInPage = () => {
     const navigate = useNavigate();
@@ -42,8 +43,7 @@ const SignInPage = () => {
         : null;
 
     return (
-        <main id="maincontent">
-            <h1>Sign in</h1>
+        <PageWrapper title="Sign in">
 
             {routeError && (
                 <p role="alert" aria-live="assertive">
@@ -86,7 +86,7 @@ const SignInPage = () => {
                     {isSubmitting ? 'Signing in...' : 'Sign in'}
                 </button>
             </form>
-        </main>
+        </PageWrapper>
     );
 };
 

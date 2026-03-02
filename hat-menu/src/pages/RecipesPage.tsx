@@ -1,15 +1,15 @@
 import RecipeCard from '../components/RecipeCard';
+import PageWrapper from '../components/PageWrapper';
 import { useRecipes } from '../data/recipesApi';
 
 const RecipesPage = () => {
     const { recipes, isLoading, isError } = useRecipes();
 
-    if (isError) return <div>failed to load</div>;
-    if (isLoading) return <div>loading...</div>;
+    if (isError) return <PageWrapper title="All recipes"><div>failed to load</div></PageWrapper>;
+    if (isLoading) return <PageWrapper title="All recipes"><div>loading...</div></PageWrapper>;
 
     return (
-        <main id="maincontent">
-            <h1>browsing recipes here</h1>
+        <PageWrapper title="All recipes">
             <ul>
                 {(!recipes || recipes.length === 0) ? (
                     <li>No recipes available</li>
@@ -21,7 +21,7 @@ const RecipesPage = () => {
                         </li>
                     )))}
             </ul>
-        </main>
+        </PageWrapper>
     );
 };
 
