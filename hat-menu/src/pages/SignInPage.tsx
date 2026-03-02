@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { Link, useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { useAuth } from '../auth/useAuth';
 import { AuthSchema, type AuthForm } from '../schemas/Auth';
 import { mapAuthErrorMessage } from '../utils/auth';
@@ -86,10 +86,6 @@ const SignInPage = () => {
                     {isSubmitting ? 'Signing in...' : 'Sign in'}
                 </button>
             </form>
-
-            <p>
-                Don&apos;t have an account? <Link to="/sign-up">Sign up</Link>
-            </p>
         </main>
     );
 };

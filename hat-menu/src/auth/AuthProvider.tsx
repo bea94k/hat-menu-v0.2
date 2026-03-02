@@ -51,11 +51,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         return error;
     }, []);
 
-    const signUp = useCallback(async (email: string, password: string) => {
-        const { error } = await supabase.auth.signUp({ email, password });
-        return error;
-    }, []);
-
     const signOut = useCallback(async () => {
         const { error } = await supabase.auth.signOut();
         return error;
@@ -67,10 +62,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
             user: session?.user ?? null,
             loading,
             signIn,
-            signUp,
             signOut,
         };
-    }, [loading, session, signIn, signOut, signUp]);
+    }, [loading, session, signIn, signOut]);
 
     return (
         <AuthContext.Provider value={value}>

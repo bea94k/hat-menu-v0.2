@@ -7,7 +7,7 @@ type AuthErrorLike = {
     message?: string;
 };
 
-type AuthAction = 'sign-in' | 'sign-up' | 'session';
+type AuthAction = 'sign-in' | 'session';
 
 export class SessionCheckFailedError extends Error {
     constructor() {
@@ -74,10 +74,6 @@ export function mapAuthErrorMessage(error: AuthErrorLike | null, action: AuthAct
 
     if (action === 'sign-in' && errorStatus === 400) {
         return 'Invalid email or password. Please try again.';
-    }
-
-    if (action === 'sign-up') {
-        return 'Sign up failed. Please verify your details and try again.';
     }
 
     return 'Sign in failed. Please try again.';
