@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
 import { useAuth } from '../auth/useAuth';
 import NavbarLink from './NavbarLink';
+import Button from './Button';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -26,13 +27,12 @@ const Navbar = () => {
             <nav aria-label="Account" className="h-10 w-full bg-primary-500 text-white">
                 <ul className="flex h-full justify-end">
                     <li className="h-full">
-                        <button
-                            type="button"
+                        <Button
                             onClick={handleSignOut}
-                            className="h-full px-4 transition-colors hover:bg-primary-700 focus-visible:bg-primary-700"
+                            className="h-full min-h-0 rounded-none px-4"
                         >
                             Log out
-                        </button>
+                        </Button>
                     </li>
                 </ul>
             </nav>

@@ -9,6 +9,7 @@ import { getUniqueRandom } from '../utils/utils';
 import { addMenu } from '../data/menusApi';
 import { differenceInCalendarDays, addDays, format } from 'date-fns';
 import { isSessionError } from '../utils/auth';
+import Button from './Button';
 
 const CreateMenuForm = () => {
     const { recipes } = useRecipes();
@@ -100,7 +101,11 @@ const CreateMenuForm = () => {
             </div>
 
             <h2>Suggested menu</h2>
-            <button type="button" onClick={() => getRandomMenu(differenceInCalendarDays(getValues('endDate'), getValues('startDate')) + 1 || 0)}>Get random recipes</button>
+            <Button
+                variant='outline' 
+                onClick={() => getRandomMenu(differenceInCalendarDays(getValues('endDate'), getValues('startDate')) + 1 || 0)}>
+                Get random recipes
+            </Button>
             <ol>
                 {getValues('recipes')?.map((recipe, index) => {
                     const startDate = getValues('startDate') ? new Date(getValues('startDate')) : null;
@@ -108,36 +113,33 @@ const CreateMenuForm = () => {
                     
                     return (
                         <li key={recipe.id}>
-                            <button
-                                type="button"
+                            <Button
                                 onClick={() => swap(index, index - 1)}
                                 disabled={index === 0}
                                 aria-label={`Move up ${recipe.name}`}
                             >
                                 Move up
-                            </button>
-                            <button
-                                type="button"
+                            </Button>
+                            <Button
                                 onClick={() => swap(index, index + 1)}
                                 disabled={index === fields.length - 1}
                                 aria-label={`Move down ${recipe.name}`} 
                             >
                                 Move down
-                            </button>
-                            <button
-                                type="button"
+                            </Button>
+                            <Button
                                 onClick={() => randomizeRecipeAtIndex(index)}
                                 aria-label={`Change ${recipe.name}`}
                             >
                                 Change
-                            </button>
+                            </Button>
                             <strong>{recipeDate}</strong> - {recipe.name}
                         </li>
                     );
                 })}
             </ol>
 
-            <button type="submit" style={{border: '2px solid black'}}>Save menu</button>
+            <Button type="submit">Save menu</Button>
 
             {Object.keys(errors).length > 0 && (
                 <div style={{ border: '2px solid red', padding: '1rem' }}>

@@ -6,6 +6,7 @@ import { addRecipe } from '../data/recipesApi';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { IngredientsListInput } from './IngredientsListInput';
 import { isSessionError } from '../utils/auth';
+import Button from './Button';
 
 const AddRecipeForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -86,7 +87,7 @@ const AddRecipeForm = () => {
                 errors={errors.ingredients}
             />
 
-            <button type="submit" style={{ border: '2px solid black' }}>Add Recipe</button>
+            <Button type="submit">Add Recipe</Button>
             {Object.keys(errors).length > 0 && (
                 <div style={{ border: '2px solid red', padding: '1rem' }}>
                     <ul>

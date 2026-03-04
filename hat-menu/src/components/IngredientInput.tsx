@@ -2,6 +2,7 @@ import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { useSuggestedIngredients } from '../data/ingredientsApi';
 import { units, type Ingredient } from '../schemas/Ingredients';
 import type { RecipeForm } from '../schemas/Recipes';
+import Button from './Button';
 
 interface IngredientInputProps {
     index: number;
@@ -105,15 +106,14 @@ export function IngredientInput({
                 )}
             </div>
 
-            <button
-                type="button"
+            <Button
+                variant='outline'
                 onClick={onRemove}
                 disabled={disableRemove}
                 aria-label={`Remove ingredient ${index + 1}`}
-                className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
                 Remove
-            </button>
+            </Button>
         </div>
     );
 }
