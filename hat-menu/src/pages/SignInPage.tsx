@@ -7,6 +7,7 @@ import { AuthSchema, type AuthForm } from '../schemas/Auth';
 import { mapAuthErrorMessage } from '../utils/auth';
 import PageWrapper from '../components/PageWrapper';
 import Button from '../components/Button';
+import TextInput from '../components/TextInput';
 
 const SignInPage = () => {
     const navigate = useNavigate();
@@ -47,38 +48,50 @@ const SignInPage = () => {
         <PageWrapper title="Sign in">
 
             {routeError && (
-                <p role="alert" aria-live="assertive">
+                <p className="mt-1 text-sm text-red-600" role="alert" aria-live="assertive">
                     {routeError}
                 </p>
             )}
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form noValidate onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label htmlFor="sign-in-email">Email</label>
-                    <input
+                    <TextInput
                         id="sign-in-email"
                         type="email"
                         autoComplete="email"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
+                        aria-describedby={errors.email ? 'error-email' : undefined}
+                        aria-invalid={!!errors.email}
+                        hasError={Boolean(errors.email)}
                         {...register('email')}
                     />
-                    {errors.email?.message && <p>{errors.email.message}</p>}
+                    {errors.email?.message && (
+                        <p id="error-email" className="mt-1 text-sm text-red-600" role="alert">
+                            {errors.email.message}
+                        </p>
+                    )}
                 </div>
 
                 <div>
                     <label htmlFor="sign-in-password">Password</label>
-                    <input
+                    <TextInput
                         id="sign-in-password"
                         type="password"
                         autoComplete="current-password"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
+                        aria-describedby={errors.password ? 'error-password' : undefined}
+                        aria-invalid={!!errors.password}
+                        hasError={Boolean(errors.password)}
                         {...register('password')}
                     />
-                    {errors.password?.message && <p>{errors.password.message}</p>}
+                    {errors.password?.message && (
+                        <p id="error-password" className="mt-1 text-sm text-red-600" role="alert">
+                            {errors.password.message}
+                        </p>
+                    )}
                 </div>
 
                 {submitError && (
-                    <p role="alert" aria-live="assertive">
+                    <p className="mt-1 text-sm text-red-600" role="alert" aria-live="assertive">
                         {submitError}
                     </p>
                 )}

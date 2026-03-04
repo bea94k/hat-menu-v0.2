@@ -1,16 +1,16 @@
 import type { ComponentPropsWithRef } from 'react';
 import { cn } from '../utils/styleUtils';
 
-type TextInputProps = Omit<ComponentPropsWithRef<'input'>, 'type'> & {
+type TextInputProps = ComponentPropsWithRef<'input'> & {
     hasError?: boolean;
 };
 
-const TextInput = ({ className, hasError = false, ref, ...props }: TextInputProps) => {
+const TextInput = ({ className, hasError = false, ref, type = 'text', ...props }: TextInputProps) => {
     const ariaInvalid = props['aria-invalid'] ?? (hasError || undefined);
 
     return (
         <input
-            type="text"
+            type={type}
             ref={ref}
             aria-invalid={ariaInvalid}
             className={cn(
