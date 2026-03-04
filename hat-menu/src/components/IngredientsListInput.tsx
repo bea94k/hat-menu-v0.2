@@ -24,7 +24,7 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
         <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Ingredients</label>
 
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2">
                 {fields.map((field, index) => (
                     <IngredientInput
                         key={field.id}

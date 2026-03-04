@@ -29,7 +29,7 @@ export function IngredientInput({
     const datalistId = `ingredient-suggestions-${index}`;
 
     return (
-        <div className="flex gap-2 items-start mb-2">
+        <div className="flex flex-col md:flex-row gap-3 rounded-md border border-gray-300 bg-white p-3">
 
             <div className="flex-1 min-w-0">
                 <label htmlFor={nameId} className="sr-only">
@@ -59,7 +59,7 @@ export function IngredientInput({
                 )}
             </div>
 
-            <div className="w-24">
+            <div className="w-full md:w-24">
                 <label htmlFor={quantityId} className="sr-only">
                     Quantity {index + 1}
                 </label>
@@ -82,7 +82,7 @@ export function IngredientInput({
                 )}
             </div>
 
-            <div className="w-28">
+            <div className="w-full md:w-28">
                 <label htmlFor={unitId} className="sr-only">
                     Unit {index + 1}
                 </label>
@@ -110,6 +110,7 @@ export function IngredientInput({
                 variant='outline'
                 onClick={onRemove}
                 disabled={disableRemove}
+                className='w-auto self-start'
                 aria-label={`Remove ingredient ${index + 1}`}
             >
                 Remove
