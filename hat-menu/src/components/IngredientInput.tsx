@@ -4,6 +4,7 @@ import { units, type Ingredient } from '../schemas/Ingredients';
 import type { RecipeForm } from '../schemas/Recipes';
 import Button from './Button';
 import Input from './Input';
+import Select from './Select';
 
 interface IngredientInputProps {
     index: number;
@@ -86,11 +87,11 @@ export function IngredientInput({
                 <label htmlFor={unitId} className="sr-only">
                     Unit {index + 1}
                 </label>
-                <select
+                <Select
                     id={unitId}
                     aria-describedby={errors?.unit ? `${unitId}-error` : undefined}
                     aria-invalid={!!errors?.unit}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
+                    hasError={!!errors?.unit}
                     {...register(`ingredients.${index}.unit`)}
                 >
                     {units.map((unit) => (
@@ -98,7 +99,7 @@ export function IngredientInput({
                             {unit || '(none)'}
                         </option>
                     ))}
-                </select>
+                </Select>
                 {errors?.unit && (
                     <p id={`${unitId}-error`} className="text-red-600 text-sm mt-1" role="alert">
                         {errors.unit.message}
