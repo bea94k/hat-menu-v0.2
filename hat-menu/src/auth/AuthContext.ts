@@ -6,7 +6,6 @@ export type AuthContextValue = {
     user: User | null;
     loading: boolean;
     signIn: (email: string, password: string) => Promise<AuthError | null>;
-    signUp: (email: string, password: string) => Promise<AuthError | null>;
     signOut: () => Promise<AuthError | null>;
 };
 
