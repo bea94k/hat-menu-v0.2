@@ -7,6 +7,7 @@ import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { IngredientsListInput } from './IngredientsListInput';
 import { isSessionError } from '../utils/auth';
 import Button from './Button';
+import TextInput from './TextInput';
 
 const AddRecipeForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -51,34 +52,44 @@ const AddRecipeForm = () => {
     const { ref, ...rest } = register('name');
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form noValidate onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <label htmlFor="recipe-name">Recipe Name:</label>
-                <input
-                    type="text"
+                <TextInput
                     id="recipe-name"
-                    aria-describedby='error-name'
+                    aria-describedby={errors.name ? 'error-name' : undefined}
+                    aria-invalid={!!errors.name}
+                    hasError={!!errors.name}
                     autoComplete="off"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                     {...rest}
                     ref={(e) => {
                         ref(e);
                         inputRef.current = e;
                     }}
                 />
+                {errors.name && (
+                    <p id="error-name" className="mt-1 text-sm text-red-600" role="alert">
+                        {errors.name.message}
+                    </p>
+                )}
             </div>
             <div>
                 <label htmlFor="recipe-url">Recipe URL:</label>
-                <input
-                    type="text"
+                <TextInput
                     id="recipe-url"
-                    aria-describedby='error-url'
+                    aria-describedby={errors.url ? 'error-url' : undefined}
+                    aria-invalid={!!errors.url}
+                    hasError={!!errors.url}
                     autoComplete="off"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                     {...register('url')}
                 />
+                {errors.url && (
+                    <p id="error-url" className="mt-1 text-sm text-red-600" role="alert">
+                        {errors.url.message}
+                    </p>
+                )}
             </div>
 
             <IngredientsListInput

@@ -3,6 +3,7 @@ import { useSuggestedIngredients } from '../data/ingredientsApi';
 import { units, type Ingredient } from '../schemas/Ingredients';
 import type { RecipeForm } from '../schemas/Recipes';
 import Button from './Button';
+import TextInput from './TextInput';
 
 interface IngredientInputProps {
     index: number;
@@ -34,15 +35,14 @@ export function IngredientInput({
                 <label htmlFor={nameId} className="sr-only">
                     Ingredient name {index + 1}
                 </label>
-                <input
-                    type="text"
+                <TextInput
                     id={nameId}
                     list={datalistId}
                     placeholder="e.g., flour, salt, egg"
                     autoComplete="off"
                     aria-describedby={errors?.name ? `${nameId}-error` : undefined}
                     aria-invalid={!!errors?.name}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
+                    hasError={!!errors?.name}
                     {...register(`ingredients.${index}.name`)}
                 />
                 {/* Native HTML datalist for autocomplete */}
