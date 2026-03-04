@@ -3,13 +3,12 @@ import type { ReactNode } from 'react';
 type PageWrapperProps = {
     title: string;
     children: ReactNode;
-    className?: string;
 };
 
-const PageWrapper = ({ title, children, className }: PageWrapperProps) => {
+const PageWrapper = ({ title, children }: PageWrapperProps) => {
     return (
-        <main id="maincontent" className={`page-wrapper ${className ?? ''}`.trim()}>
-            <h1 className="page-title">{title}</h1>
+        <main id="maincontent" className="mx-auto grid w-full max-w-2xl gap-4 p-4">
+            <h1 className="mb-1 text-2xl leading-[1.2]">{title}</h1>
             {children}
         </main>
     );
