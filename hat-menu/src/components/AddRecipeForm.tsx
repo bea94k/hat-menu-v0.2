@@ -7,7 +7,7 @@ import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { IngredientsListInput } from './IngredientsListInput';
 import { isSessionError } from '../utils/auth';
 import Button from './Button';
-import TextInput from './TextInput';
+import Input from './Input';
 
 const AddRecipeForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -55,7 +55,7 @@ const AddRecipeForm = () => {
         <form noValidate onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <label htmlFor="recipe-name">Recipe Name:</label>
-                <TextInput
+                <Input
                     id="recipe-name"
                     aria-describedby={errors.name ? 'error-name' : undefined}
                     aria-invalid={!!errors.name}
@@ -76,7 +76,7 @@ const AddRecipeForm = () => {
             </div>
             <div>
                 <label htmlFor="recipe-url">Recipe URL:</label>
-                <TextInput
+                <Input
                     id="recipe-url"
                     aria-describedby={errors.url ? 'error-url' : undefined}
                     aria-invalid={!!errors.url}

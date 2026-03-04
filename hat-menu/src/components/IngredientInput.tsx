@@ -3,7 +3,7 @@ import { useSuggestedIngredients } from '../data/ingredientsApi';
 import { units, type Ingredient } from '../schemas/Ingredients';
 import type { RecipeForm } from '../schemas/Recipes';
 import Button from './Button';
-import TextInput from './TextInput';
+import Input from './Input';
 
 interface IngredientInputProps {
     index: number;
@@ -35,7 +35,7 @@ export function IngredientInput({
                 <label htmlFor={nameId} className="sr-only">
                     Ingredient name {index + 1}
                 </label>
-                <TextInput
+                <Input
                     id={nameId}
                     list={datalistId}
                     placeholder="e.g., flour, salt, egg"
@@ -63,16 +63,16 @@ export function IngredientInput({
                 <label htmlFor={quantityId} className="sr-only">
                     Quantity {index + 1}
                 </label>
-                <input
+                <Input
                     type="number"
                     id={quantityId}
                     placeholder="Qty"
-                    step="0.001"
+                    step="1"
                     min="0"
                     max="10000"
                     aria-describedby={errors?.quantity ? `${quantityId}-error` : undefined}
                     aria-invalid={!!errors?.quantity}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md  bg-white"
+                    hasError={!!errors?.quantity}
                     {...register(`ingredients.${index}.quantity`, { valueAsNumber: true })}
                 />
                 {errors?.quantity && (

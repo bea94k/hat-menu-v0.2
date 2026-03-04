@@ -7,7 +7,7 @@ import { AuthSchema, type AuthForm } from '../schemas/Auth';
 import { mapAuthErrorMessage } from '../utils/auth';
 import PageWrapper from '../components/PageWrapper';
 import Button from '../components/Button';
-import TextInput from '../components/TextInput';
+import Input from '../components/Input';
 
 const SignInPage = () => {
     const navigate = useNavigate();
@@ -56,7 +56,7 @@ const SignInPage = () => {
             <form noValidate onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label htmlFor="sign-in-email">Email</label>
-                    <TextInput
+                    <Input
                         id="sign-in-email"
                         type="email"
                         autoComplete="email"
@@ -74,7 +74,7 @@ const SignInPage = () => {
 
                 <div>
                     <label htmlFor="sign-in-password">Password</label>
-                    <TextInput
+                    <Input
                         id="sign-in-password"
                         type="password"
                         autoComplete="current-password"
