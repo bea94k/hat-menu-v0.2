@@ -6,13 +6,11 @@ type InputProps = ComponentPropsWithRef<'input'> & {
 };
 
 const Input = ({ className, hasError = false, ref, type = 'text', ...props }: InputProps) => {
-    const ariaInvalid = props['aria-invalid'] ?? (hasError || undefined);
-
     return (
         <input
             type={type}
             ref={ref}
-            aria-invalid={ariaInvalid}
+            aria-invalid={hasError}
             className={cn(
                 'w-full min-h-10 rounded-md border bg-white px-3 py-2 text-sm leading-5 text-gray-900',
                 'placeholder:text-gray-400',

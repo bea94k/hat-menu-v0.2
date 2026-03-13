@@ -6,12 +6,10 @@ type DateInputProps = Omit<ComponentPropsWithRef<'input'>, 'type'> & {
 };
 
 const DateInput = ({ className, hasError = false, ...props }: DateInputProps) => {
-    const ariaInvalid = props['aria-invalid'] ?? (hasError || undefined);
-
     return (
         <input
             type="date"
-            aria-invalid={ariaInvalid}
+            aria-invalid={hasError}
             className={cn(
                 'w-full max-w-38 min-h-10 rounded-md border bg-white px-3 py-2 text-sm leading-5 text-gray-900',
                 'placeholder:text-gray-400',

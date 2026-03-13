@@ -58,8 +58,7 @@ const SignInPage = () => {
                         type="email"
                         autoComplete="email"
                         aria-describedby={errors.email ? 'error-email' : undefined}
-                        aria-invalid={!!errors.email}
-                        hasError={Boolean(errors.email)}
+                        hasError={!!errors.email}
                         {...register('email')}
                     />
                     {errors.email?.message && (
@@ -74,8 +73,7 @@ const SignInPage = () => {
                         type="password"
                         autoComplete="current-password"
                         aria-describedby={errors.password ? 'error-password' : undefined}
-                        aria-invalid={!!errors.password}
-                        hasError={Boolean(errors.password)}
+                        hasError={!!errors.password}
                         {...register('password')}
                     />
                     {errors.password?.message && (

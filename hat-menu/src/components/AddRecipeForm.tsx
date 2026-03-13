@@ -59,7 +59,6 @@ const AddRecipeForm = () => {
                 <Input
                     id="recipe-name"
                     aria-describedby={'error-name'}
-                    aria-invalid={!!errors.name}
                     hasError={!!errors.name}
                     autoComplete="off"
                     required
@@ -81,7 +80,6 @@ const AddRecipeForm = () => {
                 <Input
                     id="recipe-url"
                     aria-describedby={errors.url ? 'error-url' : undefined}
-                    aria-invalid={!!errors.url}
                     hasError={!!errors.url}
                     autoComplete="off"
                     required

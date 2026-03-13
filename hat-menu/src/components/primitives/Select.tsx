@@ -6,11 +6,9 @@ type SelectProps = ComponentPropsWithRef<'select'> & {
 };
 
 const Select = ({ className, hasError = false, ...props }: SelectProps) => {
-    const ariaInvalid = props['aria-invalid'] ?? (hasError || undefined);
-
     return (
         <select
-            aria-invalid={ariaInvalid}
+            aria-invalid={hasError}
             className={cn(
                 // NOTE: the styles should be kept quite matching the Input component
                 'w-full min-h-10 rounded-md border bg-white px-3 py-2 text-sm leading-5 text-gray-900',

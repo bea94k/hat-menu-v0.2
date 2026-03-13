@@ -43,7 +43,6 @@ export function IngredientInput({
                     placeholder="e.g., flour, salt, egg"
                     autoComplete="off"
                     aria-describedby={errors?.name ? `${nameId}-error` : undefined}
-                    aria-invalid={!!errors?.name}
                     hasError={!!errors?.name}
                     {...register(`ingredients.${index}.name`)}
                 />
@@ -74,7 +73,6 @@ export function IngredientInput({
                     min="0"
                     max="10000"
                     aria-describedby={errors?.quantity ? `${quantityId}-error` : undefined}
-                    aria-invalid={!!errors?.quantity}
                     hasError={!!errors?.quantity}
                     {...register(`ingredients.${index}.quantity`, { valueAsNumber: true })}
                 />
@@ -93,7 +91,6 @@ export function IngredientInput({
                 <Select
                     id={unitId}
                     aria-describedby={errors?.unit ? `${unitId}-error` : undefined}
-                    aria-invalid={!!errors?.unit}
                     hasError={!!errors?.unit}
                     {...register(`ingredients.${index}.unit`)}
                 >

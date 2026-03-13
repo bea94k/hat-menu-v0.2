@@ -84,7 +84,6 @@ const CreateMenuForm = () => {
                 <DateInput
                     id="menu-start-date" 
                     aria-describedby='error-startDate'
-                    aria-invalid={!!errors.startDate}
                     hasError={!!errors.startDate}
                     required 
                     {...register('startDate')}
@@ -97,7 +96,6 @@ const CreateMenuForm = () => {
                 <DateInput
                     id="menu-end-date" 
                     aria-describedby='error-endDate'
-                    aria-invalid={!!errors.endDate}
                     hasError={!!errors.endDate}
                     required 
                     {...register('endDate')}
