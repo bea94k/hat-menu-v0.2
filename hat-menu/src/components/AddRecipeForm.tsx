@@ -58,7 +58,7 @@ const AddRecipeForm = () => {
                 <label htmlFor="recipe-name">Recipe Name:</label>
                 <Input
                     id="recipe-name"
-                    aria-describedby={'error-name'}
+                    aria-describedby={errors.name && 'error-name'}
                     hasError={!!errors.name}
                     autoComplete="off"
                     required
@@ -79,7 +79,7 @@ const AddRecipeForm = () => {
                 <label htmlFor="recipe-url">Recipe URL:</label>
                 <Input
                     id="recipe-url"
-                    aria-describedby={errors.url ? 'error-url' : undefined}
+                    aria-describedby={errors.url && 'error-url'}
                     hasError={!!errors.url}
                     autoComplete="off"
                     required

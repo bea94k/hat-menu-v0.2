@@ -42,7 +42,7 @@ export function IngredientInput({
                     list={datalistId}
                     placeholder="e.g., flour, salt, egg"
                     autoComplete="off"
-                    aria-describedby={errors?.name ? `${nameId}-error` : undefined}
+                    aria-describedby={errors?.name && `${nameId}-error`}
                     hasError={!!errors?.name}
                     {...register(`ingredients.${index}.name`)}
                 />
@@ -72,7 +72,7 @@ export function IngredientInput({
                     step="1"
                     min="0"
                     max="10000"
-                    aria-describedby={errors?.quantity ? `${quantityId}-error` : undefined}
+                    aria-describedby={errors?.quantity && `${quantityId}-error`}
                     hasError={!!errors?.quantity}
                     {...register(`ingredients.${index}.quantity`, { valueAsNumber: true })}
                 />
@@ -90,7 +90,7 @@ export function IngredientInput({
                 </label>
                 <Select
                     id={unitId}
-                    aria-describedby={errors?.unit ? `${unitId}-error` : undefined}
+                    aria-describedby={errors?.unit && `${unitId}-error`}
                     hasError={!!errors?.unit}
                     {...register(`ingredients.${index}.unit`)}
                 >

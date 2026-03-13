@@ -57,7 +57,7 @@ const SignInPage = () => {
                         id="sign-in-email"
                         type="email"
                         autoComplete="email"
-                        aria-describedby={errors.email ? 'error-email' : undefined}
+                        aria-describedby={errors.email && 'error-email'}
                         hasError={!!errors.email}
                         {...register('email')}
                     />
@@ -72,7 +72,7 @@ const SignInPage = () => {
                         id="sign-in-password"
                         type="password"
                         autoComplete="current-password"
-                        aria-describedby={errors.password ? 'error-password' : undefined}
+                        aria-describedby={errors.password && 'error-password'}
                         hasError={!!errors.password}
                         {...register('password')}
                     />

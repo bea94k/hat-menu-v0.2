@@ -83,26 +83,30 @@ const CreateMenuForm = () => {
                 <label htmlFor="menu-start-date">Menu Start Date:</label>
                 <DateInput
                     id="menu-start-date" 
-                    aria-describedby='error-startDate'
+                    aria-describedby={errors.startDate && 'error-startDate'}
                     hasError={!!errors.startDate}
                     required 
                     {...register('startDate')}
                     onChange={() => replace([])}
                 />
             </div>
-            <FormInputError id="error-startDate" text={errors.startDate?.message || ''} />
+            {errors?.startDate && (
+                <FormInputError id="error-startDate" text={errors.startDate?.message ?? 'Invalid input'} />
+            )}
             <div>
                 <label htmlFor="menu-end-date">Menu End Date:</label>
                 <DateInput
                     id="menu-end-date" 
-                    aria-describedby='error-endDate'
+                    aria-describedby={errors.endDate && 'error-endDate'}
                     hasError={!!errors.endDate}
                     required 
                     {...register('endDate')}
                     onChange={() => replace([])}
                 />
             </div>
-            <FormInputError id="error-endDate" text={errors.endDate?.message || ''} />
+            {errors?.endDate && (
+                <FormInputError id="error-endDate" text={errors.endDate?.message ?? 'Invalid input'} />
+            )}
 
             <h2>Suggested menu</h2>
             <Button
