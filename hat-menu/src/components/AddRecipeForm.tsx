@@ -6,6 +6,10 @@ import { addRecipe } from '../data/recipesApi';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { IngredientsListInput } from './IngredientsListInput';
 import { isSessionError } from '../utils/auth';
+import Button from './primitives/Button';
+import FormInputError from './primitives/FormInputError';
+import Input from './primitives/Input';
+import Label from './primitives/Label';
 
 const AddRecipeForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -50,34 +54,44 @@ const AddRecipeForm = () => {
     const { ref, ...rest } = register('name');
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form noValidate onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <label htmlFor="recipe-name">Recipe Name:</label>
-                <input
-                    type="text"
+                <Label htmlFor="recipe-name">Recipe Name:</Label>
+                <Input
                     id="recipe-name"
-                    aria-describedby='error-name'
+                    aria-describedby={errors.name && 'error-name'}
+                    hasError={!!errors.name}
                     autoComplete="off"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                     {...rest}
                     ref={(e) => {
                         ref(e);
                         inputRef.current = e;
                     }}
                 />
+                {errors.name && (
+                    <FormInputError
+                        id="error-name"
+                        text={errors.name.message ?? 'Invalid input'}
+                    />
+                )}
             </div>
             <div>
-                <label htmlFor="recipe-url">Recipe URL:</label>
-                <input
-                    type="text"
+                <Label htmlFor="recipe-url">Recipe URL:</Label>
+                <Input
                     id="recipe-url"
-                    aria-describedby='error-url'
+                    aria-describedby={errors.url && 'error-url'}
+                    hasError={!!errors.url}
                     autoComplete="off"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                     {...register('url')}
                 />
+                {errors.url && (
+                    <FormInputError
+                        id="error-url"
+                        text={errors.url.message ?? 'Invalid input'}
+                    />
+                )}
             </div>
 
             <IngredientsListInput
@@ -86,7 +100,7 @@ const AddRecipeForm = () => {
                 errors={errors.ingredients}
             />
 
-            <button type="submit" style={{ border: '2px solid black' }}>Add Recipe</button>
+            <Button type="submit">Add Recipe</Button>
             {Object.keys(errors).length > 0 && (
                 <div style={{ border: '2px solid red', padding: '1rem' }}>
                     <ul>

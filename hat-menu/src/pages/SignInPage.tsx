@@ -5,6 +5,11 @@ import { useLocation, useNavigate } from 'react-router';
 import { useAuth } from '../auth/useAuth';
 import { AuthSchema, type AuthForm } from '../schemas/Auth';
 import { mapAuthErrorMessage } from '../utils/auth';
+import PageWrapper from '../components/PageWrapper';
+import Button from '../components/primitives/Button';
+import FormInputError from '../components/primitives/FormInputError';
+import Input from '../components/primitives/Input';
+import Label from '../components/primitives/Label';
 
 const SignInPage = () => {
     const navigate = useNavigate();
@@ -42,51 +47,48 @@ const SignInPage = () => {
         : null;
 
     return (
-        <main id="maincontent">
-            <h1>Sign in</h1>
+        <PageWrapper title="Sign in">
 
-            {routeError && (
-                <p role="alert" aria-live="assertive">
-                    {routeError}
-                </p>
-            )}
+            {routeError && <FormInputError id="error-route" text={routeError} />}
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form noValidate onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                    <label htmlFor="sign-in-email">Email</label>
-                    <input
+                    <Label htmlFor="sign-in-email">Email</Label>
+                    <Input
                         id="sign-in-email"
                         type="email"
                         autoComplete="email"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
+                        aria-describedby={errors.email && 'error-email'}
+                        hasError={!!errors.email}
                         {...register('email')}
                     />
-                    {errors.email?.message && <p>{errors.email.message}</p>}
+                    {errors.email?.message && (
+                        <FormInputError id="error-email" text={errors.email.message} />
+                    )}
                 </div>
 
                 <div>
-                    <label htmlFor="sign-in-password">Password</label>
-                    <input
+                    <Label htmlFor="sign-in-password">Password</Label>
+                    <Input
                         id="sign-in-password"
                         type="password"
                         autoComplete="current-password"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
+                        aria-describedby={errors.password && 'error-password'}
+                        hasError={!!errors.password}
                         {...register('password')}
                     />
-                    {errors.password?.message && <p>{errors.password.message}</p>}
+                    {errors.password?.message && (
+                        <FormInputError id="error-password" text={errors.password.message} />
+                    )}
                 </div>
 
-                {submitError && (
-                    <p role="alert" aria-live="assertive">
-                        {submitError}
-                    </p>
-                )}
+                {submitError && <FormInputError id="error-submit" text={submitError} />}
 
-                <button type="submit" disabled={isSubmitting} className="px-3 py-2 border-2 border-black rounded-md bg-white">
+                <Button type="submit" disabled={isSubmitting}>
                     {isSubmitting ? 'Signing in...' : 'Sign in'}
-                </button>
+                </Button>
             </form>
-        </main>
+        </PageWrapper>
     );
 };
 

@@ -2,7 +2,6 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import './styles/index.css';
-import Navbar from './components/Navbar.tsx';
 import RecipesPage from './pages/RecipesPage.tsx';
 import AddRecipePage from './pages/AddRecipePage.tsx';
 import MenusPage from './pages/MenusPage.tsx';
@@ -16,7 +15,6 @@ createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <AuthProvider>
             <BrowserRouter>
-                <Navbar />
                 <Routes>
                     <Route element={<PublicOnlyRoute />}>
                         <Route path="sign-in" element={<SignInPage />} />

@@ -1,4 +1,4 @@
-/* CSS reset */
+/* CSS reset and some general global styles */
 /* 1. Use a more-intuitive box-sizing model */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -18,6 +18,7 @@ body {
   line-height: 1.5;
   /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 /* 6. Improve media defaults */
 img, picture, video, canvas, svg {
@@ -28,9 +29,22 @@ img, picture, video, canvas, svg {
 input, button, textarea, select {
   font: inherit;
 }
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+button[aria-disabled="true"] {
+  cursor: not-allowed;
+}
 /* 8. Avoid text overflows */
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
+  word-break: break-word;
 }
 /* 9. Improve line wrapping */
 p {
@@ -46,6 +60,11 @@ h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
+html, body, #root {
+  width: 100%;
+  max-width: 100%;
+}
+
 :root {
   font-family: system-ui, Helvetica, Arial, sans-serif;
 
@@ -53,54 +72,10 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #f5f5f5;
 }
 
-nav {
-    width: 100%;
-    background-color: #143a6a;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-}
-
-nav ul {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-nav button {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-nav a.active {
-    border-bottom: 2px solid #fff;
-}
-
-nav a:hover {
-    outline: 2px solid #fff;
-}
-
-nav button:hover {
-  outline: 2px solid #fff;
-}
-
-main {
-    padding: 2rem;
-}
-
 /* Tailwind import */
 @import "tailwindcss";
+
+@theme {
+  --color-primary-500: #143a6a;
+  --color-primary-700: #0f2a4f;
+}

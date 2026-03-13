@@ -1,14 +1,14 @@
 import { useMenus } from '../data/menusApi';
 import CreateMenuForm from '../components/CreateMenuForm';
 import MenuCard from '../components/MenuCard';
+import PageWrapper from '../components/PageWrapper';
 
 const CreateMenuPage = () => {
     const { menus, isLoading, isError } = useMenus();
     const latestMenus = menus ? menus.slice(-3).reverse() : [];
 
     return (
-        <main id="maincontent">
-            <h1>Create a menu</h1>
+        <PageWrapper title="Create a menu">
 
             <CreateMenuForm />
 
@@ -28,7 +28,7 @@ const CreateMenuPage = () => {
                             <p>No menus available</p>
                         )
             }
-        </main>
+        </PageWrapper>
     );
 };
 

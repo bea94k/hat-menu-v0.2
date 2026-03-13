@@ -1,6 +1,7 @@
 import { useFieldArray } from 'react-hook-form';
 import type { Control, UseFormRegister, FieldErrors } from 'react-hook-form';
 import { IngredientInput } from './IngredientInput';
+import Button from './primitives/Button';
 import type { RecipeForm } from '../schemas/Recipes';
 
 interface IngredientsListInputProps {
@@ -20,10 +21,14 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
     };
 
     return (
-        <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Ingredients</label>
+        <fieldset>
+            <legend
+                className="font-bold text-gray-800"
+            >
+                Ingredients
+            </legend>
 
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2">
                 {fields.map((field, index) => (
                     <IngredientInput
                         key={field.id}
@@ -36,13 +41,12 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
                 ))}
             </div>
 
-            <button
-                type="button"
+            <Button
+                variant='outline'
                 onClick={handleAddIngredient}
-                className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
             >
                 + Add Ingredient
-            </button>
-        </div>
+            </Button>
+        </fieldset>
     );
 }

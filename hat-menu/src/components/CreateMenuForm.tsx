@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useFieldArray, useForm, type FieldErrors, type SubmitHandler } from 'react-hook-form';
+import { useFieldArray, useForm, type SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useRecipes } from '../data/recipesApi';
-import { type Recipe} from '../schemas/Recipes';
 import { MenuFormSchema, type MenuForm } from '../schemas/Menus';
 import { getUniqueRandom } from '../utils/utils';
 import { addMenu } from '../data/menusApi';
 import { differenceInCalendarDays, addDays, format } from 'date-fns';
 import { isSessionError } from '../utils/auth';
+import Button from './primitives/Button';
+import DateInput from './primitives/DateInput';
+import FormInputError from './primitives/FormInputError';
+import Label from './primitives/Label';
 
 const CreateMenuForm = () => {
     const { recipes } = useRecipes();
@@ -17,6 +20,7 @@ const CreateMenuForm = () => {
     const {
         register,
         control,
+        trigger,
         reset,
         setValue,
         getValues,
@@ -33,9 +37,9 @@ const CreateMenuForm = () => {
     const [submitStatus, setSubmitStatus] = useState<string | null>(null);
 
     const getRandomMenu = (numberOfDays: number) => {
+        trigger(); // validation, check if dates are fine
         if (numberOfDays <= 0) {
-            replace([]);
-            setSubmitStatus('End date must be later than start date');
+            replace([]); // clear recipes
             return;
         }
         setSubmitStatus('');
@@ -75,32 +79,42 @@ const CreateMenuForm = () => {
     };
 
     return (
-        <form style={{ border: '4px solid magenta', padding: '1rem' }} onSubmit={handleSubmit(onSubmit)}>
+        <form noValidate style={{ border: '4px solid magenta', padding: '1rem' }} onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <label htmlFor="menu-start-date">Menu Start Date:</label>
-                <input 
-                    type="date" 
+                <Label htmlFor="menu-start-date">Menu Start Date:</Label>
+                <DateInput
                     id="menu-start-date" 
-                    aria-describedby='error-start-date'
+                    aria-describedby={errors.startDate && 'error-startDate'}
+                    hasError={!!errors.startDate}
                     required 
                     {...register('startDate')}
                     onChange={() => replace([])}
                 />
             </div>
+            {errors?.startDate && (
+                <FormInputError id="error-startDate" text={errors.startDate?.message ?? 'Invalid input'} />
+            )}
             <div>
-                <label htmlFor="menu-end-date">Menu End Date:</label>
-                <input 
-                    type="date" 
+                <Label htmlFor="menu-end-date">Menu End Date:</Label>
+                <DateInput
                     id="menu-end-date" 
-                    aria-describedby='error-end-date'
+                    aria-describedby={errors.endDate && 'error-endDate'}
+                    hasError={!!errors.endDate}
                     required 
                     {...register('endDate')}
                     onChange={() => replace([])}
                 />
             </div>
+            {errors?.endDate && (
+                <FormInputError id="error-endDate" text={errors.endDate?.message ?? 'Invalid input'} />
+            )}
 
             <h2>Suggested menu</h2>
-            <button type="button" onClick={() => getRandomMenu(differenceInCalendarDays(getValues('endDate'), getValues('startDate')) + 1 || 0)}>Get random recipes</button>
+            <Button
+                variant='outline' 
+                onClick={() => getRandomMenu(differenceInCalendarDays(getValues('endDate'), getValues('startDate')) + 1 || 0)}>
+                Get random recipes
+            </Button>
             <ol>
                 {getValues('recipes')?.map((recipe, index) => {
                     const startDate = getValues('startDate') ? new Date(getValues('startDate')) : null;
@@ -108,60 +122,36 @@ const CreateMenuForm = () => {
                     
                     return (
                         <li key={recipe.id}>
-                            <button
-                                type="button"
+                            <Button
                                 onClick={() => swap(index, index - 1)}
                                 disabled={index === 0}
                                 aria-label={`Move up ${recipe.name}`}
                             >
                                 Move up
-                            </button>
-                            <button
-                                type="button"
+                            </Button>
+                            <Button
                                 onClick={() => swap(index, index + 1)}
                                 disabled={index === fields.length - 1}
                                 aria-label={`Move down ${recipe.name}`} 
                             >
                                 Move down
-                            </button>
-                            <button
-                                type="button"
+                            </Button>
+                            <Button
                                 onClick={() => randomizeRecipeAtIndex(index)}
                                 aria-label={`Change ${recipe.name}`}
                             >
                                 Change
-                            </button>
+                            </Button>
                             <strong>{recipeDate}</strong> - {recipe.name}
                         </li>
                     );
                 })}
             </ol>
 
-            <button type="submit" style={{border: '2px solid black'}}>Save menu</button>
+            <Button type="submit">Save menu</Button>
 
-            {Object.keys(errors).length > 0 && (
-                <div style={{ border: '2px solid red', padding: '1rem' }}>
-                    <ul>
-                        {Object.entries(errors)
-                            .filter(([key]) => key !== 'recipes')
-                            .map(([key, value]) => (
-                                <li key={key} id={`error-${key}`}>{key}: {value.message}</li>
-                            ))}
-                        {Array.isArray(errors.recipes) &&
-                            errors.recipes.map((recipeError: FieldErrors<Recipe[]>, index) => (
-                                Object.entries(recipeError).map(([fieldKey, fieldError]) => (
-                                    <li key={`recipe-${index}-${fieldKey}`} id={`error-recipe-${index}-${fieldKey}`}>
-                                            Recipe {index + 1} {fieldKey}: {fieldError?.message || 'Unhandled validation error'}
-                                    </li>)
-                                )
-                            ))
-                        }
-                    </ul>
-                </div>
-            )}
             <div 
-                role="status"
-                aria-live="polite">
+                role="status">
                 {submitStatus && (
                     <div style={{ border: '5px solid black', padding: '1rem' }} /* shouldn't be red, cause OK status also shown here */>
                         <p>{submitStatus}</p>
