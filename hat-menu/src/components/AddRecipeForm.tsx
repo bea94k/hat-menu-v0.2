@@ -107,17 +107,7 @@ const AddRecipeForm = () => {
             />
 
             <Button type="submit">Add Recipe</Button>
-            {Object.keys(errors).length > 0 && (
-                <div style={{ border: '2px solid red', padding: '1rem' }}>
-                    <ul>
-                        {Object.entries(errors).map(([key, value]) => (
-                            <li key={key} id={`error-${key}`}>
-                                {value?.message || `${key}: Invalid input`}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+            
             <div
                 role="status"
                 aria-live="polite">
