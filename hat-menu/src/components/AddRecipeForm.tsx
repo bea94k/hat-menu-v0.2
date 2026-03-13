@@ -9,6 +9,7 @@ import { isSessionError } from '../utils/auth';
 import Button from './primitives/Button';
 import FormInputError from './primitives/FormInputError';
 import Input from './primitives/Input';
+import Label from './primitives/Label';
 
 const AddRecipeForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -55,7 +56,7 @@ const AddRecipeForm = () => {
     return (
         <form noValidate onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <label htmlFor="recipe-name">Recipe Name:</label>
+                <Label htmlFor="recipe-name">Recipe Name:</Label>
                 <Input
                     id="recipe-name"
                     aria-describedby={errors.name && 'error-name'}
@@ -76,7 +77,7 @@ const AddRecipeForm = () => {
                 )}
             </div>
             <div>
-                <label htmlFor="recipe-url">Recipe URL:</label>
+                <Label htmlFor="recipe-url">Recipe URL:</Label>
                 <Input
                     id="recipe-url"
                     aria-describedby={errors.url && 'error-url'}

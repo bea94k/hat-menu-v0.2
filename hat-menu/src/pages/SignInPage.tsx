@@ -9,6 +9,7 @@ import PageWrapper from '../components/PageWrapper';
 import Button from '../components/primitives/Button';
 import FormInputError from '../components/primitives/FormInputError';
 import Input from '../components/primitives/Input';
+import Label from '../components/primitives/Label';
 
 const SignInPage = () => {
     const navigate = useNavigate();
@@ -52,7 +53,7 @@ const SignInPage = () => {
 
             <form noValidate onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                    <label htmlFor="sign-in-email">Email</label>
+                    <Label htmlFor="sign-in-email">Email</Label>
                     <Input
                         id="sign-in-email"
                         type="email"
@@ -67,7 +68,7 @@ const SignInPage = () => {
                 </div>
 
                 <div>
-                    <label htmlFor="sign-in-password">Password</label>
+                    <Label htmlFor="sign-in-password">Password</Label>
                     <Input
                         id="sign-in-password"
                         type="password"

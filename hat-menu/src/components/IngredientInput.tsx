@@ -5,6 +5,7 @@ import type { RecipeForm } from '../schemas/Recipes';
 import Button from './primitives/Button';
 import FormInputError from './primitives/FormInputError';
 import Input from './primitives/Input';
+import Label from './primitives/Label';
 import Select from './primitives/Select';
 
 interface IngredientInputProps {
@@ -34,9 +35,9 @@ export function IngredientInput({
         <div className="flex flex-col md:flex-row gap-3 rounded-md border border-gray-300 bg-white p-3">
 
             <div className="flex-1 min-w-0">
-                <label htmlFor={nameId} className="sr-only">
-                    Ingredient name {index + 1}
-                </label>
+                <Label htmlFor={nameId} className="sr-only">
+                    Name, ingredient {index + 1}
+                </Label>
                 <Input
                     id={nameId}
                     list={datalistId}
@@ -62,9 +63,9 @@ export function IngredientInput({
             </div>
 
             <div className="w-full md:w-24">
-                <label htmlFor={quantityId} className="sr-only">
-                    Quantity {index + 1}
-                </label>
+                <Label htmlFor={quantityId} className="sr-only">
+                    Quantity, ingredient {index + 1}
+                </Label>
                 <Input
                     type="number"
                     id={quantityId}
@@ -85,9 +86,9 @@ export function IngredientInput({
             </div>
 
             <div className="w-full md:w-28">
-                <label htmlFor={unitId} className="sr-only">
-                    Unit {index + 1}
-                </label>
+                <Label htmlFor={unitId} className="sr-only">
+                    Unit, ingredient {index + 1}
+                </Label>
                 <Select
                     id={unitId}
                     aria-describedby={errors?.unit && `${unitId}-error`}

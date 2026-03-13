@@ -11,6 +11,7 @@ import { isSessionError } from '../utils/auth';
 import Button from './primitives/Button';
 import DateInput from './primitives/DateInput';
 import FormInputError from './primitives/FormInputError';
+import Label from './primitives/Label';
 
 const CreateMenuForm = () => {
     const { recipes } = useRecipes();
@@ -80,7 +81,7 @@ const CreateMenuForm = () => {
     return (
         <form noValidate style={{ border: '4px solid magenta', padding: '1rem' }} onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <label htmlFor="menu-start-date">Menu Start Date:</label>
+                <Label htmlFor="menu-start-date">Menu Start Date:</Label>
                 <DateInput
                     id="menu-start-date" 
                     aria-describedby={errors.startDate && 'error-startDate'}
@@ -94,7 +95,7 @@ const CreateMenuForm = () => {
                 <FormInputError id="error-startDate" text={errors.startDate?.message ?? 'Invalid input'} />
             )}
             <div>
-                <label htmlFor="menu-end-date">Menu End Date:</label>
+                <Label htmlFor="menu-end-date">Menu End Date:</Label>
                 <DateInput
                     id="menu-end-date" 
                     aria-describedby={errors.endDate && 'error-endDate'}

@@ -21,8 +21,12 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
     };
 
     return (
-        <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Ingredients</label>
+        <fieldset>
+            <legend
+                className="font-bold text-gray-800"
+            >
+                Ingredients
+            </legend>
 
             <div className="flex flex-col gap-2">
                 {fields.map((field, index) => (
@@ -43,6 +47,6 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
             >
                 + Add Ingredient
             </Button>
-        </div>
+        </fieldset>
     );
 }
