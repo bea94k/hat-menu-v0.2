@@ -34,7 +34,7 @@
 
 ---
 
-## Step 2 — Forms foundation: shared inputs and buttons
+## ✅ Step 2 — Forms foundation: shared inputs and buttons
 **Commit goal:** Standardize the base form controls used across the app.
 
 **Tasks**
@@ -45,6 +45,11 @@
 **Acceptance criteria**
 - Form controls look consistent and readable at all widths.
 - No clipping/overflow in shared form controls.
+
+✅ Done:
+- Reusable Button, Input, DateInput, Select, Label, FormInputError components in /primitives directory.
+- Error display added to date inputs in menu creation.
+- Cleaned up aria use.
 
 ---
 
