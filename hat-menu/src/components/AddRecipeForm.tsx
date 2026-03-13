@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm, type SubmitHandler } from 'react-hook-form';
+import { useForm, type Resolver, type SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { addRecipe } from '../data/recipesApi';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
@@ -10,6 +10,8 @@ import Button from './primitives/Button';
 import FormInputError from './primitives/FormInputError';
 import Input from './primitives/Input';
 import Label from './primitives/Label';
+
+const DEFAULT_RECIPE_URL = 'www.default-example.com';
 
 const AddRecipeForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -22,7 +24,7 @@ const AddRecipeForm = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<RecipeForm>({
-        resolver: yupResolver(RecipeFormSchema),
+        resolver: yupResolver(RecipeFormSchema) as Resolver<RecipeForm>,
         defaultValues: {
             name: '',
             url: '',
@@ -34,7 +36,12 @@ const AddRecipeForm = () => {
     const onSubmit: SubmitHandler<RecipeForm> = async (data) => {
         setSubmitStatus(null);
         try {
-            const response = await addRecipe(data);
+            const parsedData: RecipeForm = {
+                ...data,
+                url: data.url?.trim() ? data.url.trim() : DEFAULT_RECIPE_URL, // TODO: when recipe url not required in the db, let it be undefined and just await addRecipe(data)
+            };
+
+            const response = await addRecipe(parsedData);
             setSubmitStatus(`Recipe saved! with ID: ${response?.id}`);
             reset();
             inputRef?.current?.focus();
@@ -83,7 +90,6 @@ const AddRecipeForm = () => {
                     aria-describedby={errors.url && 'error-url'}
                     hasError={!!errors.url}
                     autoComplete="off"
-                    required
                     {...register('url')}
                 />
                 {errors.url && (

@@ -62,6 +62,7 @@ This document provides an overview of currently implemented features in the Hat 
 - **Make the app a PWA**
 - **Deploy** to access it on other devices
 - **Make the app mobile friendly**, especially menu creation and recipe adding
+- Make **recipe URL not required** on the database level (migration needed)
 - **Legacy ingredient migration** - Old recipes with stringified ingredients need migration to `recipe_ingredient` table
 - **Testing** of everything we have so far
 - **Accessibility and good practices** - are there unused or unnecessary classes, properties or attributes?
