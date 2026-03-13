@@ -7,6 +7,7 @@ import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { IngredientsListInput } from './IngredientsListInput';
 import { isSessionError } from '../utils/auth';
 import Button from './primitives/Button';
+import FormInputError from './primitives/FormInputError';
 import Input from './primitives/Input';
 
 const AddRecipeForm = () => {
@@ -57,7 +58,7 @@ const AddRecipeForm = () => {
                 <label htmlFor="recipe-name">Recipe Name:</label>
                 <Input
                     id="recipe-name"
-                    aria-describedby={errors.name ? 'error-name' : undefined}
+                    aria-describedby={'error-name'}
                     aria-invalid={!!errors.name}
                     hasError={!!errors.name}
                     autoComplete="off"
@@ -69,9 +70,10 @@ const AddRecipeForm = () => {
                     }}
                 />
                 {errors.name && (
-                    <p id="error-name" className="mt-1 text-sm text-red-600" role="alert">
-                        {errors.name.message}
-                    </p>
+                    <FormInputError
+                        id="error-name"
+                        text={errors.name.message ?? 'Invalid input'}
+                    />
                 )}
             </div>
             <div>
@@ -86,9 +88,10 @@ const AddRecipeForm = () => {
                     {...register('url')}
                 />
                 {errors.url && (
-                    <p id="error-url" className="mt-1 text-sm text-red-600" role="alert">
-                        {errors.url.message}
-                    </p>
+                    <FormInputError
+                        id="error-url"
+                        text={errors.url.message ?? 'Invalid input'}
+                    />
                 )}
             </div>
 

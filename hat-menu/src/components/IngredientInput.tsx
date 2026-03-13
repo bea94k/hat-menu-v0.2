@@ -3,6 +3,7 @@ import { useSuggestedIngredients } from '../data/ingredientsApi';
 import { units, type Ingredient } from '../schemas/Ingredients';
 import type { RecipeForm } from '../schemas/Recipes';
 import Button from './primitives/Button';
+import FormInputError from './primitives/FormInputError';
 import Input from './primitives/Input';
 import Select from './primitives/Select';
 
@@ -54,9 +55,10 @@ export function IngredientInput({
                         ))}
                 </datalist>
                 {errors?.name && (
-                    <p id={`${nameId}-error`} className="text-red-600 text-sm mt-1" role="alert">
-                        {errors.name.message}
-                    </p>
+                    <FormInputError
+                        id={`${nameId}-error`}
+                        text={errors.name.message ?? 'Invalid input'}
+                    />
                 )}
             </div>
 
@@ -77,9 +79,10 @@ export function IngredientInput({
                     {...register(`ingredients.${index}.quantity`, { valueAsNumber: true })}
                 />
                 {errors?.quantity && (
-                    <p id={`${quantityId}-error`} className="text-red-600 text-sm mt-1" role="alert">
-                        {errors.quantity.message}
-                    </p>
+                    <FormInputError
+                        id={`${quantityId}-error`}
+                        text={errors.quantity.message ?? 'Invalid input'}
+                    />
                 )}
             </div>
 
@@ -101,9 +104,10 @@ export function IngredientInput({
                     ))}
                 </Select>
                 {errors?.unit && (
-                    <p id={`${unitId}-error`} className="text-red-600 text-sm mt-1" role="alert">
-                        {errors.unit.message}
-                    </p>
+                    <FormInputError
+                        id={`${unitId}-error`}
+                        text={errors.unit.message ?? 'Invalid input'}
+                    />
                 )}
             </div>
 

@@ -10,8 +10,21 @@ const MenuSchema = object({
 });
 
 const MenuFormSchema = object({
-    startDate: date().required(),
-    endDate: date().required().when('startDate', (startDate, yup) => startDate && yup.min(startDate, 'End date must be later than start date')),
+    startDate: date()
+        .nullable()
+        .transform((value, originalValue) => (originalValue === '' ? null : value))
+        .typeError('Start date is required') // for malformed, tests, programmatic setValue
+        .required('Start date is required'), // for empty in UI date input
+    endDate: date()
+        .nullable()
+        .transform((value, originalValue) => (originalValue === '' ? null : value))
+        .typeError('End date is required') // for malformed, tests, programmatic setValue
+        .required('End date is required') // for empty in UI date input
+        .when('startDate', ([startDate], schema) => (
+            startDate instanceof Date && !Number.isNaN(startDate.getTime())
+                ? schema.min(startDate, 'End date must be later than start date')
+                : schema
+        )),
     recipes: array().of(RecipeSchema).required(),
 });
 type MenuForm = InferType<typeof MenuFormSchema>;

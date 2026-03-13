@@ -7,6 +7,7 @@ import { AuthSchema, type AuthForm } from '../schemas/Auth';
 import { mapAuthErrorMessage } from '../utils/auth';
 import PageWrapper from '../components/PageWrapper';
 import Button from '../components/primitives/Button';
+import FormInputError from '../components/primitives/FormInputError';
 import Input from '../components/primitives/Input';
 
 const SignInPage = () => {
@@ -47,11 +48,7 @@ const SignInPage = () => {
     return (
         <PageWrapper title="Sign in">
 
-            {routeError && (
-                <p className="mt-1 text-sm text-red-600" role="alert" aria-live="assertive">
-                    {routeError}
-                </p>
-            )}
+            {routeError && <FormInputError id="error-route" text={routeError} />}
 
             <form noValidate onSubmit={handleSubmit(onSubmit)}>
                 <div>
@@ -66,9 +63,7 @@ const SignInPage = () => {
                         {...register('email')}
                     />
                     {errors.email?.message && (
-                        <p id="error-email" className="mt-1 text-sm text-red-600" role="alert">
-                            {errors.email.message}
-                        </p>
+                        <FormInputError id="error-email" text={errors.email.message} />
                     )}
                 </div>
 
@@ -84,17 +79,11 @@ const SignInPage = () => {
                         {...register('password')}
                     />
                     {errors.password?.message && (
-                        <p id="error-password" className="mt-1 text-sm text-red-600" role="alert">
-                            {errors.password.message}
-                        </p>
+                        <FormInputError id="error-password" text={errors.password.message} />
                     )}
                 </div>
 
-                {submitError && (
-                    <p className="mt-1 text-sm text-red-600" role="alert" aria-live="assertive">
-                        {submitError}
-                    </p>
-                )}
+                {submitError && <FormInputError id="error-submit" text={submitError} />}
 
                 <Button type="submit" disabled={isSubmitting}>
                     {isSubmitting ? 'Signing in...' : 'Sign in'}
