@@ -2,9 +2,9 @@ import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { useSuggestedIngredients } from '../data/ingredientsApi';
 import { units, type Ingredient } from '../schemas/Ingredients';
 import type { RecipeForm } from '../schemas/Recipes';
-import Button from './Button';
-import Input from './Input';
-import Select from './Select';
+import Button from './primitives/Button';
+import Input from './primitives/Input';
+import Select from './primitives/Select';
 
 interface IngredientInputProps {
     index: number;

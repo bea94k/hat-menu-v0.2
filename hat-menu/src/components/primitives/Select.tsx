@@ -1,23 +1,20 @@
 import type { ComponentPropsWithRef } from 'react';
-import { cn } from '../utils/styleUtils';
+import { cn } from '../../utils/styleUtils';
 
-type InputProps = ComponentPropsWithRef<'input'> & {
+type SelectProps = ComponentPropsWithRef<'select'> & {
     hasError?: boolean;
 };
 
-const Input = ({ className, hasError = false, ref, type = 'text', ...props }: InputProps) => {
+const Select = ({ className, hasError = false, ...props }: SelectProps) => {
     const ariaInvalid = props['aria-invalid'] ?? (hasError || undefined);
 
     return (
-        <input
-            type={type}
-            ref={ref}
+        <select
             aria-invalid={ariaInvalid}
             className={cn(
+                // NOTE: the styles should be kept quite matching the Input component
                 'w-full min-h-10 rounded-md border bg-white px-3 py-2 text-sm leading-5 text-gray-900',
-                'placeholder:text-gray-400',
                 'disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500',
-                'read-only:bg-gray-50 read-only:text-gray-600',
                 hasError
                     ? 'border-red-500'
                     : 'border-gray-300',
@@ -28,4 +25,4 @@ const Input = ({ className, hasError = false, ref, type = 'text', ...props }: In
     );
 };
 
-export default Input;
+export default Select;

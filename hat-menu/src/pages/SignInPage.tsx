@@ -6,8 +6,8 @@ import { useAuth } from '../auth/useAuth';
 import { AuthSchema, type AuthForm } from '../schemas/Auth';
 import { mapAuthErrorMessage } from '../utils/auth';
 import PageWrapper from '../components/PageWrapper';
-import Button from '../components/Button';
-import Input from '../components/Input';
+import Button from '../components/primitives/Button';
+import Input from '../components/primitives/Input';
 
 const SignInPage = () => {
     const navigate = useNavigate();

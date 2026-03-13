@@ -1,7 +1,7 @@
 import { useFieldArray } from 'react-hook-form';
 import type { Control, UseFormRegister, FieldErrors } from 'react-hook-form';
 import { IngredientInput } from './IngredientInput';
-import Button from './Button';
+import Button from './primitives/Button';
 import type { RecipeForm } from '../schemas/Recipes';
 
 interface IngredientsListInputProps {

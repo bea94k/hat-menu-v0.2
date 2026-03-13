@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
 import { useAuth } from '../auth/useAuth';
 import NavbarLink from './NavbarLink';
-import Button from './Button';
+import Button from './primitives/Button';
 
 const Navbar = () => {
     const navigate = useNavigate();

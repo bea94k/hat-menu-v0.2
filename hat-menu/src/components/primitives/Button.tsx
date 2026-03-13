@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes } from 'react';
-import { cn } from '../utils/styleUtils';
+import { cn } from '../../utils/styleUtils';
 
 type ButtonVariant = 'primary' | 'outline';
 

@@ -9,7 +9,8 @@ import { getUniqueRandom } from '../utils/utils';
 import { addMenu } from '../data/menusApi';
 import { differenceInCalendarDays, addDays, format } from 'date-fns';
 import { isSessionError } from '../utils/auth';
-import Button from './Button';
+import Button from './primitives/Button';
+import DateInput from './primitives/DateInput';
 
 const CreateMenuForm = () => {
     const { recipes } = useRecipes();
@@ -76,13 +77,14 @@ const CreateMenuForm = () => {
     };
 
     return (
-        <form style={{ border: '4px solid magenta', padding: '1rem' }} onSubmit={handleSubmit(onSubmit)}>
+        <form noValidate style={{ border: '4px solid magenta', padding: '1rem' }} onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <label htmlFor="menu-start-date">Menu Start Date:</label>
-                <input 
-                    type="date" 
+                <DateInput
                     id="menu-start-date" 
-                    aria-describedby='error-start-date'
+                    aria-describedby='error-startDate'
+                    aria-invalid={!!errors.startDate}
+                    hasError={!!errors.startDate}
                     required 
                     {...register('startDate')}
                     onChange={() => replace([])}
@@ -90,10 +92,11 @@ const CreateMenuForm = () => {
             </div>
             <div>
                 <label htmlFor="menu-end-date">Menu End Date:</label>
-                <input 
-                    type="date" 
+                <DateInput
                     id="menu-end-date" 
-                    aria-describedby='error-end-date'
+                    aria-describedby='error-endDate'
+                    aria-invalid={!!errors.endDate}
+                    hasError={!!errors.endDate}
                     required 
                     {...register('endDate')}
                     onChange={() => replace([])}

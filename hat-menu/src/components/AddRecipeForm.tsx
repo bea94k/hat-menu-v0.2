@@ -6,8 +6,8 @@ import { addRecipe } from '../data/recipesApi';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
 import { IngredientsListInput } from './IngredientsListInput';
 import { isSessionError } from '../utils/auth';
-import Button from './Button';
-import Input from './Input';
+import Button from './primitives/Button';
+import Input from './primitives/Input';
 
 const AddRecipeForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
