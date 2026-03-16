@@ -17,7 +17,7 @@ const CreateMenuPage = () => {
                 isError ? (<div>failed to load</div>)
                     : isLoading ? (<div>loading...</div>) : 
                         menus && menus.length > 0 ? (
-                            <ul>
+                            <ul className='flex flex-col gap-4'>
                                 {latestMenus.map(menu => (
                                     <li key={menu.id}>
                                         <MenuCard menu={menu} />

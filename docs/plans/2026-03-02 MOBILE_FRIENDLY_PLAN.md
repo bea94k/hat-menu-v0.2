@@ -168,7 +168,7 @@
 
 ---
 
-## Step 9 — Menu card/list readability pass
+## ✅ Step 9 — Menu card/list readability pass
 **Commit goal:** Improve menu card/list legibility in compact layout.
 
 **Tasks**
@@ -179,6 +179,10 @@
 **Acceptance criteria**
 - Menu cards/lists are readable and stable at `320px+`.
 - No overflow or clipped text in menu list views.
+
+✅ Done:
+- Menu card layout simplified into a compact two-column grid with a narrow weekday column and flexible recipe name column.
+- Adjusted visual hierarchy and spacing in menu listings.
 
 ---
 

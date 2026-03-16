@@ -10,7 +10,7 @@ const MenusPage = () => {
     return (
         <PageWrapper title={`All menus (total: ${menus?.length || 0})`}>
             {menus && menus.length > 0 ? (
-                <ul>
+                <ul className='flex flex-col gap-4'>
                     {menus.reverse().map(menu => (
                         <li key={menu.id}>
                             <MenuCard menu={menu} />
