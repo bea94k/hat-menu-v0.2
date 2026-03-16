@@ -7,9 +7,11 @@ type PageWrapperProps = {
 
 const PageWrapper = ({ title, children }: PageWrapperProps) => {
     return (
-        <main id="maincontent" className="mx-auto grid w-full max-w-2xl gap-4 p-4">
-            <h1 className="mb-1 text-2xl leading-[1.2]">{title}</h1>
-            {children}
+        <main id="maincontent" className="w-full p-4 flex justify-center">
+            <div className="grid w-full max-w-2xl gap-4">
+                <h1 className="mb-1 text-2xl leading-[1.2]">{title}</h1>
+                {children}
+            </div>
         </main>
     );
 };
