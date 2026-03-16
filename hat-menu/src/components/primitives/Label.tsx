@@ -11,6 +11,7 @@ const Label = ({ className, htmlFor, ...props }: LabelProps) => {
             htmlFor={htmlFor}
             className={cn(
                 'text-gray-800',
+                'block mb-1', // Ensure label is on its own line
                 className,
             )}
             {...props}

@@ -79,7 +79,7 @@ const CreateMenuForm = () => {
     };
 
     return (
-        <form noValidate style={{ border: '4px solid magenta', padding: '1rem' }} onSubmit={handleSubmit(onSubmit)}>
+        <form noValidate onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
             <div>
                 <Label htmlFor="menu-start-date">Menu Start Date:</Label>
                 <DateInput
@@ -90,10 +90,10 @@ const CreateMenuForm = () => {
                     {...register('startDate')}
                     onChange={() => replace([])}
                 />
+                {errors?.startDate && (
+                    <FormInputError id="error-startDate" text={errors.startDate?.message ?? 'Invalid input'} />
+                )}
             </div>
-            {errors?.startDate && (
-                <FormInputError id="error-startDate" text={errors.startDate?.message ?? 'Invalid input'} />
-            )}
             <div>
                 <Label htmlFor="menu-end-date">Menu End Date:</Label>
                 <DateInput
@@ -104,10 +104,10 @@ const CreateMenuForm = () => {
                     {...register('endDate')}
                     onChange={() => replace([])}
                 />
+                {errors?.endDate && (
+                    <FormInputError id="error-endDate" text={errors.endDate?.message ?? 'Invalid input'} />
+                )}
             </div>
-            {errors?.endDate && (
-                <FormInputError id="error-endDate" text={errors.endDate?.message ?? 'Invalid input'} />
-            )}
 
             <h2>Suggested menu</h2>
             <Button
@@ -115,38 +115,39 @@ const CreateMenuForm = () => {
                 onClick={() => getRandomMenu(differenceInCalendarDays(getValues('endDate'), getValues('startDate')) + 1 || 0)}>
                 Get random recipes
             </Button>
-            <ol>
-                {getValues('recipes')?.map((recipe, index) => {
-                    const startDate = getValues('startDate') ? new Date(getValues('startDate')) : null;
-                    const recipeDate = startDate ? format(addDays(startDate, index), 'd MMM yyyy') : '';
+            {getValues('recipes')?.length > 0 &&
+                <ol>
+                    {getValues('recipes')?.map((recipe, index) => {
+                        const startDate = getValues('startDate') ? new Date(getValues('startDate')) : null;
+                        const recipeDate = startDate ? format(addDays(startDate, index), 'd MMM yyyy') : '';
                     
-                    return (
-                        <li key={recipe.id}>
-                            <Button
-                                onClick={() => swap(index, index - 1)}
-                                disabled={index === 0}
-                                aria-label={`Move up ${recipe.name}`}
-                            >
+                        return (
+                            <li key={recipe.id}>
+                                <Button
+                                    onClick={() => swap(index, index - 1)}
+                                    disabled={index === 0}
+                                    aria-label={`Move up ${recipe.name}`}
+                                >
                                 Move up
-                            </Button>
-                            <Button
-                                onClick={() => swap(index, index + 1)}
-                                disabled={index === fields.length - 1}
-                                aria-label={`Move down ${recipe.name}`} 
-                            >
+                                </Button>
+                                <Button
+                                    onClick={() => swap(index, index + 1)}
+                                    disabled={index === fields.length - 1}
+                                    aria-label={`Move down ${recipe.name}`} 
+                                >
                                 Move down
-                            </Button>
-                            <Button
-                                onClick={() => randomizeRecipeAtIndex(index)}
-                                aria-label={`Change ${recipe.name}`}
-                            >
+                                </Button>
+                                <Button
+                                    onClick={() => randomizeRecipeAtIndex(index)}
+                                    aria-label={`Change ${recipe.name}`}
+                                >
                                 Change
-                            </Button>
-                            <strong>{recipeDate}</strong> - {recipe.name}
-                        </li>
-                    );
-                })}
-            </ol>
+                                </Button>
+                                <strong>{recipeDate}</strong> - {recipe.name}
+                            </li>
+                        );
+                    })}
+                </ol>}
 
             <Button type="submit">Save menu</Button>
 
