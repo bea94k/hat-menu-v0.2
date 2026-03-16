@@ -76,6 +76,9 @@ html, body, #root {
 @import "tailwindcss";
 
 @theme {
+  --color-primary-100: #ddecff;
+  --color-primary-200: #c4deff;
+  --color-primary-300: #a4cdff;
   --color-primary-500: #143a6a;
   --color-primary-700: #0f2a4f;
 }

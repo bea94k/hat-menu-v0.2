@@ -109,52 +109,57 @@ const CreateMenuForm = () => {
                 )}
             </div>
 
-            <h2>Suggested menu</h2>
             <Button
                 variant='outline' 
                 onClick={() => getRandomMenu(differenceInCalendarDays(getValues('endDate'), getValues('startDate')) + 1 || 0)}>
                 Get random recipes
             </Button>
+
             {getValues('recipes')?.length > 0 &&
-                <ol>
+            <div>
+                <h2 className='text-xl font-semibold'>Suggested menu {format(getValues('startDate'), 'd MMM')}-{format(getValues('endDate'), 'd MMM')}</h2>
+                <ol className='flex flex-col divide-y divide-gray-500'>
                     {getValues('recipes')?.map((recipe, index) => {
-                        const startDate = getValues('startDate') ? new Date(getValues('startDate')) : null;
-                        const recipeDate = startDate ? format(addDays(startDate, index), 'd MMM yyyy') : '';
+                        const startDate = new Date(getValues('startDate'));
+                        const recipeDayOfWeek =format(addDays(startDate, index), 'EEE');
                     
                         return (
-                            <li key={recipe.id}>
-                                <Button
-                                    onClick={() => swap(index, index - 1)}
-                                    disabled={index === 0}
-                                    aria-label={`Move up ${recipe.name}`}
-                                >
-                                Move up
-                                </Button>
-                                <Button
-                                    onClick={() => swap(index, index + 1)}
-                                    disabled={index === fields.length - 1}
-                                    aria-label={`Move down ${recipe.name}`} 
-                                >
-                                Move down
-                                </Button>
-                                <Button
-                                    onClick={() => randomizeRecipeAtIndex(index)}
-                                    aria-label={`Change ${recipe.name}`}
-                                >
+                            <li key={recipe.id} className='py-2 flex flex-col gap-2'>
+                                {recipeDayOfWeek}: {recipe.name}
+                                <div className='flex gap-2'>
+                                    <Button
+                                        onClick={() => swap(index, index - 1)}
+                                        disabled={index === 0}
+                                        aria-label={`Move up ${recipe.name}`}
+                                    >
+                                Up
+                                    </Button>
+                                    <Button
+                                        onClick={() => swap(index, index + 1)}
+                                        disabled={index === fields.length - 1}
+                                        aria-label={`Move down ${recipe.name}`} 
+                                    >
+                               Down
+                                    </Button>
+                                    <Button
+                                        onClick={() => randomizeRecipeAtIndex(index)}
+                                        aria-label={`Change ${recipe.name}`}
+                                    >
                                 Change
-                                </Button>
-                                <strong>{recipeDate}</strong> - {recipe.name}
+                                    </Button>
+                                </div>
                             </li>
                         );
                     })}
-                </ol>}
+                </ol>
+            </div>}
 
             <Button type="submit">Save menu</Button>
 
             <div 
                 role="status">
                 {submitStatus && (
-                    <div style={{ border: '5px solid black', padding: '1rem' }} /* shouldn't be red, cause OK status also shown here */>
+                    <div className='border-2 border-primary-300 rounded-md p-2 bg-primary-100' /* shouldn't be red, cause OK status also shown here */>
                         <p>{submitStatus}</p>
                     </div>
                 )}

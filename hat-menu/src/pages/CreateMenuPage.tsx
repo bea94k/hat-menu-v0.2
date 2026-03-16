@@ -12,7 +12,7 @@ const CreateMenuPage = () => {
 
             <CreateMenuForm />
 
-            <h2>Latest 3 menus</h2>
+            <h2 className='text-xl font-semibold'>Latest 3 menus</h2>
             {
                 isError ? (<div>failed to load</div>)
                     : isLoading ? (<div>loading...</div>) : 
