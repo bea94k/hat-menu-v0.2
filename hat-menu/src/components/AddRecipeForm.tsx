@@ -84,7 +84,7 @@ const AddRecipeForm = () => {
                 )}
             </div>
             <div>
-                <Label htmlFor="recipe-url">Recipe URL:</Label>
+                <Label htmlFor="recipe-url">Recipe URL (optional):</Label>
                 <Input
                     id="recipe-url"
                     aria-describedby={errors.url && 'error-url'}

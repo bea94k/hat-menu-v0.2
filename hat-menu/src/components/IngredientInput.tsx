@@ -46,6 +46,7 @@ export function IngredientInput({
                     aria-describedby={errors?.name && `${nameId}-error`}
                     hasError={!!errors?.name}
                     {...register(`ingredients.${index}.name`)}
+                    required
                 />
                 {/* Native HTML datalist for autocomplete */}
                 <datalist id={datalistId}>
@@ -76,6 +77,7 @@ export function IngredientInput({
                     aria-describedby={errors?.quantity && `${quantityId}-error`}
                     hasError={!!errors?.quantity}
                     {...register(`ingredients.${index}.quantity`, { valueAsNumber: true })}
+                    required
                 />
                 {errors?.quantity && (
                     <FormInputError
