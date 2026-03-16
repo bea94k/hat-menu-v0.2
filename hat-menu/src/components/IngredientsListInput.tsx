@@ -23,12 +23,12 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
     return (
         <fieldset>
             <legend
-                className="font-bold text-gray-800"
+                className="text-gray-800"
             >
                 Ingredients
             </legend>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 pb-2">
                 {fields.map((field, index) => (
                     <IngredientInput
                         key={field.id}
@@ -41,12 +41,14 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
                 ))}
             </div>
 
-            <Button
-                variant='outline'
-                onClick={handleAddIngredient}
-            >
-                + Add Ingredient
-            </Button>
+            <div className="flex justify-end">
+                <Button
+                    variant='outline'
+                    onClick={handleAddIngredient}
+                >
+                    + Add Ingredient
+                </Button>
+            </div>
         </fieldset>
     );
 }

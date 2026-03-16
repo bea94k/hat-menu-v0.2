@@ -10,7 +10,7 @@ const Label = ({ className, htmlFor, ...props }: LabelProps) => {
         <label
             htmlFor={htmlFor}
             className={cn(
-                'font-bold text-gray-800',
+                'text-gray-800',
                 className,
             )}
             {...props}

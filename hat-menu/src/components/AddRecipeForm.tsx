@@ -61,7 +61,7 @@ const AddRecipeForm = () => {
     const { ref, ...rest } = register('name');
 
     return (
-        <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <form noValidate onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-6'>
             <div>
                 <Label htmlFor="recipe-name">Recipe Name:</Label>
                 <Input
