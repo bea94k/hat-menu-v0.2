@@ -53,7 +53,7 @@
 
 ---
 
-## Step 3 — Add Recipe form layout pass
+## ✅ Step 3 — Add Recipe form layout pass
 **Commit goal:** Make the add recipe form compact and easy to complete across breakpoints.
 
 **Tasks**
@@ -65,9 +65,12 @@
 - Add recipe form is readable and easy to complete from `320px+`.
 - No horizontal scroll or text clipping in the form.
 
+✅ Done:
+- Spacing adjusted, no horizontal scrolling nor weird wrapping of text or elements.
+
 ---
 
-## Step 4 — Add Menu form layout pass
+## ✅ Step 4 — Add Menu form layout pass
 **Commit goal:** Make the add menu form match the same compact form system.
 
 **Tasks**
@@ -78,6 +81,10 @@
 **Acceptance criteria**
 - Add menu form has consistent spacing and readability at all widths.
 - No horizontal scroll or overlapping form elements.
+
+✅ Done:
+- Spacing adjusted, no horizontal scrolling nor weird wrapping of text or elements.
+- Recipe per day and its Up/Down/Change buttons visually grouped.
 
 ---
 
