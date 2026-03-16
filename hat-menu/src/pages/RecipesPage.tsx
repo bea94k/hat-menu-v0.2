@@ -10,7 +10,7 @@ const RecipesPage = () => {
 
     return (
         <PageWrapper title="All recipes">
-            <ul>
+            <ul className='flex flex-col gap-4'>
                 {(!recipes || recipes.length === 0) ? (
                     <li>No recipes available</li>
                 ) : (

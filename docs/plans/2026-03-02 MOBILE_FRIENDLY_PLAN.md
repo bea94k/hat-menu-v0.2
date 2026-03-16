@@ -150,7 +150,7 @@
 
 ---
 
-## Step 8 — Recipe card readability pass
+## ✅ Step 8 — Recipe card readability pass
 **Commit goal:** Improve recipe card legibility in compact layout.
 
 **Tasks**
@@ -161,6 +161,10 @@
 **Acceptance criteria**
 - Recipe cards remain readable and balanced at `320px+`.
 - No clipping or horizontal overflow in card content.
+
+✅ Done:
+- Recipe cards look better and are easier to read.
+- Links styles adjusted globally and overwritten in navbar.
 
 ---
 
