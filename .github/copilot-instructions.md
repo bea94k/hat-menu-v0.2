@@ -76,6 +76,7 @@ Import the singleton from [hat-menu/src/supabase-config.ts](hat-menu/src/supabas
   - Recommended pattern: `YYYY-MM-DD-short-plan-name.md`.
 - **Routing**: Using React Router v7 (not react-router-dom), see [hat-menu/src/main.tsx](hat-menu/src/main.tsx)
 - **Styling**: Use Tailwind CSS utility classes for component styling. Do not use inline styles and do not add manually written component/page classes to `hat-menu/src/styles/index.css`; prefer Tailwind utilities directly in JSX. Never touch or adjust focus styles unless explicitly asked.
+- **ARIA status usage**: For elements with `role="status"`, do not add `aria-live="polite"`. The polite live region is already implicit, and adding it is unnecessary duplication.
 - **Ingredients storage**: 
   - **Current**: New recipes use `recipe_ingredient` junction table with structured data (`ingredient_name`, `quantity`, `unit`)
   - **Legacy**: Old recipes have stringified JSON arrays in `recipe.ingredients` text field - these need manual migration

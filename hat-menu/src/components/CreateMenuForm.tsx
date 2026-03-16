@@ -25,7 +25,7 @@ const CreateMenuForm = () => {
         setValue,
         getValues,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm({
         resolver: yupResolver(MenuFormSchema)
     });
@@ -86,6 +86,7 @@ const CreateMenuForm = () => {
                     id="menu-start-date" 
                     aria-describedby={errors.startDate && 'error-startDate'}
                     hasError={!!errors.startDate}
+                    disabled={isSubmitting}
                     required 
                     {...register('startDate')}
                     onChange={() => replace([])}
@@ -100,6 +101,7 @@ const CreateMenuForm = () => {
                     id="menu-end-date" 
                     aria-describedby={errors.endDate && 'error-endDate'}
                     hasError={!!errors.endDate}
+                    disabled={isSubmitting}
                     required 
                     {...register('endDate')}
                     onChange={() => replace([])}
@@ -110,7 +112,8 @@ const CreateMenuForm = () => {
             </div>
 
             <Button
-                variant='outline' 
+                variant='outline'
+                disabled={isSubmitting}
                 onClick={() => getRandomMenu(differenceInCalendarDays(getValues('endDate'), getValues('startDate')) + 1 || 0)}>
                 Get random recipes
             </Button>
@@ -129,20 +132,21 @@ const CreateMenuForm = () => {
                                 <div className='flex gap-2'>
                                     <Button
                                         onClick={() => swap(index, index - 1)}
-                                        disabled={index === 0}
+                                        disabled={isSubmitting || index === 0}
                                         aria-label={`Move up ${recipe.name}`}
                                     >
                                 Up
                                     </Button>
                                     <Button
                                         onClick={() => swap(index, index + 1)}
-                                        disabled={index === fields.length - 1}
+                                        disabled={isSubmitting || index === fields.length - 1}
                                         aria-label={`Move down ${recipe.name}`} 
                                     >
                                Down
                                     </Button>
                                     <Button
                                         onClick={() => randomizeRecipeAtIndex(index)}
+                                        disabled={isSubmitting}
                                         aria-label={`Change ${recipe.name}`}
                                     >
                                 Change
@@ -154,12 +158,13 @@ const CreateMenuForm = () => {
                 </ol>
             </div>}
 
-            <Button type="submit">Save menu</Button>
+            <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Saving...' : 'Save menu'}
+            </Button>
 
-            <div 
-                role="status">
+            <div role="status">
                 {submitStatus && (
-                    <div className='border-2 border-primary-300 rounded-md p-2 bg-primary-100' /* shouldn't be red, cause OK status also shown here */>
+                    <div className='border-2 border-primary-300 rounded-md p-2 bg-primary-100'>
                         <p>{submitStatus}</p>
                     </div>
                 )}

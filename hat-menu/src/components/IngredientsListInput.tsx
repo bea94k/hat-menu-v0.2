@@ -8,9 +8,10 @@ interface IngredientsListInputProps {
     control: Control<RecipeForm>;
     register: UseFormRegister<RecipeForm>;
     errors?: FieldErrors<RecipeForm>['ingredients'];
+    disabled?: boolean;
 }
 
-export function IngredientsListInput({ control, register, errors }: IngredientsListInputProps) {
+export function IngredientsListInput({ control, register, errors, disabled = false }: IngredientsListInputProps) {
     const { fields, append, remove } = useFieldArray({
         control,
         name: 'ingredients',
@@ -36,6 +37,7 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
                         register={register}
                         onRemove={() => remove(index)}
                         errors={errors?.[index]}
+                        disabled={disabled}
                         disableRemove={fields.length === 1}
                     />
                 ))}
@@ -44,6 +46,7 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
             <div className="flex justify-end">
                 <Button
                     variant='outline'
+                    disabled={disabled}
                     onClick={handleAddIngredient}
                 >
                     + Add Ingredient

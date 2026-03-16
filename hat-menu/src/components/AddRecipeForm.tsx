@@ -22,7 +22,7 @@ const AddRecipeForm = () => {
         control,
         reset,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm<RecipeForm>({
         resolver: yupResolver(RecipeFormSchema) as Resolver<RecipeForm>,
         defaultValues: {
@@ -34,7 +34,7 @@ const AddRecipeForm = () => {
 
     const [submitStatus, setSubmitStatus] = useState<string | null>(null);
     const onSubmit: SubmitHandler<RecipeForm> = async (data) => {
-        setSubmitStatus(null);
+        setSubmitStatus('Saving...');
         try {
             const parsedData: RecipeForm = {
                 ...data,
@@ -70,6 +70,7 @@ const AddRecipeForm = () => {
                     hasError={!!errors.name}
                     autoComplete="off"
                     required
+                    disabled={isSubmitting}
                     {...rest}
                     ref={(e) => {
                         ref(e);
@@ -90,6 +91,7 @@ const AddRecipeForm = () => {
                     aria-describedby={errors.url && 'error-url'}
                     hasError={!!errors.url}
                     autoComplete="off"
+                    disabled={isSubmitting}
                     {...register('url')}
                 />
                 {errors.url && (
@@ -104,15 +106,16 @@ const AddRecipeForm = () => {
                 control={control}
                 register={register}
                 errors={errors.ingredients}
+                disabled={isSubmitting}
             />
 
-            <Button type="submit">Add Recipe</Button>
-            
-            <div
-                role="status"
-                aria-live="polite">
+            <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Saving...' : 'Add Recipe'}
+            </Button>
+
+            <div role="status">
                 {submitStatus && (
-                    <div style={{ border: '5px solid black', padding: '1rem' }} /* shouldn't be red, cause OK status also shown here */>
+                    <div className='border-2 border-primary-300 rounded-md p-2 bg-primary-100'>
                         <p>{submitStatus}</p>
                     </div>
                 )}

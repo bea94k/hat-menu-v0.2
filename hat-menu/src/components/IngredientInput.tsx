@@ -13,6 +13,7 @@ interface IngredientInputProps {
     register: UseFormRegister<RecipeForm>;
     onRemove: () => void;
     errors?: FieldErrors<Ingredient>;
+    disabled?: boolean;
     disableRemove?: boolean;
 }
 
@@ -21,6 +22,7 @@ export function IngredientInput({
     register,
     onRemove,
     errors,
+    disabled = false,
     disableRemove = false,
 }: IngredientInputProps) {
     const { ingredients, isLoading } = useSuggestedIngredients();
@@ -45,6 +47,7 @@ export function IngredientInput({
                     autoComplete="off"
                     aria-describedby={errors?.name && `${nameId}-error`}
                     hasError={!!errors?.name}
+                    disabled={disabled}
                     {...register(`ingredients.${index}.name`)}
                     required
                 />
@@ -76,6 +79,7 @@ export function IngredientInput({
                     max="10000"
                     aria-describedby={errors?.quantity && `${quantityId}-error`}
                     hasError={!!errors?.quantity}
+                    disabled={disabled}
                     {...register(`ingredients.${index}.quantity`, { valueAsNumber: true })}
                     required
                 />
@@ -95,6 +99,7 @@ export function IngredientInput({
                     id={unitId}
                     aria-describedby={errors?.unit && `${unitId}-error`}
                     hasError={!!errors?.unit}
+                    disabled={disabled}
                     {...register(`ingredients.${index}.unit`)}
                 >
                     {units.map((unit) => (
@@ -114,7 +119,7 @@ export function IngredientInput({
             <Button
                 variant='outline'
                 onClick={onRemove}
-                disabled={disableRemove}
+                disabled={disabled || disableRemove}
                 className='w-auto self-start'
                 aria-label={`Remove ingredient ${index + 1}`}
             >

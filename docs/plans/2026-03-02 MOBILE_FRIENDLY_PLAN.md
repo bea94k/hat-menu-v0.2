@@ -88,7 +88,7 @@
 
 ---
 
-## Step 5 — Login form + Sign-in page form layout
+## ✅ Step 5 — Login form + Sign-in page form layout
 **Commit goal:** Improve login form readability and spacing, including when rendered with navbar.
 
 **Tasks**
@@ -99,6 +99,11 @@
 **Acceptance criteria**
 - Login form is clean, compact, and easy to use at `320px+`.
 - No overlap between sign-in content and navigation.
+
+✅ Done:
+- Common primitives used in the form.
+- Content centered horizontally and vertically, spacing adjusted.
+- Navbar not visible in the sign in page anymore.
 
 ---
 
@@ -123,7 +128,7 @@
 
 ---
 
-## Step 7 — Action-state buttons (loading/saving disabled state)
+## ✅ Step 7 — Action-state buttons (loading/saving disabled state)
 **Commit goal:** Improve UX feedback during in-progress actions.
 
 **Tasks**
@@ -136,6 +141,12 @@
 - Buttons cannot be re-submitted while loading/saving.
 - Form fields are non-editable (disabled or read-only) while loading/saving.
 - Disabled/loading/read-only states are visually clear and consistent.
+
+✅ Done:
+- Add recipe, add menu, and sign-in forms now set form-wide loading state via `isSubmitting`.
+- Form controls are disabled directly while submitting (inputs, date fields, ingredient inputs/selects, add/remove ingredient actions, and menu action buttons).
+- Submit buttons are disabled while submitting and show loading labels (`Saving...` in recipe/menu forms, `Signing in...` in sign-in).
+- Status regions use `role="status"` consistently for progress/success/error text.
 
 ---
 
