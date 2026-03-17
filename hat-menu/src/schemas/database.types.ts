@@ -77,21 +77,21 @@ export type Database = {
           id: string
           ingredients: string
           name: string
-          url: string
+          url: string | null
         }
         Insert: {
           created_at?: string
           id?: string
           ingredients: string
           name: string
-          url: string
+          url?: string | null
         }
         Update: {
           created_at?: string
           id?: string
           ingredients?: string
           name?: string
-          url?: string
+          url?: string | null
         }
         Relationships: []
       }
