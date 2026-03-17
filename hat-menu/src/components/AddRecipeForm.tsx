@@ -11,8 +11,6 @@ import FormInputError from './primitives/FormInputError';
 import Input from './primitives/Input';
 import Label from './primitives/Label';
 
-const DEFAULT_RECIPE_URL = 'www.default-example.com';
-
 const AddRecipeForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
@@ -38,7 +36,7 @@ const AddRecipeForm = () => {
         try {
             const parsedData: RecipeForm = {
                 ...data,
-                url: data.url?.trim() ? data.url.trim() : DEFAULT_RECIPE_URL, // TODO: when recipe url not required in the db, let it be undefined and just await addRecipe(data)
+                url: data.url?.trim() || null,
             };
 
             const response = await addRecipe(parsedData);

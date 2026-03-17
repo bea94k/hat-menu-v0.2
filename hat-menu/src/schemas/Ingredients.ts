@@ -27,7 +27,7 @@ const units = [
 ] as const;
 
 const IngredientSchema = object({
-    name: string().required('Name is required').min(1).max(10, 'Maximum 100 characters'),
+    name: string().required('Name is required').min(1).max(100, 'Maximum 100 characters'),
     unit: string().oneOf(units),
     quantity: number()
         .typeError('Quantity is required') 
