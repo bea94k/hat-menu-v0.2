@@ -44,6 +44,7 @@ This document provides an overview of currently implemented features in the Hat 
 - **Local mock JSON server** - Alternative data source via `npm run json-db`
 - **Type generation workflow** - `npm run update-types` syncs database schema to TypeScript
 - **Testing setup** - Vitest configured
+- **Deploying** semi-automatically through a connected repo
 
 ### 7. **Database Schema**
 - **`recipe` table** - With id, name, url, ingredients (legacy text field, being phased out)
@@ -55,13 +56,12 @@ This document provides an overview of currently implemented features in the Hat 
 
 ### 8. **Misc**
 - switched to use **supabase publishable keys**, away from the legacy anon keys (https://supabase.com/docs/guides/api/api-keys#why-are-anon-and-servicerole-jwt-based-keys-no-longer-recommended)
+- **styling** made mobile-first
 
 ## ⚠️ Not Yet Implemented
 
 ### Priority/Where I left off last time
 - **Make the app a PWA**
-- **Deploy** to access it on other devices
-- **Make the app mobile friendly**, especially menu creation and recipe adding
 - Make **recipe URL not required** on the database level (migration needed)
 - **Legacy ingredient migration** - Old recipes with stringified ingredients need migration to `recipe_ingredient` table
 - **Testing** of everything we have so far
