@@ -3,17 +3,18 @@ import { supabase } from '../supabase-config';
 import { checkAuthenticatedSession } from '../utils/auth';
 
 type AllowedTables = 'recipe' | 'menu' | 'menu_recipe' | 'suggested_ingredient' | 'recipe_ingredient';
+type FilterValue = string | number | boolean | null;
 
 interface UseSupabaseQueryOptions {
     table: AllowedTables;
     select?: string;
-    filters?: Record<string, any>;
+    filters?: Record<string, FilterValue>;
 }
 
 /**
  * Custom hook that combines SWR with Supabase for optimal caching
  */
-export function useSupabaseQuery<T = any>(
+export function useSupabaseQuery<T>(
     options: UseSupabaseQueryOptions
 ) {
     const { table, select = '*', filters = {} } = options;
@@ -27,6 +28,11 @@ export function useSupabaseQuery<T = any>(
 
         // Apply filters
         Object.entries(filters).forEach(([key, value]) => {
+            if (value === null) {
+                query = query.is(key, null);
+                return;
+            }
+
             query = query.eq(key, value);
         });
 
@@ -56,18 +62,25 @@ export function useSupabaseQuery<T = any>(
  * Hook for mutations with optimistic updates
  */
 export function useSupabaseMutation(table: AllowedTables) {
-    const mutate = async (operation: 'insert' | 'update' | 'delete', data: any, id: string) => {
+    const mutate = async (
+        operation: 'insert' | 'update' | 'delete',
+        data: unknown,
+        id: string
+    ) => {
         await checkAuthenticatedSession();
 
         let query;
 
         switch (operation) {
         case 'insert':
-            // NOTE: use "NEW" as id for 'create' queries
-            query = supabase.from(table).insert([data]).select();
+            // NOTE: insert ignores `id`; callers pass "NEW" as a placeholder to match the shared mutate signature.
+            query = supabase.from(table).insert([data as never]).select();
+            // NOTE: `data` can have different shapes depending on the table and operation.
+            // TypeScript can't figure out the exact shape at this point, even though runtime logic is correct.
+            // We use `as never` here only to satisfy Supabase's strict TypeScript overloads.
             break;
         case 'update':
-            query = supabase.from(table).update(data).eq('id', id).select();
+            query = supabase.from(table).update(data as never).eq('id', id).select();
             break;
         case 'delete':
             query = supabase.from(table).delete().eq('id', id);
