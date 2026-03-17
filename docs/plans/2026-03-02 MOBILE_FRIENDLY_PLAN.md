@@ -186,7 +186,7 @@
 
 ---
 
-## Step 10 — Typography tuning + responsive QA (320px and up)
+## ✅ Step 10 — Typography tuning + responsive QA (320px and up)
 **Commit goal:** Final typography pass and end-to-end small-screen validation.
 
 **Tasks**
@@ -198,3 +198,5 @@
 **Acceptance criteria**
 - Typography feels readable and proportionate on small screens.
 - All targeted views pass visual QA from `320px+` with no horizontal scrolling.
+
+✅ Skipped for now as there is no need to polish up the details now. Needs to be tested on actual devices and tweaked as needed as we go.
