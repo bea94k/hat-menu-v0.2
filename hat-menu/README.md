@@ -43,3 +43,24 @@ If you run on a different local port, update these URLs to match your Vite origi
 - In Authentication URL settings, include local URLs above and your production URL(s).
 - Keep using only publishable/anon key in frontend; never expose `service_role` in client code.
 
+## Supabase DB migrations
+
+- The migration files are in `/src/supabase/migrations`.
+- To create new migrations, use the prompt [/.github/prompts/supabase-create-migration.md](/.github/prompts/supabase-create-migration.md)
+
+- So far migrations have been run through CLI against the remote DB.
+
+### Running migrations
+
+Make sure you have the supabase CLI tool installed. Run the commands in `/hat-menu` directory.
+
+When running migrations for the first time, follow all steps.
+
+When running migrations after initial auth and linking, **steps 3 and 4 are enough**.
+
+1. `supabase login` -> authenticate CLI
+2. `supabase link --project-ref YOUR_PROJECT_REF` -> connect local project to remote Supabase project
+3. `supabase migration list` -> show local vs remote status (what has not been run against remote yet)
+4. `supabase db push` -> apply **all** pending migrations from /migrations to the remote DB
+5. (optional) `supabase migration list` again -> confirm that the migrations you wanted were run
+6. `npm run update-types` -> update TS types. It uses double quotes, so run linting in the file.

@@ -26,6 +26,8 @@ For example:
 20240906123045_create_profiles.sql
 ```
 
+If you cannot reliably determine the current UTC date and time, ask the user to provide the timestamp components (or a full `YYYYMMDDHHmmss` value) before creating the migration file.
+
 
 ## SQL Guidelines
 
