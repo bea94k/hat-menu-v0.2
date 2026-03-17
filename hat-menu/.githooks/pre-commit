@@ -1,0 +1,35 @@
+#!/bin/sh
+
+set -e
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+APP_DIR="$REPO_ROOT/hat-menu"
+
+if [ ! -f "$APP_DIR/package.json" ]; then
+  echo "Expected package.json at $APP_DIR/package.json but it was not found."
+  exit 1
+fi
+
+echo "--- Running ESlint Pre-Commit Hook ---"
+
+cd "$APP_DIR"
+
+npm run lint
+lint_status=$?
+
+if [ $lint_status -ne 0 ]; then
+  echo "ESLint failed with exit code $lint_status"
+  exit $lint_status
+fi
+
+echo "--- Running TypeScript Compiler Pre-Commit Hook ---"
+
+npx tsc --noEmit
+tsc_status=$?
+
+if [ $tsc_status -ne 0 ]; then
+  echo "TypeScript compilation check failed with exit code $tsc_status"
+  exit $tsc_status
+fi
+
+exit 0
