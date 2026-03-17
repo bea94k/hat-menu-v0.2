@@ -6,13 +6,13 @@ const RecipeSchema = object({
     id: string().uuid().required(),
     created_at: string().required(),
     name: string().required(),
-    url: string().url().required(),
+    url: string().optional(),
     ingredients: string().required(),
 });
 
 const RecipeFormSchema = object({
-    name: string().required(),
-    url: string().url().required(),
+    name: string().required('Name is required'),
+    url: string().optional(),
     ingredients: array().of(IngredientSchema).min(1, 'At least one ingredient is required').required(),
 });
 

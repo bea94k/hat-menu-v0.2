@@ -1,23 +1,23 @@
 import { useMenus } from '../data/menusApi';
 import CreateMenuForm from '../components/CreateMenuForm';
 import MenuCard from '../components/MenuCard';
+import PageWrapper from '../components/PageWrapper';
 
 const CreateMenuPage = () => {
     const { menus, isLoading, isError } = useMenus();
     const latestMenus = menus ? menus.slice(-3).reverse() : [];
 
     return (
-        <main id="maincontent">
-            <h1>Create a menu</h1>
+        <PageWrapper title="Create a menu">
 
             <CreateMenuForm />
 
-            <h2>Latest 3 menus</h2>
+            <h2 className='text-xl font-semibold'>Latest 3 menus</h2>
             {
                 isError ? (<div>failed to load</div>)
                     : isLoading ? (<div>loading...</div>) : 
                         menus && menus.length > 0 ? (
-                            <ul>
+                            <ul className='flex flex-col gap-4'>
                                 {latestMenus.map(menu => (
                                     <li key={menu.id}>
                                         <MenuCard menu={menu} />
@@ -28,7 +28,7 @@ const CreateMenuPage = () => {
                             <p>No menus available</p>
                         )
             }
-        </main>
+        </PageWrapper>
     );
 };
 

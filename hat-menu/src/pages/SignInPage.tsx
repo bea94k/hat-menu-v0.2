@@ -5,6 +5,10 @@ import { useLocation, useNavigate } from 'react-router';
 import { useAuth } from '../auth/useAuth';
 import { AuthSchema, type AuthForm } from '../schemas/Auth';
 import { mapAuthErrorMessage } from '../utils/auth';
+import Button from '../components/primitives/Button';
+import FormInputError from '../components/primitives/FormInputError';
+import Input from '../components/primitives/Input';
+import Label from '../components/primitives/Label';
 
 const SignInPage = () => {
     const navigate = useNavigate();
@@ -42,50 +46,56 @@ const SignInPage = () => {
         : null;
 
     return (
-        <main id="maincontent">
-            <h1>Sign in</h1>
+        <main id="maincontent" className="w-full min-h-screen p-4 flex justify-center items-center">
+            <div className="grid w-full max-w-2xl gap-6 justify-items-center">
 
-            {routeError && (
-                <p role="alert" aria-live="assertive">
-                    {routeError}
-                </p>
-            )}
+                {/* logo placeholder */}
+                <div className="w-40 h-40 bg-gray-400 rounded-4xl flex justify-center items-center">HatMenu</div>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <label htmlFor="sign-in-email">Email</label>
-                    <input
-                        id="sign-in-email"
-                        type="email"
-                        autoComplete="email"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
-                        {...register('email')}
-                    />
-                    {errors.email?.message && <p>{errors.email.message}</p>}
-                </div>
+                <h1 className="mb-1 pt-6 text-2xl leading-[1.2]">Sign in</h1>
 
-                <div>
-                    <label htmlFor="sign-in-password">Password</label>
-                    <input
-                        id="sign-in-password"
-                        type="password"
-                        autoComplete="current-password"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
-                        {...register('password')}
-                    />
-                    {errors.password?.message && <p>{errors.password.message}</p>}
-                </div>
+                {routeError && <FormInputError id="error-route" text={routeError} />}
 
-                {submitError && (
-                    <p role="alert" aria-live="assertive">
-                        {submitError}
-                    </p>
-                )}
+                <form noValidate onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md flex flex-col gap-4">
+                    <div>
+                        <Label htmlFor="sign-in-email">Email</Label>
+                        <Input
+                            id="sign-in-email"
+                            type="email"
+                            autoComplete="email"
+                            aria-describedby={errors.email && 'error-email'}
+                            hasError={!!errors.email}
+                            disabled={isSubmitting}
+                            {...register('email')}
+                        />
+                        {errors.email?.message && (
+                            <FormInputError id="error-email" text={errors.email.message} />
+                        )}
+                    </div>
 
-                <button type="submit" disabled={isSubmitting} className="px-3 py-2 border-2 border-black rounded-md bg-white">
-                    {isSubmitting ? 'Signing in...' : 'Sign in'}
-                </button>
-            </form>
+                    <div>
+                        <Label htmlFor="sign-in-password">Password</Label>
+                        <Input
+                            id="sign-in-password"
+                            type="password"
+                            autoComplete="current-password"
+                            aria-describedby={errors.password && 'error-password'}
+                            hasError={!!errors.password}
+                            disabled={isSubmitting}
+                            {...register('password')}
+                        />
+                        {errors.password?.message && (
+                            <FormInputError id="error-password" text={errors.password.message} />
+                        )}
+                    </div>
+
+                    {submitError && <FormInputError id="error-submit" text={submitError} />}
+
+                    <Button type="submit" disabled={isSubmitting}>
+                        {isSubmitting ? 'Signing in...' : 'Sign in'}
+                    </Button>
+                </form>
+            </div>
         </main>
     );
 };

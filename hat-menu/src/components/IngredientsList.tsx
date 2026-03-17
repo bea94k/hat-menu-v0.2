@@ -33,7 +33,7 @@ export function IngredientsList({ ingredients }: IngredientsListProps) {
     return (
         <ul className="list-disc list-inside space-y-1">
             {ingredients.map((ingredient) => (
-                <li key={ingredient.id} className="text-gray-700">
+                <li key={ingredient.id}>
                     {formatIngredient(ingredient)}
                 </li>
             ))}

@@ -1,15 +1,17 @@
 import { useFieldArray } from 'react-hook-form';
 import type { Control, UseFormRegister, FieldErrors } from 'react-hook-form';
 import { IngredientInput } from './IngredientInput';
+import Button from './primitives/Button';
 import type { RecipeForm } from '../schemas/Recipes';
 
 interface IngredientsListInputProps {
     control: Control<RecipeForm>;
     register: UseFormRegister<RecipeForm>;
     errors?: FieldErrors<RecipeForm>['ingredients'];
+    disabled?: boolean;
 }
 
-export function IngredientsListInput({ control, register, errors }: IngredientsListInputProps) {
+export function IngredientsListInput({ control, register, errors, disabled = false }: IngredientsListInputProps) {
     const { fields, append, remove } = useFieldArray({
         control,
         name: 'ingredients',
@@ -20,10 +22,14 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
     };
 
     return (
-        <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Ingredients</label>
+        <fieldset>
+            <legend
+                className="text-gray-800"
+            >
+                Ingredients
+            </legend>
 
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2 pb-2">
                 {fields.map((field, index) => (
                     <IngredientInput
                         key={field.id}
@@ -31,18 +37,21 @@ export function IngredientsListInput({ control, register, errors }: IngredientsL
                         register={register}
                         onRemove={() => remove(index)}
                         errors={errors?.[index]}
+                        disabled={disabled}
                         disableRemove={fields.length === 1}
                     />
                 ))}
             </div>
 
-            <button
-                type="button"
-                onClick={handleAddIngredient}
-                className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
-            >
-                + Add Ingredient
-            </button>
-        </div>
+            <div className="flex justify-end">
+                <Button
+                    variant='outline'
+                    disabled={disabled}
+                    onClick={handleAddIngredient}
+                >
+                    + Add Ingredient
+                </Button>
+            </div>
+        </fieldset>
     );
 }

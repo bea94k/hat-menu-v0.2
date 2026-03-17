@@ -27,18 +27,20 @@ const units = [
 ] as const;
 
 const IngredientSchema = object({
-    name: string().required().min(1).max(100),
+    name: string().required('Name is required').min(1).max(10, 'Maximum 100 characters'),
     unit: string().oneOf(units),
-    quantity: number().test(
-        'is-decimal',
-        'quantity as decimal must have maximum three digits after comma',
-        (val) => {
-            if (val != undefined) {
-                return patternThreeDigitsAfterComma.test(val.toString());
+    quantity: number()
+        .typeError('Quantity is required') 
+        .test(
+            'is-decimal',
+            'Quantity as decimal must have maximum three digits after comma',
+            (val) => {
+                if (val != undefined) {
+                    return patternThreeDigitsAfterComma.test(val.toString());
+                }
+                return true;
             }
-            return true;
-        }
-    ).min(0).max(10000),
+        ).min(0).max(10000),
 });
 
 type Ingredient = InferType<typeof IngredientSchema>
