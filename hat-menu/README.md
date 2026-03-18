@@ -64,3 +64,7 @@ When running migrations after initial auth and linking, **steps 3 and 4 are enou
 4. `supabase db push` -> apply **all** pending migrations from /migrations to the remote DB
 5. (optional) `supabase migration list` again -> confirm that the migrations you wanted were run
 6. `npm run update-types` -> update TS types. It uses double quotes, so run linting in the file.
+
+## PWA / Service workers
+
+PWA / service workers are handled through vite-plugin-pwa package, even though the page is http (not https). In local development, the newer service worker is available every time you re-run the `npm run dev`.

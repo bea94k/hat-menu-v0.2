@@ -4,8 +4,8 @@ Make the app installable on device. Offline at least for read access.
 
 **Steps**
 
-[ ] Use vite-plugin-pwa, configure it.
-[ ] Set up local server with https-localhost to serve locally through HTTPS for quick testing of PWA updates.
+[x] Use vite-plugin-pwa, configure it.
+[ ] (only if needed, seems like the plugin itself has a dev mode) Set up local server with https-localhost to serve locally through HTTPS for quick testing of PWA updates.
 [ ] (?) Add manifest metadata (`name`, `short_name`, `start_url`, `scope`, `display`, `theme_color`, `background_color`) and include app icons.
 [ ] (?) Add iOS/mobile web app meta tags and manifest link in `hat-menu/index.html`.
 [ ] (?) Register the service worker from startup in `hat-menu/src/main.tsx` using virtual module registration from `vite-plugin-pwa`.
@@ -15,6 +15,7 @@ Make the app installable on device. Offline at least for read access.
 [ ] Make an 'offline, changes might not be saved' banner.
 [ ] Make bottom navigation buttons taller.
 [ ] Add favicon.
+[ ] The newest (1.2.0) version of vite-plugin-pwa uses (nested) high-vulnerability version of serialize-javascript. Try setting an override to that package version (remember to document it) and test if everything still works okay.
 
 **Goals / expected result**
 1. Service worker available. When new one available, it waits and is only applied when user clicks "refresh" **in the UI banner**.
