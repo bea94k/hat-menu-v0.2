@@ -9,9 +9,9 @@ Make the app installable on device. Offline at least for read access.
 [ ] (?) Add manifest metadata (`name`, `short_name`, `start_url`, `scope`, `display`, `theme_color`, `background_color`) and include app icons.
 [ ] (?) Add iOS/mobile web app meta tags and manifest link in `hat-menu/index.html`.
 [ ] (?) Register the service worker from startup in `hat-menu/src/main.tsx` using virtual module registration from `vite-plugin-pwa`.
-[ ] Document, especially the occasional use of https-localhost.
+[ ] Document, especially local testing.
 
-[ ] Make updating the worker an onClick, not immediate. Create a banner.
+[x] Make updating the worker an onClick, not immediate. Create a banner.
 [ ] Make an 'offline, changes might not be saved' banner.
 [ ] Make bottom navigation buttons taller.
 [ ] Add favicon.

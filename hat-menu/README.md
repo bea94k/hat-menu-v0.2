@@ -67,4 +67,4 @@ When running migrations after initial auth and linking, **steps 3 and 4 are enou
 
 ## PWA / Service workers
 
-PWA / service workers are handled through vite-plugin-pwa package, even though the page is http (not https). In local development, the newer service worker is available every time you re-run the `npm run dev`.
+PWA / service workers are handled through vite-plugin-pwa package, even though the page is http (not https). In local development, the newer service worker is available every time you re-run the `npm run dev`, it takes 3-5 seconds for the new worker to be available.

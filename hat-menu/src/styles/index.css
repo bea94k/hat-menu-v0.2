@@ -86,4 +86,6 @@ a {
   --color-primary-300: #a4cdff;
   --color-primary-500: #143a6a;
   --color-primary-700: #0f2a4f;
+  --color-warning-100: #fff6d4;
+  --color-warning-500: #ffd744;
 }

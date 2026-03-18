@@ -9,7 +9,7 @@ export default defineConfig({
         react(), 
         tailwindcss(),
         VitePWA({ 
-            registerType: 'autoUpdate',
+            registerType: 'prompt',
             /* enable sw on development */
             devOptions: {
                 enabled: true
