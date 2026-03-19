@@ -49,8 +49,13 @@ const SignInPage = () => {
         <main id="maincontent" className="w-full min-h-screen p-4 flex justify-center items-center">
             <div className="grid w-full max-w-2xl gap-6 justify-items-center">
 
-                {/* logo placeholder */}
-                <div className="w-40 h-40 bg-gray-400 rounded-4xl flex justify-center items-center">HatMenu</div>
+                <div className="w-40 h-40 rounded-4xl flex justify-center items-center bg-primary-200 border border-primary-500/30">
+                    <img
+                        src="/favicon.svg"
+                        alt="Hat Menu logo"
+                        className="w-28 h-28 object-contain"
+                    />
+                </div>
 
                 <h1 className="mb-1 pt-6 text-2xl leading-[1.2]">Sign in</h1>
 
