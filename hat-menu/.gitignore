@@ -13,6 +13,9 @@ dist-ssr
 *.local
 .env
 
+# Dev service workers stuff when running in development mode
+/dev-dist
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
