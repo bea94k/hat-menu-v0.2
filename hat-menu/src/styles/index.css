@@ -81,6 +81,9 @@ a {
 @import "tailwindcss";
 
 @theme {
+    /* IF CHANGING THE THEME COLOR, update the meta tags in index.html and theme color in vite.config.ts
+    Some of the icons might need to be re-generated as well
+    with eg. https://favicon.inbrowser.app/tools/favicon-generator using the mask-icon as source svg */
   --color-primary-100: #ddecff;
   --color-primary-200: #c4deff;
   --color-primary-300: #a4cdff;
