@@ -11,6 +11,7 @@ Make the app installable on device. Offline at least for read access.
 [ ] Document, especially local testing.
 
 [x] Make updating the worker an onClick, not immediate. Create a banner.
+[ ] What does the "ready to work offline" really mean? Fetching data won't work, saving new data won't work.
 [ ] Make an 'offline, changes might not be saved' banner.
 [ ] Make bottom navigation buttons taller.
 [x] Add favicon.

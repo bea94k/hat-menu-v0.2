@@ -24,10 +24,11 @@ const ReloadPrompt = () => {
     return (
         (offlineReady || needRefresh) && 
             <div className="border border-warning-500 bg-warning-100 rounded-md p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                { offlineReady
-                    ? <p>App ready to work offline</p>
-                    : <p>New content available.</p>
-                }
+                {/* { offlineReady
+                    ?  */}
+                <p>App ready to work offline</p>
+                {/* : <p>New content available.</p>
+                } */}
                 <div className='flex gap-2'>
                     { needRefresh && <Button onClick={() => updateServiceWorker(true)}>Update</Button> }
                     <Button variant='outline' onClick={() => close()}>Close</Button>

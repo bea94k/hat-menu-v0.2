@@ -15,7 +15,7 @@ const NavbarLink = ({ to, children, end = false }: NavbarLinkProps) => {
             end={end}
             style={{ color: '#000000', textDecoration: 'none' }} // Overwriting default link styles. Tailwind classes are weaker than global anchor style in index.css
             className={({ isActive }) => cn(
-                'min-h-10 w-full px-1 py-2',
+                'min-h-15 w-full px-1 py-2',
                 'flex items-center justify-center',
                 'whitespace-nowrap text-sm no-underline transition-colors',
                 'hover:bg-gray-300 focus-visible:bg-gray-300',
