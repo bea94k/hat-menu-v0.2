@@ -78,6 +78,7 @@ export type Database = {
           ingredients: string
           last_edited_at: string | null
           name: string
+          ready_for_production: boolean
           url: string | null
         }
         Insert: {
@@ -86,6 +87,7 @@ export type Database = {
           ingredients: string
           last_edited_at?: string | null
           name: string
+          ready_for_production?: boolean
           url?: string | null
         }
         Update: {
@@ -94,6 +96,7 @@ export type Database = {
           ingredients?: string
           last_edited_at?: string | null
           name?: string
+          ready_for_production?: boolean
           url?: string | null
         }
         Relationships: []

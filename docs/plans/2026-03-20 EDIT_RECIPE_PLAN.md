@@ -34,7 +34,7 @@
 - Expected result: Recipe table has `last_edited_at` column available in database.types.ts
 - Test: Check Supabase schema to confirm column exists; verify database.types.ts includes the new field
 
-### Step 2: Add ready_for_production Field to Recipe Table (Temporary)
+### DONE: Step 2: Add ready_for_production Field to Recipe Table (Temporary)
 **Description:** Create a database migration to add a temporary `ready_for_production` boolean field to track manually reviewed recipes.
 
 **Details:**
