@@ -76,6 +76,7 @@ export type Database = {
           created_at: string
           id: string
           ingredients: string
+          last_edited_at: string | null
           name: string
           url: string | null
         }
@@ -83,6 +84,7 @@ export type Database = {
           created_at?: string
           id?: string
           ingredients: string
+          last_edited_at?: string | null
           name: string
           url?: string | null
         }
@@ -90,6 +92,7 @@ export type Database = {
           created_at?: string
           id?: string
           ingredients?: string
+          last_edited_at?: string | null
           name?: string
           url?: string | null
         }

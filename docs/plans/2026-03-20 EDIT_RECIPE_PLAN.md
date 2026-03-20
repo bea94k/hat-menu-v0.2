@@ -22,7 +22,7 @@
 
 ## Step-by-Step Plan
 
-### Step 1: Add last_edited_at Field to Recipe Table
+### DONE: Step 1: Add last_edited_at Field to Recipe Table
 **Description:** Create a database migration to add a `last_edited_at` timestamp field to the recipe table.
 
 **Details:**
