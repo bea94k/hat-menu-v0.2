@@ -46,22 +46,22 @@
 - Expected result: Recipe table has `ready_for_production` column; type definitions updated
 - Test: Check Supabase schema to confirm column exists; verify database.types.ts includes the new field
 
-### Step 3: Create EditRecipePage Component
+### DONE: Step 3: Create EditRecipePage Component
 **Description:** Add a new page component to be ready to display the edit form for a recipe.
 
 **Details:**
-- DONE: Create `hat-menu/src/pages/EditRecipePage.tsx`
-- DONE: Use route params to get recipe ID
-- DONE: Fetch recipe data using `useSupabaseQuery` hook through useRecipe(id)
-- DONE: Show loading state while fetching
-- DONE: console.log the recipe's data
-- DONE: Display recipe id and name in a <p> element
-- DONE: Add a "back" button in top left corner to navigate back to the recipes list
+- Create `hat-menu/src/pages/EditRecipePage.tsx`
+- Use route params to get recipe ID
+- Fetch recipe data using `useSupabaseQuery` hook through useRecipe(id)
+- Show loading state while fetching
+- console.log the recipe's data
+- Display recipe id and name in a <p> element
+- Add a "back" button in top left corner to navigate back to the recipes list
 - Make the back button a universal element in the PageWrapper.
 - Expected result: Page loads recipe by ID, displays recipe's id and name, console logs the whole recipe data
 - Test: Navigate to edit page with valid recipe ID, verify id and name matches and console logged data matches; "back" button navigates back to recipes listing.
 
-### Step 4: Add Edit Route to Router
+### DONE: Step 4: Add Edit Route to Router
 **Description:** Register the new edit recipe route in the React Router v7 config.
 
 **Details:**
