@@ -54,15 +54,20 @@ This document provides an overview of currently implemented features in the Hat 
 - **`menu_recipe` junction table** - Links menus to recipes (many-to-many)
 - **Seed data** - Available in [`seed-recipes.sql`](hat-menu/src/data/seed-recipes.sql)
 
-### 8. **Misc**
+### 8. **PWA**
+- **Installable app** - The app can be installed as a Progressive Web App on supported devices/browsers.
+- **Prompt-based service worker updates** - When a new service worker is available, the app shows an update prompt and applies the update only after explicit user click/confirmation.
+- **Offline availability with practical limits** - The shell can load offline, but all core features require an internet connection because data is fetched from and saved to Supabase.
+- **Technical implementation** - PWA support is implemented with `vite-plugin-pwa` using its strong defaults; most project-specific configuration is defined in [`hat-menu/vite.config.ts`](hat-menu/vite.config.ts).
+- **Local development/testing notes** - See the `PWA / Service workers` section in [`hat-menu/README.md`](hat-menu/README.md#pwa--service-workers) for local behavior and development details.
+
+### 9. **Misc**
 - switched to use **supabase publishable keys**, away from the legacy anon keys (https://supabase.com/docs/guides/api/api-keys#why-are-anon-and-servicerole-jwt-based-keys-no-longer-recommended)
 - **styling** made mobile-first
 
 ## ⚠️ Not Yet Implemented
 
 ### Priority/Where I left off last time
-- **Make the app a PWA**
-- Make **recipe URL not required** on the database level (migration needed)
 - **Legacy ingredient migration** - Old recipes with stringified ingredients need migration to `recipe_ingredient` table
 - **Testing** of everything we have so far
 - **Accessibility and good practices** - are there unused or unnecessary classes, properties or attributes?
