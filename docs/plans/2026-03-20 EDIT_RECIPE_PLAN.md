@@ -47,17 +47,18 @@
 - Test: Check Supabase schema to confirm column exists; verify database.types.ts includes the new field
 
 ### Step 3: Create EditRecipePage Component
-**Description:** Add a new page component to display the edit form for a recipe.
+**Description:** Add a new page component to be ready to display the edit form for a recipe.
 
 **Details:**
 - Create `hat-menu/src/pages/EditRecipePage.tsx`
 - Use route params to get recipe ID
 - Fetch recipe data using `useSupabaseQuery` hook
 - Show loading state while fetching
-- Pass recipe data to EditRecipeForm component
-- Handle success redirect (navigate back to recipe or recipes list)
-- Expected result: Page loads recipe by ID and displays edit form
-- Test: Navigate to edit page with valid recipe ID, verify form populates; edit a field and submit, verify database updates
+- console.log the recipe's data
+- Display recipe id and name in a <p> element
+- Add a "back" button in top left corner to navigate back to the recipes list
+- Expected result: Page loads recipe by ID, displays recipe's id and name, console logs the whole recipe data
+- Test: Navigate to edit page with valid recipe ID, verify id and name matches and console logged data matches; "back" button navigates back to recipes listing.
 
 ### Step 4: Add Edit Route to Router
 **Description:** Register the new edit recipe route in the React Router v7 config.
@@ -90,6 +91,7 @@
 - Reuse form validation schema from `hat-menu/src/schemas/Recipes.ts` (update schema to include ready_for_production)
 - Handle legacy ingredients (stringified JSON) before populating form
 - Support both add and edit modes with conditional rendering/behavior
+- Handle success redirect (navigate back to recipes list)
 - Also update `hat-menu/src/components/AddRecipeForm.tsx` to include ready_for_production checkbox to track new recipes
 - Expected result: Form component that pre-fills with existing recipe data (name, description, URL, ingredients, ready_for_production); new recipes also show ready_for_production checkbox
 - Test: Pass a recipe via props and verify these fields populate correctly; toggle ready_for_production checkbox and submit; verify changes persist; test AddRecipeForm also shows the checkbox

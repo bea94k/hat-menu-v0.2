@@ -10,6 +10,7 @@ import AuthProvider from './auth/AuthProvider.tsx';
 import ProtectedRoute from './auth/ProtectedRoute.tsx';
 import PublicOnlyRoute from './auth/PublicOnlyRoute.tsx';
 import SignInPage from './pages/SignInPage.tsx';
+import EditRecipePage from './pages/EditRecipePage.tsx';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')!).render(
                     <Route element={<ProtectedRoute />}>
                         <Route index element={<RecipesPage />} />
                         <Route path="add-recipe" element={<AddRecipePage />} />
+                        <Route path="edit-recipe/:id" element={<EditRecipePage />} />
                         <Route path="menus" element={<MenusPage />} />
                         <Route path="create-menu" element={<CreateMenuPage />} />
                     </Route>
