@@ -60,6 +60,7 @@ This document provides an overview of currently implemented features in the Hat 
 - **Offline availability with practical limits** - The shell can load offline, but all core features require an internet connection because data is fetched from and saved to Supabase.
 - **Technical implementation** - PWA support is implemented with `vite-plugin-pwa` using its strong defaults; most project-specific configuration is defined in [`hat-menu/vite.config.ts`](hat-menu/vite.config.ts).
 - **Local development/testing notes** - See the `PWA / Service workers` section in [`hat-menu/README.md`](hat-menu/README.md#pwa--service-workers) for local behavior and development details.
+- **Dependency override** - `serialize-javascript` package (used by dependencies of `vite-plugin-pwa`) has 3 high vulnerabilities in the version 6.0.2. There is an explicit override in [`package.json`](hat-menu/package.json) to set it to freshest version as of March 2026, 7.0.4. This should be regularly checked, whether the `vite-plugin-pwa` updated its dependencies so that we could remove the explicit override. Any bugs regarding PWA and service workers might potentially be linked to this.
 
 ### 9. **Misc**
 - switched to use **supabase publishable keys**, away from the legacy anon keys (https://supabase.com/docs/guides/api/api-keys#why-are-anon-and-servicerole-jwt-based-keys-no-longer-recommended)

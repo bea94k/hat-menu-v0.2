@@ -15,7 +15,7 @@ Make the app installable on device. Offline at least for read access.
 [nope] Make an 'offline, changes might not be saved' banner.
 [x] Make bottom navigation buttons taller.
 [x] Add favicon.
-[ ] The newest (1.2.0) version of vite-plugin-pwa uses (nested) high-vulnerability version of serialize-javascript. Try setting an override to that package version (remember to document it) and test if everything still works okay.
+[x] The newest (1.2.0) version of vite-plugin-pwa uses (nested) high-vulnerability version of serialize-javascript. Try setting an override to that package version (remember to document it) and test if everything still works okay.
 
 **Goals / expected result**
 1. Service worker available. When new one available, it waits and is only applied when user clicks "refresh" **in the UI banner**.
