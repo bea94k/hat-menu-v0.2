@@ -21,16 +21,22 @@ export function useRecipes() {
     };
 }
 
-export function useRecipesByCategory(category: string) {
-    return useSupabaseQuery<RecipeWithIngredients>({
-        table: 'recipe',
-        select: '*, recipe_ingredient(*)',
-        filters: { category },
-    });
-}
-
 export function useRecipesMutation() {
     return useSupabaseMutation('recipe');
+}
+
+export function useRecipe(id: string) {
+    const { data, error, isLoading } = useSupabaseQuery<RecipeWithIngredients>({
+        table: 'recipe',
+        select: '*, recipe_ingredient(*)',
+        filters: { id },
+    });
+
+    return {
+        recipe: data?.[0] ?? null,
+        isLoading,
+        isError: error,
+    };
 }
 
 /**

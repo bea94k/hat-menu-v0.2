@@ -50,13 +50,14 @@
 **Description:** Add a new page component to be ready to display the edit form for a recipe.
 
 **Details:**
-- Create `hat-menu/src/pages/EditRecipePage.tsx`
-- Use route params to get recipe ID
-- Fetch recipe data using `useSupabaseQuery` hook
-- Show loading state while fetching
-- console.log the recipe's data
-- Display recipe id and name in a <p> element
-- Add a "back" button in top left corner to navigate back to the recipes list
+- DONE: Create `hat-menu/src/pages/EditRecipePage.tsx`
+- DONE: Use route params to get recipe ID
+- DONE: Fetch recipe data using `useSupabaseQuery` hook through useRecipe(id)
+- DONE: Show loading state while fetching
+- DONE: console.log the recipe's data
+- DONE: Display recipe id and name in a <p> element
+- DONE: Add a "back" button in top left corner to navigate back to the recipes list
+- Make the back button a universal element in the PageWrapper.
 - Expected result: Page loads recipe by ID, displays recipe's id and name, console logs the whole recipe data
 - Test: Navigate to edit page with valid recipe ID, verify id and name matches and console logged data matches; "back" button navigates back to recipes listing.
 
@@ -64,17 +65,17 @@
 **Description:** Register the new edit recipe route in the React Router v7 config.
 
 **Details:**
-- Update `hat-menu/src/main.tsx` to add route: `/recipes/:id/edit`
+- Update `hat-menu/src/main.tsx` to add route: `/edit-recipe/:id`
 - Wrap with ProtectedRoute to ensure only authenticated users can edit
 - Expected result: Route is accessible and loads EditRecipePage component
-- Test: Navigate to `/recipes/123/edit`, verify page loads; visit non-existent ID `/recipes/999/edit`, verify error handling
+- Test: Navigate to `/edit-recipe/123`, verify page loads; visit non-existent ID `/edit-recipe/999`, verify error handling
 
 ### Step 5: Add Edit Button to RecipeCard Component
 **Description:** Add a navigation button to allow users to access the edit page from recipe cards, and display a visual indicator for ready_for_production status.
 
 **Details:**
 - Update `hat-menu/src/components/RecipeCard.tsx`
-- Add "Edit" button that navigates to `/recipes/{id}/edit` route
+- Add "Edit" button that navigates to `/edit-recipe/{id}` route
 - Show button only for authenticated users (can check in component or hide based on context)
 - Add visual indicator (e.g., green checkmark, green dot, or badge) next to recipe name/title when `ready_for_production` is true
 - When `ready_for_production` is false, no indicator is shown
