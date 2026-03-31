@@ -82,7 +82,7 @@
 - Expected result: Recipe card displays edit button and ready_for_production status indicator
 - Test: Click edit button on recipe card, verify navigation to edit page works; verify indicator appears for recipes with ready_for_production=true and is absent for false
 
-### Step 6: Create EditRecipeForm Component
+### DONE: Step 6: Create EditRecipeForm Component
 **Description:** Extract common form logic from AddRecipeForm into a reusable component that can handle both insert and update modes, including the temporary ready_for_production field.
 
 **Details:**
