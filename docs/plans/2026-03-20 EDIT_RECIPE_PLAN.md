@@ -70,7 +70,7 @@
 - Expected result: Route is accessible and loads EditRecipePage component
 - Test: Navigate to `/edit-recipe/123`, verify page loads; visit non-existent ID `/edit-recipe/999`, verify error handling
 
-### Step 5: Add Edit Button to RecipeCard Component
+### DONE: Step 5: Add Edit Button to RecipeCard Component
 **Description:** Add a navigation button to allow users to access the edit page from recipe cards, and display a visual indicator for ready_for_production status.
 
 **Details:**
@@ -146,4 +146,45 @@
 - Regenerate TypeScript types: `npm run update-types` (field will be removed from types)
 - Expected result: ready_for_production completely removed from codebase and database
 - Test: Verify field is no longer in database schema, forms no longer show checkbox, RecipeCard no longer shows indicator, type definitions no longer include field
+
+### Step 11: Remove Legacy `recipe.ingredients` Text Column (Cleanup)
+**Description:** After all recipes have been manually reviewed and their ingredients migrated to the `recipe_ingredient` junction table, remove the legacy `recipe.ingredients` text column and all related dual-format handling throughout the codebase.
+
+**Prerequisite:** All recipes must have their ingredients stored in `recipe_ingredient` table. Verify with: `SELECT id, name FROM recipe WHERE id NOT IN (SELECT DISTINCT recipe_id FROM recipe_ingredient);` — result should be empty.
+
+**Details:**
+
+**Database:**
+- Create migration to drop the `ingredients` column from `recipe` table
+- Run migration in Supabase
+- Regenerate TypeScript types: `npm run update-types` (`ingredients` field will disappear from auto-generated types)
+
+**Types (`hat-menu/src/schemas/supabase-helpers.ts`):**
+- Remove `ingredients: string` from `Recipe` type extension (the `& { ingredients: string }` override will no longer be needed)
+- Remove `ingredients?: string` from `RecipeInsert` type extension
+- Remove `ingredients?: string` from `RecipeUpdate` type extension
+- If `Recipe` type no longer needs any custom extensions beyond the base `RecipeRow`, simplify or remove the extended type alias
+
+**Validation schema (`hat-menu/src/schemas/Recipes.ts`):**
+- Remove `ingredients: string().required()` from `RecipeSchema` (the full-record validation schema)
+- `RecipeFormSchema` already uses `array().of(IngredientSchema)` for the form — no change needed there
+
+**UI — RecipeCard (`hat-menu/src/components/RecipeCard.tsx`):**
+- Remove `hasStructuredIngredients` conditional check
+- Remove the legacy text fallback branch (`recipe.ingredients` display + "Legacy text format" label)
+- Always render `<IngredientsList>` with `recipe.recipe_ingredient`
+- Remove the "Structured format" label (no longer needed as a distinction)
+- Update `Props` type: use `RecipeWithIngredients` only instead of `Recipe | RecipeWithIngredients`
+
+**API — recipesApi.ts (`hat-menu/src/data/recipesApi.ts`):**
+- Remove the dummy `ingredients: 'temp string cause ingredients in separate table'` from `addRecipe` insert call
+- Clean up any other references to `recipe.ingredients` text field
+
+**Documentation:**
+- Update `copilot-instructions.md`: remove "Legacy" bullet under "Ingredients storage", remove pitfall #5 about legacy ingredient data
+- Update `FEATURES.md`: remove "Legacy data" bullet about stringified ingredient arrays
+- Update `INGREDIENTS_PLAN.md`: mark backward-compatibility notes as resolved
+
+- Expected result: `recipe.ingredients` text column fully removed from database, types, UI, API, and docs; all ingredient display uses `recipe_ingredient` junction table exclusively
+- Test: Verify DB column is gone; `npm run update-types` produces types without `ingredients` on recipe; app compiles with no type errors; RecipeCard renders ingredients via `<IngredientsList>` only; `addRecipe` no longer sends a dummy ingredients string; grep codebase for `recipe.ingredients` and `hasStructuredIngredients` returns zero hits
 
