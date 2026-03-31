@@ -88,13 +88,13 @@
 **Details:**
 - Create `hat-menu/src/components/EditRecipeForm.tsx` 
 - Accept props: `recipe?: Recipe` (optional, for edit mode), `onSuccess: () => void`
-- Include form fields for: name, description, URL, ingredients, and ready_for_production checkbox
+- Include form fields for: name, URL, ingredients (inputs for name, quantity and unit), and ready_for_production checkbox
 - Reuse form validation schema from `hat-menu/src/schemas/Recipes.ts` (update schema to include ready_for_production)
 - Handle legacy ingredients (stringified JSON) before populating form
 - Support both add and edit modes with conditional rendering/behavior
-- Handle success redirect (navigate back to recipes list)
+- Handle success (show a success notification/feedback)
 - Also update `hat-menu/src/components/AddRecipeForm.tsx` to include ready_for_production checkbox to track new recipes
-- Expected result: Form component that pre-fills with existing recipe data (name, description, URL, ingredients, ready_for_production); new recipes also show ready_for_production checkbox
+- Expected result: Form component that pre-fills with existing recipe data (name, URL, ingredients, ready_for_production); new recipes also show ready_for_production checkbox
 - Test: Pass a recipe via props and verify these fields populate correctly; toggle ready_for_production checkbox and submit; verify changes persist; test AddRecipeForm also shows the checkbox
 
 ### Step 7: Verify updateRecipe Function Handles All Fields and Sets last_edited_at

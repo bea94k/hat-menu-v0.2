@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router';
 import PageWrapper from '../components/PageWrapper';
+import EditRecipeForm from '../components/EditRecipeForm';
 import Button from '../components/primitives/Button';
 import { useRecipe } from '../data/recipesApi';
 
@@ -21,11 +22,9 @@ const EditRecipePage = () => {
             {isLoading && <p>Loading recipe…</p>}
             {isError && <p>Failed to load recipe.</p>}
             {recipe && (
-                <div>
-                    <p>ID: {recipe.id}</p>
-                    <p>Name: {recipe.name}</p>
-                    {recipe.url && <p>URL: {recipe.url}</p>}
-                </div>
+                <EditRecipeForm
+                    recipe={recipe}
+                />
             )}
         </PageWrapper>
     );

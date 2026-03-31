@@ -1,9 +1,10 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, type Resolver, type SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router';
-import { addRecipe } from '../data/recipesApi';
+import { updateRecipe } from '../data/recipesApi';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
+import type { RecipeWithIngredients, RecipeIngredientInsert } from '../schemas/supabase-helpers';
 import { IngredientsListInput } from './IngredientsListInput';
 import { isSessionError } from '../utils/auth';
 import Button from './primitives/Button';
@@ -11,54 +12,83 @@ import FormInputError from './primitives/FormInputError';
 import Input from './primitives/Input';
 import Label from './primitives/Label';
 
-const AddRecipeForm = () => {
-    const inputRef = useRef<HTMLInputElement>(null);
+interface EditRecipeFormProps {
+    recipe: RecipeWithIngredients;
+}
+
+function parseRecipeIngredients(recipe: RecipeWithIngredients): RecipeForm['ingredients'] {
+    // Use structured ingredients from junction table if available
+    if (recipe.recipe_ingredient && recipe.recipe_ingredient.length > 0) {
+        return recipe.recipe_ingredient.map(ing => ({
+            name: ing.ingredient_name,
+            quantity: ing.quantity ?? undefined,
+            unit: ing.unit ?? '',
+        }));
+    }
+
+    // Fall back to legacy comma-separated text in recipe.ingredients
+    if ('ingredients' in recipe && typeof recipe.ingredients === 'string' && recipe.ingredients) {
+        const items = recipe.ingredients.split(',').map(s => s.trim()).filter(Boolean);
+        if (items.length > 0) {
+            return items.map(name => ({ name, quantity: undefined, unit: '' }));
+        }
+    }
+
+    return [{ name: '', quantity: undefined, unit: '' }];
+}
+
+const EditRecipeForm = ({ recipe }: EditRecipeFormProps) => {
     const navigate = useNavigate();
 
     const {
         register,
         control,
-        reset,
         handleSubmit,
         formState: { errors, isSubmitting },
     } = useForm<RecipeForm>({
         resolver: yupResolver(RecipeFormSchema) as Resolver<RecipeForm>,
         defaultValues: {
-            name: '',
-            url: '',
-            ingredients: [{ name: '', quantity: undefined, unit: '' }],
-            ready_for_production: false,
+            name: recipe.name,
+            url: recipe.url ?? '',
+            ingredients: parseRecipeIngredients(recipe),
+            ready_for_production: recipe.ready_for_production ?? false,
         }
     });
 
     const [submitStatus, setSubmitStatus] = useState<string | null>(null);
+
     const onSubmit: SubmitHandler<RecipeForm> = async (data) => {
         setSubmitStatus('Saving...');
         try {
-            const parsedData: RecipeForm = {
-                ...data,
-                url: data.url?.trim() || null,
-                ready_for_production: data.ready_for_production ?? false,
-            };
+            const ingredients: RecipeIngredientInsert[] = data.ingredients.map(ing => ({
+                recipe_id: recipe.id,
+                ingredient_name: ing.name,
+                quantity: ing.quantity,
+                unit: ing.unit,
+            }));
 
-            const response = await addRecipe(parsedData);
-            setSubmitStatus(`Recipe saved! with ID: ${response?.id}`);
-            reset();
-            inputRef?.current?.focus();
+            await updateRecipe(
+                recipe.id,
+                {
+                    name: data.name,
+                    url: data.url?.trim() || null,
+                    ready_for_production: data.ready_for_production,
+                },
+                ingredients,
+            );
+
+            setSubmitStatus('Recipe updated!');
         } catch (error: unknown) {
-            console.error('Error saving recipe:', error);
+            console.error('Error updating recipe:', error);
 
             if (isSessionError(error)) {
                 navigate('/sign-in', { replace: true, state: { reason: 'session-expired' } });
                 return;
             }
 
-            setSubmitStatus('An error occurred while adding the recipe.');
+            setSubmitStatus('An error occurred while updating the recipe.');
         }
     };
-
-    // to be able to use ref along with register, ref for focusing after submit
-    const { ref, ...rest } = register('name');
 
     return (
         <form noValidate onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-6'>
@@ -71,11 +101,7 @@ const AddRecipeForm = () => {
                     autoComplete="off"
                     required
                     disabled={isSubmitting}
-                    {...rest}
-                    ref={(e) => {
-                        ref(e);
-                        inputRef.current = e;
-                    }}
+                    {...register('name')}
                 />
                 {errors.name && (
                     <FormInputError
@@ -123,7 +149,7 @@ const AddRecipeForm = () => {
             </div>
 
             <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Saving...' : 'Add Recipe'}
+                {isSubmitting ? 'Saving...' : 'Update Recipe'}
             </Button>
 
             <div role="status">
@@ -137,4 +163,4 @@ const AddRecipeForm = () => {
     );
 };
 
-export default AddRecipeForm;
+export default EditRecipeForm;

@@ -53,7 +53,8 @@ async function addRecipe(recipe: RecipeForm): Promise<RecipeWithIngredients | nu
             .insert({
                 name: recipe.name,
                 url: recipe.url,
-                ingredients: 'temp string cause ingredients in separate table'
+                ingredients: 'temp string cause ingredients in separate table',
+                ready_for_production: recipe.ready_for_production ?? false,
             })
             .select()
             .single();
