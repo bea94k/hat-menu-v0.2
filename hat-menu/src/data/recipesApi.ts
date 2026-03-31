@@ -1,6 +1,6 @@
 import { useSupabaseQuery, useSupabaseMutation } from './useSupabaseQuery';
 import { supabase } from '../supabase-config';
-import type { RecipeWithIngredients, /* RecipeInsert, */ RecipeUpdate, RecipeIngredientInsert } from '../schemas/supabase-helpers';
+import type { RecipeWithIngredients, RecipeIngredientInsert } from '../schemas/supabase-helpers';
 import type { RecipeForm } from '../schemas/Recipes';
 import { checkAuthenticatedSession } from '../utils/auth';
 
@@ -114,8 +114,7 @@ async function addRecipe(recipe: RecipeForm): Promise<RecipeWithIngredients | nu
  */
 async function updateRecipe(
     recipeId: string,
-    updates: RecipeUpdate,
-    ingredients: RecipeIngredientInsert[]
+    recipe: RecipeForm,
 ): Promise<RecipeWithIngredients | null> {
     try {
         await checkAuthenticatedSession();
@@ -123,7 +122,11 @@ async function updateRecipe(
         // 1. Update main recipe fields
         const { data: recipeData, error: recipeError } = await supabase
             .from('recipe')
-            .update(updates)
+            .update({
+                name: recipe.name,
+                url: recipe.url?.trim() || null,
+                ready_for_production: recipe.ready_for_production ?? false,
+            })
             .eq('id', recipeId)
             .select()
             .single();
@@ -143,13 +146,14 @@ async function updateRecipe(
         }
 
         // 3. Insert fresh ingredient list
+        const ingredients = recipe.ingredients;
         if (ingredients && ingredients.length > 0) {
-            const ingredientRows = ingredients.map(ing => ({
+            const ingredientRows: RecipeIngredientInsert[] = ingredients.map(ing => ({
                 recipe_id: recipeId,
-                ingredient_name: ing.ingredient_name,
+                ingredient_name: ing.name,
                 quantity: ing.quantity,
                 unit: ing.unit,
-            } as RecipeIngredientInsert));
+            }));
 
             const { error: insertError } = await supabase
                 .from('recipe_ingredient')

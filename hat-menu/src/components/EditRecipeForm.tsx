@@ -4,7 +4,7 @@ import { useForm, type Resolver, type SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { updateRecipe } from '../data/recipesApi';
 import { RecipeFormSchema, type RecipeForm } from '../schemas/Recipes';
-import type { RecipeWithIngredients, RecipeIngredientInsert } from '../schemas/supabase-helpers';
+import type { RecipeWithIngredients } from '../schemas/supabase-helpers';
 import { IngredientsListInput } from './IngredientsListInput';
 import { isSessionError } from '../utils/auth';
 import Button from './primitives/Button';
@@ -60,22 +60,7 @@ const EditRecipeForm = ({ recipe }: EditRecipeFormProps) => {
     const onSubmit: SubmitHandler<RecipeForm> = async (data) => {
         setSubmitStatus('Saving...');
         try {
-            const ingredients: RecipeIngredientInsert[] = data.ingredients.map(ing => ({
-                recipe_id: recipe.id,
-                ingredient_name: ing.name,
-                quantity: ing.quantity,
-                unit: ing.unit,
-            }));
-
-            await updateRecipe(
-                recipe.id,
-                {
-                    name: data.name,
-                    url: data.url?.trim() || null,
-                    ready_for_production: data.ready_for_production,
-                },
-                ingredients,
-            );
+            await updateRecipe(recipe.id, data);
 
             setSubmitStatus('Recipe updated!');
         } catch (error: unknown) {
