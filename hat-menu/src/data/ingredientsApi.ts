@@ -1,5 +1,8 @@
-import { useSupabaseQuery, useSupabaseMutation } from './useSupabaseQuery';
+import { mutate as mutateSWR } from 'swr';
+import { supabase } from '../supabase-config';
+import { useSupabaseQuery } from './useSupabaseQuery';
 import type { SuggestedIngredient, SuggestedIngredientInsert } from '../schemas/supabase-helpers';
+import { normalizeUniqueStrings } from '../utils/utils';
 
 /**
  * Hook to fetch all suggested ingredients for autocomplete
@@ -22,26 +25,32 @@ export function useSuggestedIngredients() {
 }
 
 /**
- * Hook for adding new suggested ingredients on the fly
- * Useful when user enters a custom ingredient not in the autocomplete list
+ * Add new suggested ingredients to the database
+ * When creating or updating recipe and an ingredient is not yet in the suggestions/autocomplete list
+ * @param names - array of ingredient names, will be normalized to lowercase and trimmed before insertion
  */
-export function useAddSuggestedIngredient() {
-    const { mutate } = useSupabaseMutation('suggested_ingredient');
 
-    /**
-     * Add a new ingredient to the suggestions list
-     * @param name - Ingredient name (must be singular, lowercase per conventions)
-     */
-    const addIngredient = async (name: string): Promise<SuggestedIngredient | null> => {
-        const ingredientData: SuggestedIngredientInsert = {
-            name: name.toLowerCase().trim(), // Enforce lowercase convention
-        };
+export async function syncSuggestedIngredients(names: string[]): Promise<void> {
+    const normalizedNames = normalizeUniqueStrings(names);
 
-        const result = await mutate('insert', ingredientData, 'NEW') as SuggestedIngredient[];
-        return result?.[0] ?? null;
-    };
+    if (normalizedNames.length === 0) {
+        return;
+    }
 
-    return {
-        addIngredient
-    };
+    const ingredientData: SuggestedIngredientInsert[] = normalizedNames.map(name => ({ name }));
+
+    const { error } = await supabase
+        .from('suggested_ingredient')
+        .upsert(ingredientData, {
+            onConflict: 'name',
+            ignoreDuplicates: true,
+        });
+
+    if (error) {
+        throw new Error(error.message);
+    }
+
+    await mutateSWR(
+        (key) => typeof key === 'string' && key.startsWith('/suggested_ingredient?')
+    );
 }

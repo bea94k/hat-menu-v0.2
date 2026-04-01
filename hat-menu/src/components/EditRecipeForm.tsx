@@ -1,7 +1,7 @@
 import { updateRecipe } from '../data/recipesApi';
 import type { RecipeForm } from '../schemas/Recipes';
 import type { RecipeWithIngredients } from '../schemas/supabase-helpers';
-import { parseRecipeIngredients } from '../utils/utils';
+import { parseRecipeIngredients } from '../utils/recipeUtils';
 import RecipeFormBase from './RecipeFormBase';
 
 interface EditRecipeFormProps {

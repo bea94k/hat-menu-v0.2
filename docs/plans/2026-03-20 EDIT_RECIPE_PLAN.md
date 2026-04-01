@@ -97,17 +97,17 @@
 - Expected result: Form component that pre-fills with existing recipe data (name, URL, ingredients, ready_for_production); new recipes also show ready_for_production checkbox
 - Test: Pass a recipe via props and verify these fields populate correctly; toggle ready_for_production checkbox and submit; verify changes persist; test AddRecipeForm also shows the checkbox
 
-### Step 7: Verify updateRecipe Function Handles All Fields and Sets last_edited_at
+### DONE: Step 7: Verify updateRecipe Function Handles All Fields and Sets last_edited_at
 **Description:** Audit the existing `updateRecipe` function in `recipesApi.ts` to ensure it properly handles editable fields, ingredient updates, and sets the last_edited_at timestamp.
 
 **Details:**
 - Review `hat-menu/src/data/recipesApi.ts` `updateRecipe` function
-- Verify it handles: name, description, URL
+- Verify it handles: name, URL, ready for production
 - Verify it handles ingredient updates (delete old, insert new via `recipe_ingredient` table)
 - Verify it sets `last_edited_at` to current timestamp on every update
 - Add or fix logic if missing
 - Expected result: `updateRecipe` properly updates editable recipe columns, junction table entries, and timestamp
-- Test: Update a recipe with changed name, description, URL, and ingredients; verify all changes persist and last_edited_at is updated
+- Test: Update a recipe with changed name, URL, ready for production, and ingredients; verify all changes persist and last_edited_at is updated
 
 ### Step 8: Handle Recipe Not Found / Permission Errors
 **Description:** Add appropriate error handling and user feedback for edge cases.

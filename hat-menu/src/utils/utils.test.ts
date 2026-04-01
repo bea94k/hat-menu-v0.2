@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getUniqueRandom } from './utils';
+import { getUniqueRandom, normalizeUniqueStrings } from './utils';
 
 type TestItem = { id: string; value: string };
 
@@ -58,5 +58,15 @@ describe('getUniqueRandom', () => {
         const result2 = getUniqueRandom(5, items);
         // Not guaranteed, but likely
         expect(result1.map(i => i.id).join()).not.toBe(result2.map(i => i.id).join());
+    });
+});
+
+describe('normalizeUniqueStrings', () => {
+    it('trims, lowercases, and removes empty values', () => {
+        expect(normalizeUniqueStrings([' Salt ', 'FLOUR', '', '   '])).toEqual(['salt', 'flour']);
+    });
+
+    it('deduplicates normalized values while preserving first-seen order', () => {
+        expect(normalizeUniqueStrings(['Salt', ' salt ', 'FLOUR', 'flour'])).toEqual(['salt', 'flour']);
     });
 });

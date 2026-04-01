@@ -1,4 +1,5 @@
 import { useSupabaseQuery, useSupabaseMutation } from './useSupabaseQuery';
+import { syncSuggestedIngredients } from './ingredientsApi';
 import { supabase } from '../supabase-config';
 import type { RecipeWithIngredients, RecipeIngredientInsert } from '../schemas/supabase-helpers';
 import type { RecipeForm } from '../schemas/Recipes';
@@ -72,6 +73,10 @@ async function addRecipe(recipe: RecipeForm): Promise<RecipeWithIngredients | nu
                 unit: ing.unit,
             }));
 
+            await syncSuggestedIngredients(
+                recipeIngredientInserts.map(ingredient => ingredient.ingredient_name)
+            );
+
             const { error: recipeIngredientError } = await supabase
                 .from('recipe_ingredient')
                 .insert(recipeIngredientInserts);
@@ -126,6 +131,7 @@ async function updateRecipe(
                 name: recipe.name,
                 url: recipe.url?.trim() || null,
                 ready_for_production: recipe.ready_for_production ?? false,
+                last_edited_at: new Date().toISOString(),
             })
             .eq('id', recipeId)
             .select()
@@ -154,6 +160,10 @@ async function updateRecipe(
                 quantity: ing.quantity,
                 unit: ing.unit,
             }));
+
+            await syncSuggestedIngredients(
+                ingredientRows.map(ingredient => ingredient.ingredient_name)
+            );
 
             const { error: insertError } = await supabase
                 .from('recipe_ingredient')
