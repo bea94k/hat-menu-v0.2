@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "chmod +x .githooks/pre-commit && cp .githooks/pre-commit ../.git/hooks/ && chmod +x ../.git/hooks/pre-commit && echo 'Git hooks copied' && vite",
-    "build": "tsc -b && vite build",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.node.json",
+    "build": "npm run typecheck && vite build",
     "update-types": "npx supabase gen types --lang=typescript --project-id \"mhkyawszdfzvqpabtekd\" > src/schemas/database.types.ts",
     "lint": "eslint .",
     "preview": "vite preview",

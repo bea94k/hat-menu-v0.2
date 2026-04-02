@@ -24,7 +24,7 @@ fi
 
 echo "--- Running TypeScript Compiler Pre-Commit Hook ---"
 
-npx tsc --noEmit
+npm run typecheck
 tsc_status=$?
 
 if [ $tsc_status -ne 0 ]; then
