@@ -1,13 +1,15 @@
 import type { RecipeForm } from '../schemas/Recipes';
 import type { RecipeWithIngredients } from '../schemas/supabase-helpers';
 
+type IngredientUnit = NonNullable<RecipeForm['ingredients']>[number]['unit'];
+
 function parseRecipeIngredients(recipe: RecipeWithIngredients): RecipeForm['ingredients'] {
     // Use structured ingredients from junction table if available
     if (recipe.recipe_ingredient && recipe.recipe_ingredient.length > 0) {
         return recipe.recipe_ingredient.map(ing => ({
             name: ing.ingredient_name,
             quantity: ing.quantity ?? undefined,
-            unit: ing.unit ?? '',
+            unit: (ing.unit ?? '') as IngredientUnit,
         }));
     }
 
