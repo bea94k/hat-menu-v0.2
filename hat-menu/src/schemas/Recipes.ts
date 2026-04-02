@@ -1,4 +1,4 @@
-import { array, object, string, type InferType } from 'yup';
+import { array, boolean, object, string, type InferType } from 'yup';
 import type { Recipe, RecipeInsert, RecipeUpdate } from './supabase-helpers';
 import { IngredientSchema } from './Ingredients';
 
@@ -24,6 +24,7 @@ const RecipeFormSchema = object({
         })
         .defined(),
     ingredients: array().of(IngredientSchema).min(1, 'At least one ingredient is required').required(),
+    ready_for_production: boolean().defined().default(false),
 });
 
 type RecipeForm = InferType<typeof RecipeFormSchema>;

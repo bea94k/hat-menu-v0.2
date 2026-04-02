@@ -71,9 +71,7 @@ Import the singleton from [hat-menu/src/supabase-config.ts](hat-menu/src/supabas
 ## Conventions
 
 - **File organization**: Components in `/components`, full-page components in `/pages`, API hooks in `/data`
-- **Plan files**: Whenever asked to create a plan for a feature/task/work, always save it as a Markdown file in `/docs/plans/` (root-level directory).
-  - Filename must start with the current date in `YYYY-MM-DD` format.
-  - Recommended pattern: `YYYY-MM-DD-short-plan-name.md`.
+- **Plan files**: Whenever asked to create a plan for a feature/task/work, follow the workflow in [.github/prompts/create-plan-file.md](.github/prompts/create-plan-file.md). Files are saved in `/docs/plans/` (root-level directory) with the filename format: `YYYY-MM-DD <ALL_CAPS_SHORT_NAME>_PLAN.md` (e.g., `2026-03-17 ADD_FEATURE_PLAN.md`). Plan content must include: title, scope/assumptions, and step-by-step plan with acceptance criteria and verification methods for each step.
 - **Routing**: Using React Router v7 (not react-router-dom), see [hat-menu/src/main.tsx](hat-menu/src/main.tsx)
 - **Styling**: Use Tailwind CSS utility classes for component styling. Do not use inline styles and do not add manually written component/page classes to `hat-menu/src/styles/index.css`; prefer Tailwind utilities directly in JSX. Never touch or adjust focus styles unless explicitly asked.
 - **ARIA status usage**: For elements with `role="status"`, do not add `aria-live="polite"`. The polite live region is already implicit, and adding it is unnecessary duplication.

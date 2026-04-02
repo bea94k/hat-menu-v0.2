@@ -14,4 +14,12 @@ const getUniqueRandom = <T extends { id: string }>(itemCount: number, items: T[]
     return uniqueItems;
 };
 
-export { getUniqueRandom };
+const normalizeUniqueStrings = (values: string[]): string[] => {
+    return [...new Set(
+        values
+            .map(value => value.trim().toLowerCase())
+            .filter(value => value.length > 0)
+    )];
+};
+
+export { getUniqueRandom, normalizeUniqueStrings };

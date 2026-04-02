@@ -1,6 +1,7 @@
 import { useSupabaseQuery, useSupabaseMutation } from './useSupabaseQuery';
+import { syncSuggestedIngredients } from './ingredientsApi';
 import { supabase } from '../supabase-config';
-import type { RecipeWithIngredients, /* RecipeInsert, */ RecipeUpdate, RecipeIngredientInsert } from '../schemas/supabase-helpers';
+import type { RecipeWithIngredients, RecipeIngredientInsert } from '../schemas/supabase-helpers';
 import type { RecipeForm } from '../schemas/Recipes';
 import { checkAuthenticatedSession } from '../utils/auth';
 
@@ -21,16 +22,22 @@ export function useRecipes() {
     };
 }
 
-export function useRecipesByCategory(category: string) {
-    return useSupabaseQuery<RecipeWithIngredients>({
-        table: 'recipe',
-        select: '*, recipe_ingredient(*)',
-        filters: { category },
-    });
-}
-
 export function useRecipesMutation() {
     return useSupabaseMutation('recipe');
+}
+
+export function useRecipe(id: string) {
+    const { data, error, isLoading } = useSupabaseQuery<RecipeWithIngredients>({
+        table: 'recipe',
+        select: '*, recipe_ingredient(*)',
+        filters: { id },
+    });
+
+    return {
+        recipe: data?.[0] ?? null,
+        isLoading,
+        isError: error,
+    };
 }
 
 /**
@@ -47,7 +54,8 @@ async function addRecipe(recipe: RecipeForm): Promise<RecipeWithIngredients | nu
             .insert({
                 name: recipe.name,
                 url: recipe.url,
-                ingredients: 'temp string cause ingredients in separate table'
+                ingredients: 'temp string cause ingredients in separate table',
+                ready_for_production: recipe.ready_for_production ?? false,
             })
             .select()
             .single();
@@ -64,6 +72,10 @@ async function addRecipe(recipe: RecipeForm): Promise<RecipeWithIngredients | nu
                 quantity: ing.quantity,
                 unit: ing.unit,
             }));
+
+            await syncSuggestedIngredients(
+                recipeIngredientInserts.map(ingredient => ingredient.ingredient_name)
+            );
 
             const { error: recipeIngredientError } = await supabase
                 .from('recipe_ingredient')
@@ -107,8 +119,7 @@ async function addRecipe(recipe: RecipeForm): Promise<RecipeWithIngredients | nu
  */
 async function updateRecipe(
     recipeId: string,
-    updates: RecipeUpdate,
-    ingredients: RecipeIngredientInsert[]
+    recipe: RecipeForm,
 ): Promise<RecipeWithIngredients | null> {
     try {
         await checkAuthenticatedSession();
@@ -116,7 +127,12 @@ async function updateRecipe(
         // 1. Update main recipe fields
         const { data: recipeData, error: recipeError } = await supabase
             .from('recipe')
-            .update(updates)
+            .update({
+                name: recipe.name,
+                url: recipe.url?.trim() || null,
+                ready_for_production: recipe.ready_for_production ?? false,
+                last_edited_at: new Date().toISOString(),
+            })
             .eq('id', recipeId)
             .select()
             .single();
@@ -136,13 +152,18 @@ async function updateRecipe(
         }
 
         // 3. Insert fresh ingredient list
+        const ingredients = recipe.ingredients;
         if (ingredients && ingredients.length > 0) {
-            const ingredientRows = ingredients.map(ing => ({
+            const ingredientRows: RecipeIngredientInsert[] = ingredients.map(ing => ({
                 recipe_id: recipeId,
-                ingredient_name: ing.ingredient_name,
+                ingredient_name: ing.name,
                 quantity: ing.quantity,
                 unit: ing.unit,
-            } as RecipeIngredientInsert));
+            }));
+
+            await syncSuggestedIngredients(
+                ingredientRows.map(ingredient => ingredient.ingredient_name)
+            );
 
             const { error: insertError } = await supabase
                 .from('recipe_ingredient')

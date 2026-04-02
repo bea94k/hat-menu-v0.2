@@ -14,8 +14,9 @@ const RecipesPage = () => {
                 {(!recipes || recipes.length === 0) ? (
                     <li>No recipes available</li>
                 ) : (
-
-                    recipes?.map(recipe => (
+                // recipes?.map(...) -> original code
+                // NOTE: temp sort so that not ready for prod are on top
+                    [...recipes].sort((a, b) => Number(a.ready_for_production) - Number(b.ready_for_production)).map(recipe => (
                         <li key={recipe.id}>
                             <RecipeCard recipe={recipe} />
                         </li>
