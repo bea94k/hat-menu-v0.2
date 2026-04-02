@@ -109,15 +109,15 @@
 - Expected result: `updateRecipe` properly updates editable recipe columns, junction table entries, and timestamp
 - Test: Update a recipe with changed name, URL, ready for production, and ingredients; verify all changes persist and last_edited_at is updated
 
-### Step 8: Handle Recipe Not Found / Permission Errors
-**Description:** Add appropriate error handling and user feedback for edge cases.
+### DONE: Step 8: Handle Recipe Not Found
+**Description:** Add appropriate error handling and user feedback when an edit route points to a recipe that does not exist.
 
 **Details:**
-- Update EditRecipePage to handle: recipe not found (404), unauthorized access (403)
-- Display user-friendly error messages
+- Update EditRecipePage to detect when the recipe query completes without returning a matching recipe
+- Display a user-friendly "Recipe not found" message instead of a blank edit form
 - Provide navigation back to recipes list
-- Expected result: Graceful error handling with helpful messages
-- Test: Visit edit page for non-existent recipe ID, verify error message; attempt to edit recipe owned by another user (if applicable), verify access denied
+- Expected result: Non-existent recipe IDs show a clear not-found state with a way back to the recipes list
+- Test: Visit edit page for non-existent recipe ID and verify the not-found message appears
 
 ### Step 9: E2E Test Recipe Edit Flow
 **Description:** Manually test the complete edit workflow from start to finish.
