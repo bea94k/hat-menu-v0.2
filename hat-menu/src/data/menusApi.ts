@@ -1,6 +1,6 @@
 import { useSupabaseQuery, useSupabaseMutation } from './useSupabaseQuery';
 import { supabase } from '../supabase-config';
-import type { Menu, MenuWithRecipes, MenuRecipeInsert } from '../schemas/supabase-helpers';
+import type { MenuRow, MenuWithRecipes, MenuRecipeInsert } from '../schemas/supabase-helpers';
 import type { MenuForm } from '../schemas/Menus';
 import { format } from 'date-fns';
 import { checkAuthenticatedSession } from '../utils/auth';
@@ -32,7 +32,7 @@ export function useMenusMutation() {
     return useSupabaseMutation('menu');
 }
 
-async function addMenu(menu: MenuForm): Promise<Menu | null> {
+async function addMenu(menu: MenuForm): Promise<MenuRow & { recipes: MenuForm['recipes'] } | null> {
     try {
         await checkAuthenticatedSession();
 
