@@ -119,7 +119,7 @@
 - Expected result: Non-existent recipe IDs show a clear not-found state with a way back to the recipes list
 - Test: Visit edit page for non-existent recipe ID and verify the not-found message appears
 
-### Step 9: E2E Test Recipe Edit Flow
+### DONE: Step 9: E2E Test Recipe Edit Flow
 **Description:** Manually test the complete edit workflow from start to finish.
 
 **Details:**
