@@ -122,10 +122,6 @@ const RecipeFormBase = ({ defaultValues, onFormSubmit, submitButtonText, errorMe
                 </Label>
             </div>
 
-            <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Saving...' : submitButtonText}
-            </Button>
-
             <div role="status">
                 {submitStatus && (
                     <div className='border-2 border-primary-300 rounded-md p-2 bg-primary-100'>
@@ -133,6 +129,10 @@ const RecipeFormBase = ({ defaultValues, onFormSubmit, submitButtonText, errorMe
                     </div>
                 )}
             </div>
+
+            <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Saving...' : submitButtonText}
+            </Button>
         </form>
     );
 };
